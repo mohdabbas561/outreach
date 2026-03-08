@@ -1,202 +1,202 @@
 [
   {
-    "name": "$NEURO",
-    "tgLink": "https://neurochat.me/",
-    "xLink": "https://x.com/NeuroXYZ",
-    "discordLink": null,
-    "chainId": "solana",
-    "tokenAddress": "AH7DP8tZRDD9ZoBdHH3PU6ZUfwNAZGsChf2BZEHGpump"
-  },
-  {
-    "name": "$GLIZZY",
-    "tgLink": "https://t.me/Glizzy_OnSol",
-    "xLink": null,
-    "discordLink": null,
-    "chainId": "solana",
-    "tokenAddress": "74m6NbjcEPaEJhfVrzXifcjNgE9HhgY4mgDB3QYpump"
-  },
-  {
-    "name": "$KUMA",
-    "tgLink": "https://t.me/kuma_w0rld",
-    "xLink": "https://x.com/kuma_w0rld",
-    "discordLink": null,
-    "chainId": "solana",
-    "tokenAddress": "grvbeotkc8fGEjsdyjjfgzoNsDJQ9aLYwvP9ncipump"
-  },
-  {
-    "name": "$SYNCX",
-    "tgLink": "https://t.me/SyncXBSC",
-    "xLink": "https://x.com/SyncX_BSC",
-    "discordLink": null,
-    "chainId": "bsc",
-    "tokenAddress": "0x24d931b3165bcbd167d342E0bE92E55d6BbAfffF"
-  },
-  {
-    "name": "$WONTON",
-    "tgLink": "https://t.me/wontoninu",
-    "xLink": "https://x.com/wontoninu",
+    "name": "$SOL",
+    "tgLink": "https://t.me/WeeOnChain",
+    "xLink": "https://x.com/solana",
     "discordLink": null,
     "chainId": "base",
-    "tokenAddress": "0x985805bEC842adAB8bb65dc42867e2cdd86546D2"
+    "tokenAddress": "0x311935Cd80B76769bF2ecC9D8Ab7635b2139cf82"
   },
   {
-    "name": "$WHITEHOUSE",
-    "tgLink": "https://t.me/TheLuxuriousLounge",
-    "xLink": "https://x.com/i/communities/2029596385180291485",
+    "name": "$SOL",
+    "tgLink": "https://t.me/solanacommunity26",
+    "xLink": "https://x.com/vulpineSOL",
     "discordLink": null,
     "chainId": "solana",
-    "tokenAddress": "7oXNE1dbpHUp6dn1JF8pRgCtzfCy4P2FuBneWjZHpump"
+    "tokenAddress": "DRLNhjM7jusYFPF1qade1dBD1qhgds7oAfdKs51Vpump"
   },
   {
-    "name": "$AUTISM",
-    "tgLink": "https://t.me/AutismCoin_Entry",
-    "xLink": "https://x.com/i/communities/2026013791775793643",
+    "name": "$SOL",
+    "tgLink": "https://t.me/SolanaBackshots",
+    "xLink": "https://x.com/SolOnPulse",
     "discordLink": null,
-    "chainId": "solana",
-    "tokenAddress": "8jiVXftnn2ZG6bugK7HAH5j2G3D6TpsG521gqsWwpump"
+    "chainId": "pulsechain",
+    "tokenAddress": "0x873301F2B4B83FeaFF04121B68eC9231B29Ce0df"
   },
   {
-    "name": "$TULSA",
-    "tgLink": "https://t.me/Blackwallstreetsol",
-    "xLink": "https://x.com/tulsabws?s=21&t=O1kPMRtIBO1KZa0XZZiSsg",
+    "name": "$SOLANA",
+    "tgLink": "https://telegram.me/SOLANAPORTALRFK",
+    "xLink": "https://twitter.com/tickerSOL",
     "discordLink": null,
-    "chainId": "solana",
-    "tokenAddress": "8TVr3U85V3Uazkxd5DJbmzdUWaxhQdEGNNGJ7eNTpump"
+    "chainId": "ethereum",
+    "tokenAddress": "0x3D806324b6Df5AF3c1a81aCbA14A8A62Fe6D643F"
   },
   {
-    "name": "$ADA",
-    "tgLink": "https://t.me/ADASOLCTO",
-    "xLink": "https://x.com/ADAonSolanaCTO",
-    "discordLink": null,
-    "chainId": "solana",
-    "tokenAddress": "skDGuSDyKYGbYTWnMCNcPeDd4vHUxAsMNVVxxUfpump"
-  },
-  {
-    "name": "$ABRETT",
-    "tgLink": "https://t.me/SolBrett",
-    "xLink": "https://x.com/bretts_biz",
-    "discordLink": null,
-    "chainId": "solana",
-    "tokenAddress": "FqeKiQrMmTq6wmuBwo3i6sum8AhaGfvnZAmWEcVEpump"
-  },
-  {
-    "name": "$BASE IS FOR EVERYONE",
-    "tgLink": "https://t.me/bifecto/",
-    "xLink": "https://x.com/bifeofficial/",
-    "discordLink": "https://discord.com/invite/PXcr8SEeTH",
-    "chainId": "base",
-    "tokenAddress": "0xD769d56f479E9E72a77bB1523e866A33098Feec5"
-  },
-  {
-    "name": "$HOLD",
-    "tgLink": "https://t.me/HOLDMIKE",
-    "xLink": "https://x.com/i/communities/2029711668809281545",
-    "discordLink": null,
-    "chainId": "solana",
-    "tokenAddress": "5BHi3hBKcbcZGLUug9ncRG8D3fg6tthoQr73vmqJpump"
-  },
-  {
-    "name": "$AIBINANCE",
-    "tgLink": "https://t.me/AIBinanceai",
-    "xLink": "https://x.com/AIBinanceAI",
+    "name": "$BSC",
+    "tgLink": "https://t.me/BinanceSuperCycleEntry",
+    "xLink": "https://x.com/BinanceSuperCy/",
     "discordLink": null,
     "chainId": "bsc",
-    "tokenAddress": "0x20b5cFE47932d6bE73Ee7849933E980327ED11f7"
+    "tokenAddress": "0x6331BF8D601f0D7F0d2101772af5137c418c4444"
   },
   {
-    "name": "$HITLER",
-    "tgLink": "https://t.me/thegoldeneraportal",
-    "xLink": "https://x.com/i/communities/2019754475167130047",
-    "discordLink": "https://discord.gg/2UE2F6Z5g",
-    "chainId": "solana",
-    "tokenAddress": "8WhwakwRPFhdPz7GFbSwwZd2uNoThSV1ok51ehhJpump"
+    "name": "$BSC",
+    "tgLink": "https://t.me/bnbsupercycle",
+    "xLink": "https://x.com/i/communities/1975975382198166004",
+    "discordLink": null,
+    "chainId": "bsc",
+    "tokenAddress": "0x6B4917a11BCb3BDCb545D79F211e81aa5835a3Ba"
   },
   {
-    "name": "$MINDVOID",
-    "tgLink": "https://t.me/Doraemoncoin",
-    "xLink": "https://x.com/mindvoidcoin",
+    "name": "$SKILL",
+    "tgLink": "https://t.me/SkillsHubBnb",
+    "xLink": "https://x.com/Skill_BSC",
+    "discordLink": null,
+    "chainId": "bsc",
+    "tokenAddress": "0x9de129f9A57009B898db561177d09089EFE0fffF"
+  },
+  {
+    "name": "$WBSC",
+    "tgLink": "https://t.me/wbsccommunity",
+    "xLink": "https://x.com/HsdhSjdh32254",
+    "discordLink": null,
+    "chainId": "bsc",
+    "tokenAddress": "0xF884c4cD69807CFfEbb1e4fD8529cE048bA14444"
+  },
+  {
+    "name": "$BSCS",
+    "tgLink": "https://t.me/BSCS_Channel",
+    "xLink": "https://x.com/BSCS_Global",
+    "discordLink": null,
+    "chainId": "bsc",
+    "tokenAddress": "0xbcb24AFb019BE7E93EA9C43B7E22Bb55D5B7f45D"
+  },
+  {
+    "name": "$SAFEBSC",
+    "tgLink": "https://t.me/safebsctokengroup",
+    "xLink": "https://x.com/safebsctoken",
+    "discordLink": null,
+    "chainId": "bsc",
+    "tokenAddress": "0xf8f88599E638b1f992989b5C86a84d7a87b25D80"
+  },
+  {
+    "name": "$LOLO",
+    "tgLink": "https://t.me/elotelolo",
+    "xLink": "https://x.com/EloteLolo",
     "discordLink": null,
     "chainId": "solana",
-    "tokenAddress": "9VYUuSVZGw82Nz8rcSix4x4zurBmvkfiKtyvYCY4pump"
+    "tokenAddress": "CCgH8T82ABC7Krg4bR4Jj2yotiDQdzk3yg6GLLUApump"
   },
   {
-    "name": "$KIMJONG",
-    "tgLink": "https://t.me/kimjong_token",
-    "xLink": "https://x.com/i/communities/2030297669675938285",
+    "name": "$THRT",
+    "tgLink": "https://t.me/perkinsfund",
+    "xLink": "https://x.com/PerkinsFund",
     "discordLink": null,
     "chainId": "solana",
-    "tokenAddress": "9jR73VKfEjNYx8ZPQnVR8BgSiENv8v3P5EhVTBnxpump"
+    "tokenAddress": "3o2ySLzzvf94VwGnqhNqxHx3Bq4NNimTVr9UKuksTHRT"
   },
   {
-    "name": "$PATTY",
-    "tgLink": "https://t.me/stpatty",
-    "xLink": "https://x.com/i/communities/2030355757728948564",
+    "name": "$TABBY",
+    "tgLink": "https://t.me/TrumpTenderTabby",
+    "xLink": "https://x.com/tendertabby",
     "discordLink": null,
     "chainId": "solana",
-    "tokenAddress": "HDZHtKsEPbsRhcresr5taTGbrK6NfLZPpiYHRNdopump"
+    "tokenAddress": "Eq83UwKh5P7RLFhwEg3DRT8ZxNybSCPu7NVHW27E7Xmx"
   },
   {
-    "name": "$PIPPINA",
-    "tgLink": "https://t.me/pippinalovesyou",
-    "xLink": "https://x.com/_pippina",
+    "name": "$IDLE",
+    "tgLink": "https://t.me/stringidlemine",
+    "xLink": "https://x.com/stringidlemine?t=-VHTuZ6RDZ0ZSdFfClGRyQ&s=09",
     "discordLink": null,
     "chainId": "solana",
-    "tokenAddress": "rdWrAxwJwXaknCxyzbePN787JjiwGuMejotYkWWpump"
+    "tokenAddress": "BjcRmwm8e25RgjkyaFE56fc7bxRgGPw96JUkXRJFEroT"
   },
   {
-    "name": "$LEPRECOIN",
-    "tgLink": "https://t.me/Leprecoinmeme",
-    "xLink": "https://x.com/i/communities/2028905171170820306",
-    "discordLink": null,
-    "chainId": "solana",
-    "tokenAddress": "C9smdbQEsoZhnNCYhqeLDNE17aMGdBjJvqzk59DCpump"
+    "name": "$MEME",
+    "tgLink": "https://t.me/memecoin/",
+    "xLink": "https://x.com/memecoin",
+    "discordLink": "http://discord.gg/memeland",
+    "chainId": "ethereum",
+    "tokenAddress": "0xb131f4A55907B10d1F0A50d8ab8FA09EC342cd74"
   },
   {
-    "name": "$GROYPER",
-    "tgLink": "https://t.me/Groyper_SolArmy",
-    "xLink": "https://x.com/i/communities/2030059224764747930",
+    "name": "$MEME",
+    "tgLink": "https://t.me/TheMostElegantMonkeyArmy",
+    "xLink": "https://x.com/stayelegant_",
     "discordLink": null,
     "chainId": "solana",
-    "tokenAddress": "2bWBN59mB2sRN4r1mowAB4MotXiFZBQG4gRRAzLEpump"
+    "tokenAddress": "7cyAGa4XsNDnSgnFuwmVFgp9JGqZoZYkiVyFPSke9CuP"
   },
   {
-    "name": "$WARHOUSE",
-    "tgLink": "https://t.me/WarHouseOfSOL",
-    "xLink": "https://x.com/i/communities/2030276731719008607",
+    "name": "$MPX6900",
+    "tgLink": "https://t.me/mpx6900portal",
+    "xLink": "https://x.com/MPX6900",
     "discordLink": null,
     "chainId": "solana",
-    "tokenAddress": "HW8rUPXbLuxGcZEq8UpHjMXGqwyeyyRHkGVkhnYipump"
+    "tokenAddress": "39Mzpdw7NDGiXmZZGWiCdR6Nzoc7muWuYkPsVDV4pump"
   },
   {
-    "name": "$TRENCHPEDGY",
-    "tgLink": "https://t.me/TrenchPedgy",
-    "xLink": "https://x.com/i/communities/2030312695489253743",
+    "name": "$MEME",
+    "tgLink": "https://t.me/USDCmint",
+    "xLink": "https://x.com/1meme_sol",
     "discordLink": null,
     "chainId": "solana",
-    "tokenAddress": "FKj2YmCr3hdU6SnfJ38tydJxCxaguqUFHZEG1bTMpump"
+    "tokenAddress": "85ymfLLfeyYA9wV1PorpLBW1pprWfPgnm3cMEx5ppump"
   },
   {
-    "name": "$BLACKHOUSE",
-    "tgLink": "https://t.me/theBlackHouse_SOL",
-    "xLink": "https://x.com/i/communities/2030175828873498880",
-    "discordLink": null,
+    "name": "$NEW",
+    "tgLink": "https://t.me/NewSolanaCoin",
+    "xLink": "https://twitter.com/NEWonSolana",
+    "discordLink": "https://discord.gg/t2ppTmUuYM",
     "chainId": "solana",
-    "tokenAddress": "CQmdVSq3JCwYFvE8x5fupYLeTBgKq1iWXkCwwLQ9pump"
+    "tokenAddress": "HxSKUyQWwT3w8aRExvEnwoUwMXqPyj42irSDGksn7XQP"
   },
   {
-    "name": "$OIL",
-    "tgLink": "https://t.me/TheOLIOToken",
-    "xLink": "https://x.com/i/communities/2030205019857756618",
+    "name": "$GORK",
+    "tgLink": "https://t.me/eggmemecoin",
+    "xLink": "https://x.com/gork",
     "discordLink": null,
     "chainId": "solana",
-    "tokenAddress": "21n9r8YsCXxU623oAhxST4kU15orz8WXZcjLX8mQpump"
+    "tokenAddress": "38PgzpJYu2HkiYvV8qePFakB8tuobPdGm2FFEn7Dpump"
   },
   {
-    "name": "$PEACEHOUSE",
-    "tgLink": "https://t.me/PeaceHouseSOL",
-    "xLink": "https://x.com/i/communities/2030251327259881786",
+    "name": "$SPSC",
+    "tgLink": "https://t.me/kermitxfrog",
+    "xLink": "https://x.com/spsccto?s=20",
     "discordLink": null,
     "chainId": "solana",
-    "tokenAddress": "FhRdzhS2TGVJohJgKr4SxVF3LRM87zfq3T8Qa8Xpump"
+    "tokenAddress": "4nswj3o1Lo9iWYvvRJxUD8vbCy9ay7QQoXYcncHNbonk"
+  },
+  {
+    "name": "$NOTIFAI",
+    "tgLink": "https://t.me/notifainews",
+    "xLink": "https://x.com/notifaibnb?s=21",
+    "discordLink": null,
+    "chainId": "bsc",
+    "tokenAddress": "0x70131b713A5D0e9D900FEcA15D0e1348658E4444"
+  },
+  {
+    "name": "$TSAT",
+    "tgLink": "https://t.me/davincij15public",
+    "xLink": "https://x.com/Davincij15",
+    "discordLink": null,
+    "chainId": "solana",
+    "tokenAddress": "tSATdGGSLYBVCrm3pXiib8NmzKcB1iUdjRRseNGssxu"
+  },
+  {
+    "name": "$SUEDE",
+    "tgLink": "https://t.me/SUEDEAI",
+    "xLink": "https://x.com/aisuede",
+    "discordLink": null,
+    "chainId": "solana",
+    "tokenAddress": "2nCeHpECQvnMfzjU5fDMAKws1vBxMzxvWr6qqLpApump"
+  },
+  {
+    "name": "$GAVIN",
+    "tgLink": "https://t.me/gavinnewsomsolana",
+    "xLink": "https://x.com/newsom_onsol",
+    "discordLink": null,
+    "chainId": "solana",
+    "tokenAddress": "2sBzM32KabqCZgkA6A7UeT4SttDbKikzzVrvrniSpump"
   }
 ]
