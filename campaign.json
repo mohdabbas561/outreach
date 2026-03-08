@@ -1,0 +1,25 @@
+{
+  "telegram": {
+    "usernames": [],
+    "groups": [],
+    "delaySeconds": 60,
+    "delaySecondsMax": 90
+  },
+  "twitter": {
+    "usernames": [
+      "@Abbass0P"
+    ],
+    "delaySeconds": 60
+  },
+  "tgTemplates": [
+    "Hey man! Luci here from Moonshot Win, a cross-chain crash game. We'd love to add your token to our game to give it more utility and visibility. Let me know if I can share more details.",
+    "Hey! Luci from Moonshot Win here. We run a cross-chain crash game and would like to integrate your token to bring it more exposure and real use in our platform. Happy to share details if you're interested.",
+    "Hi! This is Luci from Moonshot Win. We're building a cross-chain crash game and would love to feature your token inside the game for added utility and reach. Let me know if you'd like to hear more."
+  ],
+  "xTemplates": [
+    "Hey man! Luci here from Moonshot Win, a cross-chain crash game. We'd love to add your token to our game to give it more utility and visibility. Let me know if I can share more details.",
+    "Hey! Luci from Moonshot Win here. We run a cross-chain crash game and would like to integrate your token to bring it more exposure and real use in our platform. Happy to share details if you're interested.",
+    "Hi! This is Luci from Moonshot Win. We're building a cross-chain crash game and would love to feature your token inside the game for added utility and reach. Let me know if you'd like to hear more."
+  ],
+  "generatedAt": "2026-03-07T18:11:03.869Z"
+}
