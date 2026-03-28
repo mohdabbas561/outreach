@@ -239,6 +239,7 @@ export default function App() {
   const [dexHistory, setDexHistory] = useState([]);
   const [viewingEntry, setViewingEntry] = useState(null);
   const [viewAllScrapes, setViewAllScrapes] = useState(false);
+  const [clearingDexSeen, setClearingDexSeen] = useState(false);
 
   // TG Admins
   const [tgAdminScraping, setTgAdminScraping] = useState(false);
@@ -246,6 +247,7 @@ export default function App() {
   const [tgAdminResults, setTgAdminResults] = useState([]);
   const [tgAdminFilter, setTgAdminFilter] = useState("all");
   const [tgAdminCopied, setTgAdminCopied] = useState(false);
+  const [tgGroupCopied, setTgGroupCopied] = useState("");
   const [joinedGroups, setJoinedGroups] = useState([]);
   const [fetchingJoined, setFetchingJoined] = useState(false);
   const [joinedFetchLogs, setJoinedFetchLogs] = useState([]);
@@ -279,6 +281,28 @@ export default function App() {
     failed: logs.filter(l => l.status === "failed").length,
     positive: logs.filter(l => l.status === "positive").length,
   };
+
+  const getGroupKey = (group) => {
+    if (group?.ref?.kind && group?.ref?.value) {
+      return `${group.ref.kind}:${String(group.ref.value).toLowerCase()}`;
+    }
+    if (group?.link) return `link:${group.link.toLowerCase()}`;
+    if (group?.id) return `id:${String(group.id).toLowerCase()}`;
+    return `name:${String(group?.name || "").toLowerCase()}`;
+  };
+
+  const isGroupBlacklisted = (group) => {
+    if (!group?.link) return false;
+    return blacklistedGroups.has(group.link.toLowerCase());
+  };
+
+  const isGroupContacted = (group) => {
+    if (!group?.link) return false;
+    return contacted.has(group.link.toLowerCase());
+  };
+
+  const selectedCount = joinedGroups.filter(g => selectedGroups.has(getGroupKey(g))).length;
+  const getTgGroupCopyKey = (group) => (group?.groupLink || group?.groupName || "").toLowerCase();
 
   // ── Bootstrap ──
   useEffect(() => {
@@ -360,6 +384,20 @@ export default function App() {
     await fetch(`${SERVER}/api/dex/scrape`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ url: dexUrl }) });
   }
 
+  async function handleClearDexSeenMemory() {
+    if (!serverOnline) { alert("Server offline!"); return; }
+    if (!window.confirm("Clear Dex unique memory? This allows previously scraped tokens to appear again.")) return;
+    setClearingDexSeen(true);
+    try {
+      const d = await fetch(`${SERVER}/api/dex/seen/clear`, { method: "DELETE" }).then(r => r.json());
+      if (!d.ok) throw new Error(d.error || "Failed to clear memory");
+      setDexLogs(p => [...p, { type: "done", text: "Unique Dex memory cleared. Previously seen tokens can now appear again." }]);
+    } catch (err) {
+      setDexLogs(p => [...p, { type: "error", text: `Clear failed: ${err.message}` }]);
+    }
+    setClearingDexSeen(false);
+  }
+
   async function handleFetchJoinedGroups() {
     if (!serverOnline) { alert("Server offline!"); return; }
     setFetchingJoined(true); setJoinedFetchLogs([]); setJoinedGroups([]); setSelectedGroups(new Set());
@@ -371,9 +409,15 @@ export default function App() {
       if (d.stage !== "joinedgroups") return;
       if (d.text) setJoinedFetchLogs(p => [...p, { type: d.type, text: d.text }]);
       if (d.type === "results") {
-        const all = d.groups || [];
+        const raw = d.groups || [];
+        const todayUtc = new Date().toISOString().slice(0, 10);
+        const all = raw.filter(g => g.joinedAtUtc && String(g.joinedAtUtc).slice(0, 10) === todayUtc);
+        const filteredOut = raw.length - all.length;
+        if (filteredOut > 0) {
+          setJoinedFetchLogs(p => [...p, { type: "info", text: `Filtered out ${filteredOut} old/non-today groups on client safety check.` }]);
+        }
         setJoinedGroups(all);
-        setSelectedGroups(new Set(all.filter(g => !contacted.has(g.link?.toLowerCase()) && !blacklistedGroups.has(g.link?.toLowerCase())).map(g => g.link)));
+        setSelectedGroups(new Set(all.filter(g => !isGroupContacted(g) && !isGroupBlacklisted(g)).map(getGroupKey)));
         setFetchingJoined(false); sse.close();
       }
       if (d.type === "error") { setFetchingJoined(false); sse.close(); }
@@ -384,8 +428,11 @@ export default function App() {
   }
 
   async function handleTgAdminScrape() {
-    const groups = [...selectedGroups];
-    if (!groups.length) { alert("No groups selected. Fetch your joined groups first."); return; }
+    const groups = joinedGroups
+      .filter(g => selectedGroups.has(getGroupKey(g)))
+      .map(g => g.ref || g.link)
+      .filter(Boolean);
+    if (!groups.length) { alert("No groups selected. Fetch today's joined groups first."); return; }
     if (!serverOnline) { alert("Server offline!"); return; }
     setTgAdminScraping(true); setTgAdminLogs([]); setTgAdminResults([]);
     if (tgAdminSseRef.current) tgAdminSseRef.current.close();
@@ -415,15 +462,44 @@ export default function App() {
   }
 
   function copyUsernames(results, filter) {
-    const text = getAdmins(results, filter).filter(m => m.username.startsWith("@") && !contacted.has(m.username.toLowerCase())).map(m => m.username).join("\n");
+    const text = [...new Set(
+      getAdmins(results, filter)
+        .filter(m => m.username.startsWith("@") && !contacted.has(m.username.toLowerCase()))
+        .map(m => m.username)
+    )].join("\n");
     navigator.clipboard.writeText(text).then(() => { setTgAdminCopied(true); setTimeout(() => setTgAdminCopied(false), 2000); });
   }
 
+  function copyGroupUsernames(group, rows) {
+    const handles = [...new Set(
+      (rows || [])
+        .filter(m => m.username?.startsWith("@"))
+        .map(m => m.username)
+        .filter(u => !contacted.has(u.toLowerCase()))
+    )];
+    if (!handles.length) {
+      alert("No new @handles in this group to copy.");
+      return;
+    }
+    navigator.clipboard.writeText(handles.join("\n")).then(() => {
+      const key = getTgGroupCopyKey(group);
+      setTgGroupCopied(key);
+      setTimeout(() => setTgGroupCopied(""), 1800);
+    });
+  }
+
   async function blacklistGroup(link) {
+    if (!link) return;
     await fetch(`${SERVER}/api/blacklist-group`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ link }) });
     setBlacklistedGroups(p => new Set([...p, link.toLowerCase()]));
     setJoinedGroups(p => p.filter(g => g.link?.toLowerCase() !== link.toLowerCase()));
-    setSelectedGroups(p => { const n = new Set(p); n.delete(link); return n; });
+    setSelectedGroups(p => {
+      const n = new Set(p);
+      for (const g of joinedGroups) {
+        if (g.link?.toLowerCase() === link.toLowerCase()) n.delete(getGroupKey(g));
+      }
+      return n;
+    });
   }
 
   async function handleTgSendCode() {
@@ -576,9 +652,32 @@ export default function App() {
         {/* ──────────────────────────────────────── DEX SCRAPER ─── */}
         {tab === "Dex Scraper" && (
           <div>
-            <div style={{ marginBottom: 24 }}>
-              <h2 style={{ margin: 0, color: "#fff", fontSize: 22, fontWeight: 700 }}>DexScreener Scraper</h2>
-              <p style={{ margin: "5px 0 0", color: "#ddeeff", fontSize: 13 }}>Extract Telegram, X, and Discord links from token listings</p>
+            <div style={{ marginBottom: 24, display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12, flexWrap: "wrap" }}>
+              <div>
+                <h2 style={{ margin: 0, color: "#fff", fontSize: 22, fontWeight: 700 }}>DexScreener Scraper</h2>
+                <p style={{ margin: "5px 0 0", color: "#ddeeff", fontSize: 13 }}>Pulls 10 unique random tokens by your URL context and skips anything already scraped.</p>
+              </div>
+              <button
+                onClick={handleClearDexSeenMemory}
+                disabled={clearingDexSeen || !serverOnline}
+                style={{ ...$.btnSm(RD), opacity: (clearingDexSeen || !serverOnline) ? 0.3 : 1 }}
+              >
+                {clearingDexSeen ? "CLEARING..." : "CLEAR UNIQUE MEMORY"}
+              </button>
+            </div>
+
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(170px, 1fr))", gap: 10, maxWidth: 780, marginBottom: 14 }}>
+              {[
+                ["STEP 1", "Paste Dex URL"],
+                ["STEP 2", "Scrape 10 Unique"],
+                ["STEP 3", "Join TG Manually"],
+                ["STEP 4", "Continue in TG Admins"],
+              ].map(([k, v]) => (
+                <div key={k} style={{ background: "#030814", border: "1px solid #123155", borderRadius: 10, padding: "10px 12px" }}>
+                  <div style={{ color: BL, fontSize: 10, fontWeight: 700, letterSpacing: "0.12em" }}>{k}</div>
+                  <div style={{ color: "#dff2ff", marginTop: 4, fontSize: 12, fontWeight: 600 }}>{v}</div>
+                </div>
+              ))}
             </div>
 
             <div style={{ display: "flex", gap: 10, maxWidth: 780, marginBottom: 20 }}>
@@ -612,47 +711,63 @@ export default function App() {
           <div>
             <div style={{ marginBottom: 24 }}>
               <h2 style={{ margin: 0, color: "#fff", fontSize: 22, fontWeight: 700 }}>TG Admin Scraper</h2>
-              <p style={{ margin: "5px 0 0", color: "#ddeeff", fontSize: 13 }}>Fetch your joined groups → scrape all admins, owners & mods</p>
+              <p style={{ margin: "5px 0 0", color: "#ddeeff", fontSize: 13 }}>Fetch groups joined today (UTC) → scrape admins, owners & mods you have not DMed yet</p>
+            </div>
+
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(170px, 1fr))", gap: 10, marginBottom: 16 }}>
+              {[
+                ["STEP 1", "Fetch today's joined groups"],
+                ["STEP 2", "Select groups to process"],
+                ["STEP 3", "Scrape admins/mods/owners"],
+                ["STEP 4", "Copy new @handles only"],
+              ].map(([k, v]) => (
+                <div key={k} style={{ background: "#030814", border: "1px solid #123155", borderRadius: 10, padding: "10px 12px" }}>
+                  <div style={{ color: BL, fontSize: 10, fontWeight: 700, letterSpacing: "0.12em" }}>{k}</div>
+                  <div style={{ color: "#dff2ff", marginTop: 4, fontSize: 12, fontWeight: 600 }}>{v}</div>
+                </div>
+              ))}
             </div>
 
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, marginBottom: 28 }}>
               {/* Step 1 */}
-              <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-                <div style={{ color: GN, fontSize: 10, fontWeight: 700, letterSpacing: "0.15em" }}>STEP 1 — LOAD YOUR GROUPS</div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 14, background: "#050b1a", border: "1px solid #123155", borderRadius: 12, padding: 14 }}>
+                <div style={{ color: GN, fontSize: 10, fontWeight: 700, letterSpacing: "0.15em" }}>STEP 1 — LOAD TODAY'S GROUPS (UTC)</div>
                 <button onClick={handleFetchJoinedGroups} disabled={fetchingJoined || !serverOnline}
                   style={{ ...$.btn(BL), opacity: (fetchingJoined || !serverOnline) ? 0.3 : 1 }}>
-                  {fetchingJoined ? "FETCHING..." : "📡 FETCH JOINED GROUPS"}
+                  {fetchingJoined ? "FETCHING..." : "📡 FETCH TODAY'S GROUPS"}
                 </button>
-                <LogPane lines={joinedFetchLogs} placeholder="Click above to load groups..." minH={80} maxH={110} />
+                <LogPane lines={joinedFetchLogs} placeholder="Click above to load groups joined today (UTC)..." minH={80} maxH={110} />
 
                 {joinedGroups.length > 0 && (
                   <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                      <span style={{ color: "#ddeeff", fontSize: 11, fontWeight: 700 }}>{selectedGroups.size}/{joinedGroups.length} selected</span>
+                      <span style={{ color: "#ddeeff", fontSize: 11, fontWeight: 700 }}>{selectedCount}/{joinedGroups.length} selected</span>
                       <div style={{ display: "flex", gap: 6 }}>
-                        <button onClick={() => setSelectedGroups(new Set(joinedGroups.filter(g => !blacklistedGroups.has(g.link?.toLowerCase())).map(g => g.link)))} style={$.btnSm(GN)}>ALL</button>
+                        <button onClick={() => setSelectedGroups(new Set(joinedGroups.filter(g => !isGroupBlacklisted(g)).map(getGroupKey)))} style={$.btnSm(GN)}>ALL</button>
                         <button onClick={() => setSelectedGroups(new Set())} style={$.btnSm("#3a5575")}>NONE</button>
                       </div>
                     </div>
                     <div style={{ background: "#030609", border: "1px solid #0f1f35", borderRadius: 9, maxHeight: 300, overflowY: "auto" }}>
                       {joinedGroups.map((g, i) => {
-                        const checked = selectedGroups.has(g.link);
-                        const dmed = contacted.has(g.link?.toLowerCase());
-                        const bl = blacklistedGroups.has(g.link?.toLowerCase());
+                        const key = getGroupKey(g);
+                        const checked = selectedGroups.has(key);
+                        const dmed = isGroupContacted(g);
+                        const bl = isGroupBlacklisted(g);
                         return (
                           <div key={i} style={{ display: "flex", alignItems: "center", gap: 9, padding: "9px 13px", borderBottom: "1px solid #0a1020", opacity: bl ? 0.2 : 1 }}>
-                            <div onClick={() => { if (bl) return; setSelectedGroups(p => { const n = new Set(p); checked ? n.delete(g.link) : n.add(g.link); return n; }); }}
+                            <div onClick={() => { if (bl) return; setSelectedGroups(p => { const n = new Set(p); checked ? n.delete(key) : n.add(key); return n; }); }}
                               style={{ width: 15, height: 15, borderRadius: 4, flexShrink: 0, border: `1.5px solid ${checked ? GN : "#1a2540"}`, background: checked ? GN : "transparent", display: "flex", alignItems: "center", justifyContent: "center", cursor: bl ? "not-allowed" : "pointer", transition: "all 0.15s" }}>
                               {checked && <span style={{ color: "#050810", fontSize: 9, fontWeight: 900, lineHeight: 1 }}>✓</span>}
                             </div>
                             <div style={{ flex: 1, minWidth: 0, cursor: bl ? "not-allowed" : "pointer" }}
-                              onClick={() => { if (bl) return; setSelectedGroups(p => { const n = new Set(p); checked ? n.delete(g.link) : n.add(g.link); return n; }); }}>
+                              onClick={() => { if (bl) return; setSelectedGroups(p => { const n = new Set(p); checked ? n.delete(key) : n.add(key); return n; }); }}>
                               <div style={{ color: "#ffffff", fontWeight: 600, fontSize: 13, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{g.name}</div>
-                              <div style={{ color: "#ddeeff", fontSize: 10, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{g.link}</div>
+                              <div style={{ color: "#ddeeff", fontSize: 10, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{g.link || "Private group (no public t.me link)"}</div>
+                              {g.joinedAtUtc && <div style={{ color: "#6a8aaa", fontSize: 10 }}>joined: {new Date(g.joinedAtUtc).toISOString()}</div>}
                             </div>
                             {dmed && <Tag color={GL}>DMed</Tag>}
                             {g.participantsCount && <span style={{ color: "#ddeeff", fontSize: 10, flexShrink: 0 }}>{g.participantsCount.toLocaleString()}</span>}
-                            {!bl && <button onClick={() => blacklistGroup(g.link)} style={{ ...$.btnSm(RD), padding: "3px 8px", flexShrink: 0 }}>✕</button>}
+                            {!bl && g.link && <button onClick={() => blacklistGroup(g.link)} style={{ ...$.btnSm(RD), padding: "3px 8px", flexShrink: 0 }}>✕</button>}
                           </div>
                         );
                       })}
@@ -662,11 +777,11 @@ export default function App() {
               </div>
 
               {/* Step 2 */}
-              <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: 14, background: "#050b1a", border: "1px solid #123155", borderRadius: 12, padding: 14 }}>
                 <div style={{ color: GN, fontSize: 10, fontWeight: 700, letterSpacing: "0.15em" }}>STEP 2 — SCRAPE ADMINS</div>
-                <button onClick={handleTgAdminScrape} disabled={tgAdminScraping || !serverOnline || selectedGroups.size === 0}
-                  style={{ ...$.btn(GN), opacity: (tgAdminScraping || selectedGroups.size === 0) ? 0.3 : 1 }}>
-                  {tgAdminScraping ? "SCRAPING..." : `🔍 SCRAPE ${selectedGroups.size} GROUP${selectedGroups.size !== 1 ? "S" : ""}`}
+                <button onClick={handleTgAdminScrape} disabled={tgAdminScraping || !serverOnline || selectedCount === 0}
+                  style={{ ...$.btn(GN), opacity: (tgAdminScraping || selectedCount === 0) ? 0.3 : 1 }}>
+                  {tgAdminScraping ? "SCRAPING..." : `🔍 SCRAPE ${selectedCount} GROUP${selectedCount !== 1 ? "S" : ""}`}
                 </button>
                 <LogPane lines={tgAdminLogs} endRef={tgAdminLogsEndRef} placeholder="Logs appear here..." minH={200} maxH={420} />
               </div>
@@ -709,14 +824,22 @@ export default function App() {
                       return !contacted.has(u) && (tgAdminFilter === "all" || m.role.toLowerCase().includes(tgAdminFilter.toLowerCase()));
                     });
                     if (!filtered.length) return null;
+                    const copyKey = getTgGroupCopyKey(group);
                     return (
                       <div key={gi} style={{ ...$.card, overflow: "hidden", marginBottom: 14 }}>
                         <div style={{ padding: "10px 18px", borderBottom: "1px solid #0f1a30", display: "flex", justifyContent: "space-between", alignItems: "center", background: "#040710", margin: "-22px -26px 18px" }}>
                           <div>
                             <span style={{ color: "#ffffff", fontWeight: 700, fontSize: 14 }}>{group.groupName}</span>
-                            <a href={group.groupLink} target="_blank" rel="noreferrer" style={{ color: BL, fontSize: 11, marginLeft: 10 }}>{group.groupLink} ↗</a>
+                            {group.groupLink
+                              ? <a href={group.groupLink} target="_blank" rel="noreferrer" style={{ color: BL, fontSize: 11, marginLeft: 10 }}>{group.groupLink} ↗</a>
+                              : <span style={{ color: "#6a8aaa", fontSize: 11, marginLeft: 10 }}>private</span>}
                           </div>
-                          <Tag color={GN}>{filtered.length} members</Tag>
+                          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                            <button onClick={() => copyGroupUsernames(group, filtered)} style={$.btnSm(BL)}>
+                              {tgGroupCopied === copyKey ? "✓ COPIED" : "COPY GROUP @"}
+                            </button>
+                            <Tag color={GN}>{filtered.length} members</Tag>
+                          </div>
                         </div>
                         <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
                           <thead>

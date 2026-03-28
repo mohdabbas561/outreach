@@ -1,5 +1,5 @@
 /**
- * tgscraper.js — Scrape admins/mods from Telegram groups
+ * tgscraper.js - Scrape admins/mods from Telegram groups
  * Uses existing TG session from .tg_session
  */
 
@@ -7,20 +7,235 @@ require("dotenv").config();
 const fs = require("fs");
 const path = require("path");
 
+function normalizeId(value) {
+  if (value === null || value === undefined) return null;
+  if (typeof value === "bigint") return value.toString();
+  if (typeof value === "object" && value.value !== undefined) return normalizeId(value.value);
+  return value.toString();
+}
+
+function isGroupEntity(entity) {
+  if (!entity) return false;
+  const className = entity.className || "";
+  return className === "Chat" || (className === "Channel" && entity.megagroup === true);
+}
+
+function parseGroupRef(rawRef) {
+  if (!rawRef) return null;
+
+  if (typeof rawRef === "string") {
+    const value = rawRef.trim();
+    if (!value) return null;
+
+    const linkMatch = value.match(/(?:https?:\/\/)?(?:t\.me|telegram\.me)\/([^/?&#\s]+)/i);
+    if (linkMatch) return { kind: "username", value: linkMatch[1], label: value };
+
+    if (value.startsWith("@")) return { kind: "username", value: value.slice(1), label: value };
+    if (value.startsWith("id:")) return { kind: "id", value: value.slice(3), label: value };
+
+    return { kind: "username", value, label: value };
+  }
+
+  if (typeof rawRef === "object") {
+    if (rawRef.kind === "username" && rawRef.value) {
+      return { kind: "username", value: String(rawRef.value), label: rawRef.label || `@${rawRef.value}` };
+    }
+    if (rawRef.kind === "id" && rawRef.value) {
+      return { kind: "id", value: String(rawRef.value), label: rawRef.label || `id:${rawRef.value}` };
+    }
+    if (rawRef.username) {
+      return { kind: "username", value: String(rawRef.username), label: `@${rawRef.username}` };
+    }
+    if (rawRef.id) {
+      return { kind: "id", value: String(rawRef.id), label: `id:${rawRef.id}` };
+    }
+  }
+
+  return null;
+}
+
+function classifyRole(participant) {
+  const className = participant?.className || "";
+  const customTitle = participant?.rank || null;
+
+  if (className.endsWith("Creator")) {
+    return customTitle ? `Owner (${customTitle})` : "Owner";
+  }
+
+  if (className.endsWith("Admin")) {
+    let role = "Admin";
+    const perms = participant.adminRights;
+    if (perms) {
+      const hasOnlyBasic =
+        !perms.deleteMessages &&
+        !perms.banUsers &&
+        !perms.inviteUsers &&
+        !perms.pinMessages &&
+        !perms.addAdmins &&
+        !perms.anonymous &&
+        !perms.manageCall &&
+        !perms.other &&
+        !perms.manageTopics;
+      if (hasOnlyBasic) role = "Moderator";
+    }
+    return customTitle ? `${role} (${customTitle})` : role;
+  }
+
+  return null;
+}
+
+function buildAdminEntries(participants, users, groupName, groupLink, onProgress) {
+  const entries = [];
+
+  for (const participant of participants) {
+    const role = classifyRole(participant);
+    if (!role) continue;
+
+    const participantUserId = normalizeId(participant.userId);
+    const user = users.find((u) => normalizeId(u.id) === participantUserId);
+    if (!user || user.bot) continue;
+
+    const username = user.username ? `@${user.username}` : null;
+    const displayName = [user.firstName, user.lastName].filter(Boolean).join(" ") || "Unknown";
+    const userId = normalizeId(user.id);
+
+    const entry = {
+      username: username || `ID:${userId}`,
+      displayName,
+      role,
+      userId,
+      group: groupName,
+      groupLink,
+    };
+
+    entries.push(entry);
+    onProgress?.({ type: "found", text: `  - ${username || displayName} - ${role}` });
+  }
+
+  return entries;
+}
+
+async function getAdminsForEntity(client, entity, groupName, groupLink, onProgress) {
+  const { Api } = require("telegram");
+
+  if (entity.className === "Channel") {
+    const result = await client.invoke(
+      new Api.channels.GetParticipants({
+        channel: entity,
+        filter: new Api.ChannelParticipantsAdmins(),
+        offset: 0,
+        limit: 200,
+        hash: BigInt(0),
+      })
+    );
+
+    const participants = result.participants || [];
+    const users = result.users || [];
+    onProgress?.({ type: "info", text: `Found ${participants.length} admins/mods` });
+    return buildAdminEntries(participants, users, groupName, groupLink, onProgress);
+  }
+
+  if (entity.className === "Chat") {
+    const chatId = parseInt(normalizeId(entity.id), 10);
+    const full = await client.invoke(
+      new Api.messages.GetFullChat({
+        chatId,
+      })
+    );
+
+    const participants = full.fullChat?.participants?.participants || [];
+    const users = full.users || [];
+    const adminCandidates = participants.filter((p) => (p.className || "").endsWith("Creator") || (p.className || "").endsWith("Admin"));
+    onProgress?.({ type: "info", text: `Found ${adminCandidates.length} admins/mods` });
+    return buildAdminEntries(adminCandidates, users, groupName, groupLink, onProgress);
+  }
+
+  throw new Error(`Unsupported entity type: ${entity.className || "Unknown"}`);
+}
+
+function buildGroupLookup(dialogs) {
+  const byId = new Map();
+  const byUsername = new Map();
+
+  for (const dialog of dialogs) {
+    const entity = dialog.entity;
+    if (!isGroupEntity(entity)) continue;
+
+    const id = normalizeId(entity.id);
+    if (id) byId.set(id, entity);
+
+    if (entity.username) {
+      byUsername.set(String(entity.username).toLowerCase(), entity);
+    }
+  }
+
+  return { byId, byUsername };
+}
+
+function toUtcDateKey(dateInput) {
+  const date = dateInput instanceof Date ? dateInput : new Date(dateInput);
+  if (Number.isNaN(date.getTime())) return "";
+  return `${date.getUTCFullYear()}-${String(date.getUTCMonth() + 1).padStart(2, "0")}-${String(date.getUTCDate()).padStart(2, "0")}`;
+}
+
+function unixToIso(unixSeconds) {
+  if (unixSeconds === null || unixSeconds === undefined) return null;
+  const asNumber = Number(unixSeconds);
+  if (!Number.isFinite(asNumber)) return null;
+  return new Date(asNumber * 1000).toISOString();
+}
+
+async function resolveJoinedAtUtc(client, entity, selfId) {
+  const { Api } = require("telegram");
+
+  if (entity.className === "Channel") {
+    try {
+      const response = await client.invoke(
+        new Api.channels.GetParticipant({
+          channel: entity,
+          participant: new Api.InputPeerSelf(),
+        })
+      );
+      return unixToIso(response?.participant?.date);
+    } catch {
+      return null;
+    }
+  }
+
+  if (entity.className === "Chat") {
+    try {
+      const chatId = parseInt(normalizeId(entity.id), 10);
+      const full = await client.invoke(
+        new Api.messages.GetFullChat({
+          chatId,
+        })
+      );
+      const participants = full.fullChat?.participants?.participants || [];
+      const selfParticipant = participants.find((p) => normalizeId(p.userId) === selfId);
+      return unixToIso(selfParticipant?.date);
+    } catch {
+      return null;
+    }
+  }
+
+  return null;
+}
+
 /**
  * Fetch all groups/supergroups the authenticated user has joined.
- * Returns an array of { name, link, id, participantsCount }
+ * Returns an array of { name, link, id, participantsCount, isPrivate, ref }
  */
-async function fetchJoinedGroups(onProgress) {
+async function fetchJoinedGroups(onProgress, options = {}) {
   const { TelegramClient } = require("telegram");
   const { StringSession } = require("telegram/sessions");
+  const todayOnlyUtc = options.todayOnlyUtc === true;
 
-  const apiId = parseInt(process.env.TG_API_ID);
+  const apiId = parseInt(process.env.TG_API_ID, 10);
   const apiHash = process.env.TG_API_HASH;
   const sessionFile = path.join(__dirname, ".tg_session");
 
   if (!fs.existsSync(sessionFile)) {
-    onProgress?.({ type: "error", text: "❌ No Telegram session. Go to Telegram tab and login first." });
+    onProgress?.({ type: "error", text: "No Telegram session. Go to Telegram tab and login first." });
     return [];
   }
 
@@ -32,68 +247,95 @@ async function fetchJoinedGroups(onProgress) {
 
   try {
     await client.connect();
-    onProgress?.({ type: "info", text: "✅ Connected to Telegram — fetching your joined groups..." });
+    onProgress?.({ type: "info", text: "Connected to Telegram - fetching your joined groups..." });
   } catch (err) {
-    onProgress?.({ type: "error", text: `❌ Connection failed: ${err.message}` });
+    onProgress?.({ type: "error", text: `Connection failed: ${err.message}` });
     return [];
   }
 
   const groups = [];
+  const todayKey = toUtcDateKey(new Date());
+  let skippedNotToday = 0;
+  let skippedUnknownJoinDate = 0;
 
   try {
-    // GetDialogs fetches all conversations including groups/channels
-    const dialogs = await client.getDialogs({ limit: 500 });
+    const dialogs = await client.getDialogs({ limit: 1000 });
+    const me = await client.getMe();
+    const selfId = normalizeId(me?.id);
 
     for (const dialog of dialogs) {
       const entity = dialog.entity;
-      if (!entity) continue;
+      if (!isGroupEntity(entity)) continue;
 
-      const className = entity.className || "";
-      // Only include groups and supergroups (megagroups), skip channels/broadcasts and private chats
-      const isGroup = className === "Chat" || (className === "Channel" && entity.megagroup === true);
-      if (!isGroup) continue;
+      const id = normalizeId(entity.id);
+      const username = entity.username ? String(entity.username) : null;
+      const link = username ? `https://t.me/${username}` : null;
+      const name = entity.title || username || `Group ${id || ""}`.trim();
+      const ref = username
+        ? { kind: "username", value: username }
+        : { kind: "id", value: id };
 
-      // Build t.me link
-      let link = null;
-      if (entity.username) {
-        link = `https://t.me/${entity.username}`;
-      } else {
-        // Private group — no public link, skip (can't scrape without invite link)
+      if (!ref.value) continue;
+
+      const joinedAtUtc = await resolveJoinedAtUtc(client, entity, selfId);
+      const joinedTodayUtc = joinedAtUtc ? toUtcDateKey(joinedAtUtc) === todayKey : false;
+
+      if (todayOnlyUtc && !joinedTodayUtc) {
+        if (joinedAtUtc) skippedNotToday++;
+        else skippedUnknownJoinDate++;
         continue;
       }
 
       groups.push({
-        name: entity.title || entity.username,
+        name,
         link,
-        id: entity.id?.toString(),
+        id,
+        username,
+        className: entity.className || null,
         participantsCount: entity.participantsCount || null,
+        isPrivate: !username,
+        joinedAtUtc,
+        joinedTodayUtc,
+        ref,
       });
 
-      onProgress?.({ type: "found", text: `  ✅ ${entity.title || entity.username} — ${link}` });
+      onProgress?.({
+        type: "found",
+        text: `  - ${name} - ${link || "(private group, no public link)"}${joinedAtUtc ? ` - joined ${joinedAtUtc}` : ""}`,
+      });
     }
   } catch (err) {
-    onProgress?.({ type: "error", text: `❌ Failed to fetch dialogs: ${err.message}` });
+    onProgress?.({ type: "error", text: `Failed to fetch dialogs: ${err.message}` });
   }
 
   await client.disconnect();
 
-  onProgress?.({ type: "done", text: `\n🎉 Found ${groups.length} joined public groups.` });
+  if (todayOnlyUtc) {
+    onProgress?.({
+      type: "info",
+      text: `Filtered by UTC day: skipped ${skippedNotToday} not joined today, ${skippedUnknownJoinDate} with unknown join date.`,
+    });
+  }
+
+  onProgress?.({
+    type: "done",
+    text: todayOnlyUtc
+      ? `\nDone. Found ${groups.length} groups joined today (UTC).`
+      : `\nDone. Found ${groups.length} joined groups.`,
+  });
   return groups;
 }
 
-async function scrapeGroupAdmins(groupLinks, onProgress) {
+async function scrapeGroupAdmins(groupRefs, onProgress) {
   const { TelegramClient } = require("telegram");
   const { StringSession } = require("telegram/sessions");
-  const { Api } = require("telegram");
-  const GetParticipantsRequest = Api.channels.GetParticipants;
-  const ChannelParticipantsAdmins = Api.ChannelParticipantsAdmins;
 
-  const apiId = parseInt(process.env.TG_API_ID);
+  const apiId = parseInt(process.env.TG_API_ID, 10);
   const apiHash = process.env.TG_API_HASH;
   const sessionFile = path.join(__dirname, ".tg_session");
 
   if (!fs.existsSync(sessionFile)) {
-    onProgress?.({ type: "error", text: "❌ No Telegram session. Go to Telegram tab and login first." });
+    onProgress?.({ type: "error", text: "No Telegram session. Go to Telegram tab and login first." });
     return [];
   }
 
@@ -105,131 +347,92 @@ async function scrapeGroupAdmins(groupLinks, onProgress) {
 
   try {
     await client.connect();
-    onProgress?.({ type: "info", text: "✅ Connected to Telegram" });
+    onProgress?.({ type: "info", text: "Connected to Telegram" });
   } catch (err) {
-    onProgress?.({ type: "error", text: `❌ Connection failed: ${err.message}` });
+    onProgress?.({ type: "error", text: `Connection failed: ${err.message}` });
     return [];
   }
 
   const allResults = [];
 
-  for (let i = 0; i < groupLinks.length; i++) {
-    const groupLink = groupLinks[i].trim();
-    if (!groupLink) continue;
+  let groupLookup = { byId: new Map(), byUsername: new Map() };
+  try {
+    const dialogs = await client.getDialogs({ limit: 1000 });
+    groupLookup = buildGroupLookup(dialogs);
+  } catch (err) {
+    onProgress?.({ type: "error", text: `Failed to load dialog map: ${err.message}` });
+  }
 
-    onProgress?.({ type: "info", text: `\n🔍 [${i+1}/${groupLinks.length}] Scraping: ${groupLink}` });
+  for (let i = 0; i < groupRefs.length; i++) {
+    const parsedRef = parseGroupRef(groupRefs[i]);
+    if (!parsedRef) continue;
+
+    onProgress?.({
+      type: "info",
+      text: `\n[${i + 1}/${groupRefs.length}] Scraping: ${parsedRef.label || `${parsedRef.kind}:${parsedRef.value}`}`,
+    });
 
     try {
-      // Extract username from link
-      const match = groupLink.match(/(?:t\.me|telegram\.me)\/([^/?&#\s]+)/i);
-      if (!match) {
-        onProgress?.({ type: "skip", text: `⚠️ Cannot parse link: ${groupLink}` });
-        continue;
-      }
-      const username = match[1];
+      let entity = null;
 
-      // Get the entity
-      let entity;
-      try {
-        entity = await client.getEntity(username);
-      } catch (err) {
-        onProgress?.({ type: "error", text: `❌ Cannot access @${username}: ${err.message}` });
-        continue;
-      }
-
-      const groupName = entity.title || entity.username || username;
-      onProgress?.({ type: "info", text: `📋 Group: ${groupName}` });
-
-      // Fetch admins
-      let admins = [];
-      try {
-        const result = await client.invoke(
-          new GetParticipantsRequest({
-            channel: entity,
-            filter: new ChannelParticipantsAdmins(),
-            offset: 0,
-            limit: 200,
-            hash: BigInt(0),
-          })
-        );
-        admins = result.participants || [];
-        const users = result.users || [];
-
-        onProgress?.({ type: "info", text: `👥 Found ${admins.length} admins/mods` });
-
-        const groupResults = [];
-
-        for (const admin of admins) {
-          // Find matching user object
-          const user = users.find(u => u.id?.toString() === admin.userId?.toString() || u.id === admin.userId);
-          if (!user) continue;
-
-          // Skip bots
-          if (user.bot) continue;
-
-          const uname = user.username ? `@${user.username}` : null;
-          const displayName = [user.firstName, user.lastName].filter(Boolean).join(" ") || "Unknown";
-          const userId = user.id?.toString();
-
-          // Determine role
-          let role = "Admin";
-          let customTitle = null;
-
-          if (admin.className === "ChannelParticipantCreator") {
-            role = "Owner";
-            customTitle = admin.rank || null;
-          } else if (admin.className === "ChannelParticipantAdmin") {
-            role = "Admin";
-            customTitle = admin.rank || null;
-            // Check specific permissions to determine if mod
-            const perms = admin.adminRights;
-            if (perms) {
-              const hasOnlyBasic = !perms.deleteMessages && !perms.banUsers && !perms.inviteUsers && !perms.pinMessages && !perms.addAdmins && !perms.anonymous && !perms.manageCall && !perms.other && !perms.manageTopics;
-              if (hasOnlyBasic) role = "Moderator";
-            }
+      if (parsedRef.kind === "id") {
+        entity = groupLookup.byId.get(parsedRef.value) || null;
+        if (!entity) {
+          try {
+            entity = await client.getEntity(parsedRef.value);
+          } catch {
+            // fallback handled below
           }
-
-          const finalRole = customTitle ? `${role} (${customTitle})` : role;
-
-          const entry = {
-            username: uname || `ID:${userId}`,
-            displayName,
-            role: finalRole,
-            userId,
-            group: groupName,
-            groupLink,
-          };
-
-          groupResults.push(entry);
-
-          const logName = uname || displayName;
-          onProgress?.({ type: "found", text: `  ✅ ${logName} — ${finalRole}` });
         }
+      } else if (parsedRef.kind === "username") {
+        entity = groupLookup.byUsername.get(parsedRef.value.toLowerCase()) || null;
+        if (!entity) {
+          try {
+            entity = await client.getEntity(parsedRef.value);
+          } catch {
+            // fallback handled below
+          }
+        }
+      }
 
+      if (!entity || !isGroupEntity(entity)) {
+        onProgress?.({
+          type: "error",
+          text: `Cannot resolve group ${parsedRef.kind}:${parsedRef.value}.`,
+        });
+        continue;
+      }
+
+      const groupName = entity.title || entity.username || `${parsedRef.kind}:${parsedRef.value}`;
+      const groupLink = entity.username ? `https://t.me/${entity.username}` : null;
+      onProgress?.({ type: "info", text: `Group: ${groupName}` });
+
+      try {
+        const groupResults = await getAdminsForEntity(client, entity, groupName, groupLink, onProgress);
         allResults.push({
           groupLink,
           groupName,
           members: groupResults,
         });
-
       } catch (err) {
-        onProgress?.({ type: "error", text: `❌ Failed to get admins: ${err.message}` });
+        onProgress?.({ type: "error", text: `Failed to get admins: ${err.message}` });
       }
 
-      // Small delay between groups
-      if (i < groupLinks.length - 1) {
-        await new Promise(r => setTimeout(r, 1500));
+      if (i < groupRefs.length - 1) {
+        await new Promise((r) => setTimeout(r, 1500));
       }
-
     } catch (err) {
-      onProgress?.({ type: "error", text: `❌ Error on ${groupLink}: ${err.message}` });
+      onProgress?.({
+        type: "error",
+        text: `Error while scraping ${parsedRef.kind}:${parsedRef.value}: ${err.message}`,
+      });
     }
   }
 
   await client.disconnect();
 
-  const totalFound = allResults.reduce((sum, g) => sum + g.members.length, 0);
-  onProgress?.({ type: "done", text: `\n🎉 Done! Found ${totalFound} admins/mods across ${allResults.length} groups.` });
+  const totalFound = allResults.reduce((sum, group) => sum + group.members.length, 0);
+  onProgress?.({ type: "done", text: `\nDone. Found ${totalFound} admins/mods across ${allResults.length} groups.` });
 
   return allResults;
 }

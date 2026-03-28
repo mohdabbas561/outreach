@@ -87,6 +87,17 @@ app.post("/api/dex/scrape", async (req, res) => {
   }
 });
 
+app.delete("/api/dex/seen/clear", (req, res) => {
+  try {
+    delete require.cache[require.resolve("./dexscraper")];
+    const { clearDexSeenMemory } = require("./dexscraper");
+    clearDexSeenMemory();
+    res.json({ ok: true });
+  } catch (err) {
+    res.status(500).json({ ok: false, error: err.message });
+  }
+});
+
 app.get("/api/dex/results", (req, res) => {
   const f = path.join(__dirname, "dex_results.json");
   res.json(fs.existsSync(f) ? JSON.parse(fs.readFileSync(f)) : []);
@@ -146,7 +157,10 @@ app.post("/api/tg/fetch-joined-groups", async (req, res) => {
   delete require.cache[require.resolve("./tgscraper")];
   const { fetchJoinedGroups } = require("./tgscraper");
   try {
-    const groups = await fetchJoinedGroups((p) => broadcastJoined({ ...p, stage: "joinedgroups" }));
+    const groups = await fetchJoinedGroups(
+      (p) => broadcastJoined({ ...p, stage: "joinedgroups" }),
+      { todayOnlyUtc: true }
+    );
     broadcastJoined({ type: "results", groups, stage: "joinedgroups" });
   } catch (err) {
     broadcastJoined({ type: "error", text: `Failed: ${err.message}`, stage: "joinedgroups" });
@@ -172,7 +186,7 @@ app.get("/api/contacted", (req, res) => {
 
 app.delete("/api/history/clear", (req, res) => {
   try {
-    const files = ["logs.json", "dex_history.json", "tg_admin_history.json", "dex_results.json"];
+    const files = ["logs.json", "dex_history.json", "tg_admin_history.json", "dex_results.json", "dex_seen.json"];
     files.forEach(f => {
       const fp = path.join(__dirname, f);
       if (fs.existsSync(fp)) fs.writeFileSync(fp, f.endsWith("history.json") || f === "dex_results.json" ? "[]" : "[]");
