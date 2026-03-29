@@ -17,27 +17,29 @@ const PU = "#b97bff"; // purple
 const RD = "#ff4f4f"; // red
 
 const glow = (c, px = 12) => `0 0 ${px}px ${c}33, 0 0 ${px * 2}px ${c}18`;
+const getUtcToday = () => new Date().toISOString().slice(0, 10);
 
 const $ = {
   page: {
     minHeight: "100vh",
-    background: "#050810",
+    background: "radial-gradient(circle at 8% 0%, #11326450 0%, transparent 38%), radial-gradient(circle at 92% 12%, #0d5b4a40 0%, transparent 34%), #050810",
     color: "#f0f6ff",
     fontFamily: "'Outfit', 'Inter', system-ui, sans-serif",
     fontSize: 14,
   },
   card: {
-    background: "linear-gradient(145deg, #0a0f1e, #080d18)",
+    background: "linear-gradient(145deg, #0b1120, #090f1a)",
     border: "1px solid #1a2540",
-    borderRadius: 14,
+    borderRadius: 16,
     padding: "22px 26px",
+    boxShadow: "0 14px 30px #00000066, inset 0 1px 0 #ffffff08",
   },
   glowCard: (c = GN) => ({
-    background: "linear-gradient(145deg, #0a0f1e, #080d18)",
+    background: "linear-gradient(145deg, #0b1120, #090f1a)",
     border: `1px solid ${c}30`,
-    borderRadius: 14,
+    borderRadius: 16,
     padding: "22px 26px",
-    boxShadow: glow(c, 10),
+    boxShadow: `${glow(c, 10)}, 0 14px 30px #0000005c`,
   }),
   input: {
     background: "#060b18",
@@ -220,6 +222,10 @@ function TemplateEditor({ templates, setTemplates, editing, setEditing }) {
 // ── Main App ─────────────────────────────────────────────────────────────────
 export default function App() {
   const [tab, setTab] = useState("Telegram");
+  const [isCompact, setIsCompact] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.innerWidth <= 980;
+  });
 
   // Campaign
   const [tgUsernames, setTgUsernames] = useState("");
@@ -251,6 +257,8 @@ export default function App() {
   const [joinedGroups, setJoinedGroups] = useState([]);
   const [fetchingJoined, setFetchingJoined] = useState(false);
   const [joinedFetchLogs, setJoinedFetchLogs] = useState([]);
+  const [joinedDateFromUtc, setJoinedDateFromUtc] = useState(() => getUtcToday());
+  const [joinedDateToUtc, setJoinedDateToUtc] = useState(() => getUtcToday());
   const [selectedGroups, setSelectedGroups] = useState(new Set());
   const [contacted, setContacted] = useState(new Set());
   const [blacklistedGroups, setBlacklistedGroups] = useState(new Set());
@@ -303,6 +311,42 @@ export default function App() {
 
   const selectedCount = joinedGroups.filter(g => selectedGroups.has(getGroupKey(g))).length;
   const getTgGroupCopyKey = (group) => (group?.groupLink || group?.groupName || "").toLowerCase();
+  const utcToday = getUtcToday();
+
+  const utcDateOffset = (days) => {
+    const d = new Date();
+    d.setUTCDate(d.getUTCDate() + days);
+    return d.toISOString().slice(0, 10);
+  };
+
+  function applyJoinedDatePreset(preset) {
+    if (preset === "all") {
+      setJoinedDateFromUtc("");
+      setJoinedDateToUtc("");
+      return;
+    }
+    if (preset === "today") {
+      setJoinedDateFromUtc(utcToday);
+      setJoinedDateToUtc(utcToday);
+      return;
+    }
+    if (preset === "yesterday") {
+      const day = utcDateOffset(-1);
+      setJoinedDateFromUtc(day);
+      setJoinedDateToUtc(day);
+      return;
+    }
+    if (preset === "last7") {
+      setJoinedDateFromUtc(utcDateOffset(-6));
+      setJoinedDateToUtc(utcToday);
+    }
+  }
+
+  useEffect(() => {
+    const onResize = () => setIsCompact(window.innerWidth <= 980);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
 
   // ── Bootstrap ──
   useEffect(() => {
@@ -400,6 +444,16 @@ export default function App() {
 
   async function handleFetchJoinedGroups() {
     if (!serverOnline) { alert("Server offline!"); return; }
+    let dateFrom = joinedDateFromUtc || null;
+    let dateTo = joinedDateToUtc || null;
+    if (dateFrom && dateTo && dateFrom > dateTo) {
+      const tmp = dateFrom;
+      dateFrom = dateTo;
+      dateTo = tmp;
+      setJoinedDateFromUtc(dateFrom);
+      setJoinedDateToUtc(dateTo);
+    }
+
     setFetchingJoined(true); setJoinedFetchLogs([]); setJoinedGroups([]); setSelectedGroups(new Set());
     if (tgJoinedSseRef.current) tgJoinedSseRef.current.close();
     const sse = new EventSource(`${SERVER}/api/tg/joined-stream`);
@@ -410,11 +464,22 @@ export default function App() {
       if (d.text) setJoinedFetchLogs(p => [...p, { type: d.type, text: d.text }]);
       if (d.type === "results") {
         const raw = d.groups || [];
-        const todayUtc = new Date().toISOString().slice(0, 10);
-        const all = raw.filter(g => g.joinedAtUtc && String(g.joinedAtUtc).slice(0, 10) === todayUtc);
+        const all = raw.filter(g => {
+          if (!dateFrom && !dateTo) return true;
+          if (!g.joinedAtUtc) return false;
+          const joined = String(g.joinedAtUtc).slice(0, 10);
+          if (dateFrom && joined < dateFrom) return false;
+          if (dateTo && joined > dateTo) return false;
+          return true;
+        });
+        all.sort((a, b) => {
+          const ad = a?.joinedAtUtc ? new Date(a.joinedAtUtc).getTime() : 0;
+          const bd = b?.joinedAtUtc ? new Date(b.joinedAtUtc).getTime() : 0;
+          return bd - ad;
+        });
         const filteredOut = raw.length - all.length;
-        if (filteredOut > 0) {
-          setJoinedFetchLogs(p => [...p, { type: "info", text: `Filtered out ${filteredOut} old/non-today groups on client safety check.` }]);
+        if ((dateFrom || dateTo) && filteredOut > 0) {
+          setJoinedFetchLogs(p => [...p, { type: "info", text: `Filtered out ${filteredOut} groups outside selected date range.` }]);
         }
         setJoinedGroups(all);
         setSelectedGroups(new Set(all.filter(g => !isGroupContacted(g) && !isGroupBlacklisted(g)).map(getGroupKey)));
@@ -424,7 +489,14 @@ export default function App() {
     };
     sse.onerror = () => { setFetchingJoined(false); sse.close(); };
     await new Promise(r => setTimeout(r, 400));
-    await fetch(`${SERVER}/api/tg/fetch-joined-groups`, { method: "POST" });
+    await fetch(`${SERVER}/api/tg/fetch-joined-groups`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        dateFromUtc: dateFrom,
+        dateToUtc: dateTo,
+      }),
+    });
   }
 
   async function handleTgAdminScrape() {
@@ -432,7 +504,7 @@ export default function App() {
       .filter(g => selectedGroups.has(getGroupKey(g)))
       .map(g => g.ref || g.link)
       .filter(Boolean);
-    if (!groups.length) { alert("No groups selected. Fetch today's joined groups first."); return; }
+    if (!groups.length) { alert("No groups selected. Fetch groups first using your date filter."); return; }
     if (!serverOnline) { alert("Server offline!"); return; }
     setTgAdminScraping(true); setTgAdminLogs([]); setTgAdminResults([]);
     if (tgAdminSseRef.current) tgAdminSseRef.current.close();
@@ -548,9 +620,9 @@ export default function App() {
       `}</style>
 
       {/* ═══ HEADER ═══════════════════════════════════════════════════════ */}
-      <header style={{ borderBottom: "1px solid #0f1a30", padding: "0 32px", background: "rgba(5,8,16,0.97)", position: "sticky", top: 0, zIndex: 100, backdropFilter: "blur(20px)", display: "flex", alignItems: "stretch" }}>
+      <header style={{ borderBottom: "1px solid #0f1a30", padding: isCompact ? "0 12px" : "0 32px", background: "rgba(5,8,16,0.95)", position: "sticky", top: 0, zIndex: 100, backdropFilter: "blur(20px)", display: "flex", alignItems: "stretch", flexWrap: isCompact ? "wrap" : "nowrap", rowGap: isCompact ? 6 : 0 }}>
         {/* Logo */}
-        <div style={{ display: "flex", alignItems: "center", gap: 13, paddingRight: 32, borderRight: "1px solid #0f1a30" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 13, paddingRight: isCompact ? 12 : 32, borderRight: isCompact ? "none" : "1px solid #0f1a30", minHeight: 58 }}>
           <div style={{ width: 34, height: 34, borderRadius: 9, background: `linear-gradient(135deg, ${GN}, ${BL})`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 17, boxShadow: glow(GN, 10) }}>⚡</div>
           <div>
             <div style={{ fontWeight: 800, fontSize: 15, color: "#fff", letterSpacing: "0.12em" }}>OUTREACH BOT</div>
@@ -559,11 +631,11 @@ export default function App() {
         </div>
 
         {/* Nav tabs */}
-        <nav style={{ display: "flex", flex: 1, overflowX: "auto" }}>
+        <nav style={{ display: "flex", flex: isCompact ? "1 1 100%" : 1, overflowX: "auto", order: isCompact ? 3 : 0 }}>
           {TABS.map(t => (
             <button key={t} onClick={() => setTab(t)} style={{
               background: "none", border: "none", borderBottom: tab === t ? `2px solid ${GN}` : "2px solid transparent",
-              color: tab === t ? GN : "#7a9fc0", padding: "0 20px", height: 58, cursor: "pointer", fontSize: 11,
+              color: tab === t ? GN : "#7a9fc0", padding: isCompact ? "0 14px" : "0 20px", height: 58, cursor: "pointer", fontSize: 11,
               fontFamily: "inherit", fontWeight: 700, letterSpacing: "0.1em", whiteSpace: "nowrap",
               textShadow: tab === t ? `0 0 12px ${GN}88` : "none", transition: "all 0.2s",
             }}>{t.toUpperCase()}</button>
@@ -571,7 +643,7 @@ export default function App() {
         </nav>
 
         {/* Status badges */}
-        <div style={{ display: "flex", alignItems: "center", gap: 10, paddingLeft: 24 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 10, paddingLeft: isCompact ? 0 : 24, marginLeft: isCompact ? "auto" : 0, minHeight: 58, flexWrap: "wrap", justifyContent: "flex-end" }}>
           <Pill color={serverOnline ? GN : RD} on={!serverOnline}>{serverOnline ? "ONLINE" : "OFFLINE"}</Pill>
           {botRunning && <Pill color={GL} on>RUNNING</Pill>}
           {stats.sent > 0 && (
@@ -584,7 +656,7 @@ export default function App() {
       </header>
 
       {/* ═══ MAIN ══════════════════════════════════════════════════════════ */}
-      <main style={{ padding: "28px 32px", maxWidth: 1280, margin: "0 auto" }}>
+      <main style={{ padding: isCompact ? "18px 12px" : "28px 32px", maxWidth: 1280, margin: "0 auto" }}>
 
         {/* Offline banner */}
         {!serverOnline && (
@@ -596,7 +668,7 @@ export default function App() {
 
         {/* ─────────────────────────────────────────── TELEGRAM ─── */}
         {tab === "Telegram" && (
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 28, alignItems: "start" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 28, alignItems: "start" }}>
             {/* Left: config */}
             <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
               <div>
@@ -673,15 +745,15 @@ export default function App() {
                 ["STEP 3", "Join TG Manually"],
                 ["STEP 4", "Continue in TG Admins"],
               ].map(([k, v]) => (
-                <div key={k} style={{ background: "#030814", border: "1px solid #123155", borderRadius: 10, padding: "10px 12px" }}>
+                <div key={k} style={{ background: "linear-gradient(145deg, #061327, #041021)", border: "1px solid #123155", borderRadius: 10, padding: "10px 12px", boxShadow: "inset 0 1px 0 #ffffff08" }}>
                   <div style={{ color: BL, fontSize: 10, fontWeight: 700, letterSpacing: "0.12em" }}>{k}</div>
                   <div style={{ color: "#dff2ff", marginTop: 4, fontSize: 12, fontWeight: 600 }}>{v}</div>
                 </div>
               ))}
             </div>
 
-            <div style={{ display: "flex", gap: 10, maxWidth: 780, marginBottom: 20 }}>
-              <input value={dexUrl} onChange={e => setDexUrl(e.target.value)} style={$.input}
+            <div style={{ display: "flex", gap: 10, maxWidth: 780, marginBottom: 20, flexWrap: "wrap" }}>
+              <input value={dexUrl} onChange={e => setDexUrl(e.target.value)} style={{ ...$.input, flex: "1 1 460px", minWidth: 250 }}
                 placeholder="https://dexscreener.com/solana?rankBy=trendingScoreH6&order=desc&minLiq=1000" />
               <button onClick={handleDexScrape} disabled={dexScraping || !serverOnline}
                 style={{ ...$.btn(GN), opacity: (dexScraping || !serverOnline) ? 0.3 : 1 }}>
@@ -711,32 +783,49 @@ export default function App() {
           <div>
             <div style={{ marginBottom: 24 }}>
               <h2 style={{ margin: 0, color: "#fff", fontSize: 22, fontWeight: 700 }}>TG Admin Scraper</h2>
-              <p style={{ margin: "5px 0 0", color: "#ddeeff", fontSize: 13 }}>Fetch groups joined today (UTC) → scrape admins, owners & mods you have not DMed yet</p>
+              <p style={{ margin: "5px 0 0", color: "#ddeeff", fontSize: 13 }}>Filter joined groups by UTC date range, then scrape admins/owners/mods you have not DMed yet.</p>
             </div>
 
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(170px, 1fr))", gap: 10, marginBottom: 16 }}>
               {[
-                ["STEP 1", "Fetch today's joined groups"],
+                ["STEP 1", "Pick UTC date range"],
                 ["STEP 2", "Select groups to process"],
                 ["STEP 3", "Scrape admins/mods/owners"],
                 ["STEP 4", "Copy new @handles only"],
               ].map(([k, v]) => (
-                <div key={k} style={{ background: "#030814", border: "1px solid #123155", borderRadius: 10, padding: "10px 12px" }}>
+                <div key={k} style={{ background: "linear-gradient(145deg, #061327, #041021)", border: "1px solid #123155", borderRadius: 10, padding: "10px 12px", boxShadow: "inset 0 1px 0 #ffffff08" }}>
                   <div style={{ color: BL, fontSize: 10, fontWeight: 700, letterSpacing: "0.12em" }}>{k}</div>
                   <div style={{ color: "#dff2ff", marginTop: 4, fontSize: 12, fontWeight: 600 }}>{v}</div>
                 </div>
               ))}
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, marginBottom: 28 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 20, marginBottom: 28 }}>
               {/* Step 1 */}
-              <div style={{ display: "flex", flexDirection: "column", gap: 14, background: "#050b1a", border: "1px solid #123155", borderRadius: 12, padding: 14 }}>
-                <div style={{ color: GN, fontSize: 10, fontWeight: 700, letterSpacing: "0.15em" }}>STEP 1 — LOAD TODAY'S GROUPS (UTC)</div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 14, background: "linear-gradient(155deg, #051126, #040b1a)", border: "1px solid #123155", borderRadius: 14, padding: isCompact ? 12 : 14, boxShadow: glow(BL, 8) }}>
+                <div style={{ color: GN, fontSize: 10, fontWeight: 700, letterSpacing: "0.15em" }}>STEP 1 — FILTER GROUPS BY DATE (UTC)</div>
+                <div style={{ background: "#071226", border: "1px solid #123155", borderRadius: 10, padding: "10px 12px", display: "flex", flexDirection: "column", gap: 8 }}>
+                  <div style={{ color: "#b6d9ff", fontSize: 11, fontWeight: 700, letterSpacing: "0.08em" }}>DATE RANGE (UTC)</div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+                    <input type="date" value={joinedDateFromUtc} onChange={e => setJoinedDateFromUtc(e.target.value)} style={{ ...$.input, width: isCompact ? "100%" : 170, padding: "8px 10px" }} />
+                    <span style={{ color: "#6a8aaa", fontSize: 12 }}>to</span>
+                    <input type="date" value={joinedDateToUtc} onChange={e => setJoinedDateToUtc(e.target.value)} style={{ ...$.input, width: isCompact ? "100%" : 170, padding: "8px 10px" }} />
+                  </div>
+                  <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+                    <button onClick={() => applyJoinedDatePreset("today")} style={$.btnSm(BL)}>TODAY</button>
+                    <button onClick={() => applyJoinedDatePreset("yesterday")} style={$.btnSm("#6fd6ff")}>YESTERDAY</button>
+                    <button onClick={() => applyJoinedDatePreset("last7")} style={$.btnSm(GN)}>LAST 7D</button>
+                    <button onClick={() => applyJoinedDatePreset("all")} style={$.btnSm("#3a5575")}>ALL</button>
+                  </div>
+                  <div style={{ color: "#9ec4e8", fontSize: 10 }}>
+                    Active filter: {joinedDateFromUtc || "Any"} to {joinedDateToUtc || "Any"}
+                  </div>
+                </div>
                 <button onClick={handleFetchJoinedGroups} disabled={fetchingJoined || !serverOnline}
                   style={{ ...$.btn(BL), opacity: (fetchingJoined || !serverOnline) ? 0.3 : 1 }}>
-                  {fetchingJoined ? "FETCHING..." : "📡 FETCH TODAY'S GROUPS"}
+                  {fetchingJoined ? "FETCHING..." : "📡 FETCH GROUPS"}
                 </button>
-                <LogPane lines={joinedFetchLogs} placeholder="Click above to load groups joined today (UTC)..." minH={80} maxH={110} />
+                <LogPane lines={joinedFetchLogs} placeholder="Set date filter, then fetch groups..." minH={80} maxH={110} />
 
                 {joinedGroups.length > 0 && (
                   <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
@@ -777,7 +866,7 @@ export default function App() {
               </div>
 
               {/* Step 2 */}
-              <div style={{ display: "flex", flexDirection: "column", gap: 14, background: "#050b1a", border: "1px solid #123155", borderRadius: 12, padding: 14 }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: 14, background: "linear-gradient(155deg, #04171e, #04101a)", border: "1px solid #11624a", borderRadius: 14, padding: isCompact ? 12 : 14, boxShadow: glow(GN, 8) }}>
                 <div style={{ color: GN, fontSize: 10, fontWeight: 700, letterSpacing: "0.15em" }}>STEP 2 — SCRAPE ADMINS</div>
                 <button onClick={handleTgAdminScrape} disabled={tgAdminScraping || !serverOnline || selectedCount === 0}
                   style={{ ...$.btn(GN), opacity: (tgAdminScraping || selectedCount === 0) ? 0.3 : 1 }}>
@@ -1176,3 +1265,4 @@ export default function App() {
     </div>
   );
 }
+
