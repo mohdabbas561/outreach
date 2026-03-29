@@ -157,9 +157,10 @@ app.post("/api/tg/fetch-joined-groups", async (req, res) => {
   delete require.cache[require.resolve("./tgscraper")];
   const { fetchJoinedGroups } = require("./tgscraper");
   try {
+    const { dateFromUtc, dateToUtc } = req.body || {};
     const groups = await fetchJoinedGroups(
       (p) => broadcastJoined({ ...p, stage: "joinedgroups" }),
-      { todayOnlyUtc: true }
+      { dateFromUtc, dateToUtc }
     );
     broadcastJoined({ type: "results", groups, stage: "joinedgroups" });
   } catch (err) {
@@ -335,10 +336,17 @@ app.post("/api/auth/tg/logout", async (req, res) => {
 
 // ─── Serve React frontend (MUST BE LAST) ─────────────────────────────────────
 const buildPath = path.join(__dirname, "outreach-ui", "build");
-app.use(express.static(buildPath));
-app.get("/{*path}", (req, res) => {
-  res.sendFile(path.join(buildPath, "index.html"));
-});
+const indexFile = path.join(buildPath, "index.html");
+if (fs.existsSync(indexFile)) {
+  app.use(express.static(buildPath));
+  app.get("/{*path}", (req, res) => {
+    res.sendFile(indexFile);
+  });
+} else {
+  app.get("/", (req, res) => {
+    res.type("text/plain").send("Outreach API running. Frontend build not found. Run: npm run build --prefix outreach-ui");
+  });
+}
 
 // ─── Start server ─────────────────────────────────────────────────────────────
 const PORT = process.env.PORT || 3001;

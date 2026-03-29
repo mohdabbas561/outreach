@@ -68,5 +68,26 @@
     "target": "@Daniel_7159",
     "status": "failed",
     "message": "400: PEER_FLOOD (caused by messages.SendMessage)"
+  },
+  {
+    "time": "12:17:32 PM",
+    "platform": "Telegram",
+    "target": "AUTH",
+    "status": "info",
+    "message": "Logged in and session saved ✅"
+  },
+  {
+    "time": "12:17:32 PM",
+    "platform": "Telegram DM",
+    "target": "@Oxclo_ver",
+    "status": "sent",
+    "message": "Hey man! Luci here from Moonshot Win, a cross-chain crash ga..."
+  },
+  {
+    "time": "12:19:26 PM",
+    "platform": "Telegram DM",
+    "target": "@Daniel_7159",
+    "status": "sent",
+    "message": "Hey! Luci from Moonshot Win here. We run a cross-chain crash..."
   }
 ]

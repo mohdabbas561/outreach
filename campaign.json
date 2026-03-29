@@ -1,13 +1,6 @@
 {
   "telegram": {
     "usernames": [
-      "@WizzyChain",
-      "@ketchuppp22",
-      "@Captainharkness",
-      "@pumpswinger",
-      "@FurinaMusicAssistant_3",
-      "@Ethan_Roy2",
-      "@cryptoinflencer",
       "@Oxclo_ver",
       "@Daniel_7159",
       "@TemiJat",
@@ -25,36 +18,22 @@
       "@padaraang",
       "@NexBar0xc",
       "@dogleadercult",
-      "@EmKKo23",
-      "@FinGrey02",
-      "@mfzezima",
-      "@M4zterCrypto",
-      "@marweeezy",
-      "@D4rthSol",
-      "@TheLastSwinger",
-      "@BeastmodeOG",
-      "@FADYMORIS",
-      "@hunter_cryptoTG",
-      "@unphasedalways",
-      "@Defi_Rayne",
-      "@biggest_wizard",
-      "@Naru_tuuz",
-      "@SPY_NO_WAY",
-      "@levixxX80",
-      "@Jaychris522",
       "@Primelayerr",
       "@Xstoner56789",
-      "@patrickinng",
-      "@Oxandrewsol"
+      "@johnningbd",
+      "@TheLastSwinger",
+      "@FinGrey02",
+      "@mfzezima",
+      "@D4rthSol"
     ],
     "groups": [],
-    "delaySeconds": 60,
-    "delaySecondsMax": 90
+    "delaySeconds": 78,
+    "delaySecondsMax": 120
   },
   "tgTemplates": [
     "Hey man! Luci here from Moonshot Win, a cross-chain crash game. We'd love to add your token to our game to give it more utility and visibility. Let me know if I can share more details.",
     "Hey! Luci from Moonshot Win here. We run a cross-chain crash game and would like to integrate your token to bring it more exposure and real use in our platform. Happy to share details if you're interested.",
     "Hi! This is Luci from Moonshot Win. We're building a cross-chain crash game and would love to feature your token inside the game for added utility and reach. Let me know if you'd like to hear more."
   ],
-  "generatedAt": "2026-03-27T15:51:46.221Z"
+  "generatedAt": "2026-03-29T06:47:31.185Z"
 }

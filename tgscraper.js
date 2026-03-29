@@ -178,6 +178,14 @@ function toUtcDateKey(dateInput) {
   return `${date.getUTCFullYear()}-${String(date.getUTCMonth() + 1).padStart(2, "0")}-${String(date.getUTCDate()).padStart(2, "0")}`;
 }
 
+function normalizeUtcDateInput(value) {
+  if (!value) return "";
+  const str = String(value).trim();
+  if (/^\d{4}-\d{2}-\d{2}$/.test(str)) return str;
+  const key = toUtcDateKey(str);
+  return key || "";
+}
+
 function unixToIso(unixSeconds) {
   if (unixSeconds === null || unixSeconds === undefined) return null;
   const asNumber = Number(unixSeconds);
@@ -228,7 +236,14 @@ async function resolveJoinedAtUtc(client, entity, selfId) {
 async function fetchJoinedGroups(onProgress, options = {}) {
   const { TelegramClient } = require("telegram");
   const { StringSession } = require("telegram/sessions");
-  const todayOnlyUtc = options.todayOnlyUtc === true;
+  let dateFromUtc = normalizeUtcDateInput(options.dateFromUtc);
+  let dateToUtc = normalizeUtcDateInput(options.dateToUtc);
+  if (dateFromUtc && dateToUtc && dateFromUtc > dateToUtc) {
+    const tmp = dateFromUtc;
+    dateFromUtc = dateToUtc;
+    dateToUtc = tmp;
+  }
+  const hasDateFilter = Boolean(dateFromUtc || dateToUtc);
 
   const apiId = parseInt(process.env.TG_API_ID, 10);
   const apiHash = process.env.TG_API_HASH;
@@ -254,8 +269,7 @@ async function fetchJoinedGroups(onProgress, options = {}) {
   }
 
   const groups = [];
-  const todayKey = toUtcDateKey(new Date());
-  let skippedNotToday = 0;
+  let skippedOutsideRange = 0;
   let skippedUnknownJoinDate = 0;
 
   try {
@@ -278,12 +292,18 @@ async function fetchJoinedGroups(onProgress, options = {}) {
       if (!ref.value) continue;
 
       const joinedAtUtc = await resolveJoinedAtUtc(client, entity, selfId);
-      const joinedTodayUtc = joinedAtUtc ? toUtcDateKey(joinedAtUtc) === todayKey : false;
+      const joinedDateKey = joinedAtUtc ? toUtcDateKey(joinedAtUtc) : "";
+      const joinedTodayUtc = joinedDateKey ? joinedDateKey === toUtcDateKey(new Date()) : false;
 
-      if (todayOnlyUtc && !joinedTodayUtc) {
-        if (joinedAtUtc) skippedNotToday++;
-        else skippedUnknownJoinDate++;
-        continue;
+      if (hasDateFilter) {
+        if (!joinedDateKey) {
+          skippedUnknownJoinDate++;
+          continue;
+        }
+        if ((dateFromUtc && joinedDateKey < dateFromUtc) || (dateToUtc && joinedDateKey > dateToUtc)) {
+          skippedOutsideRange++;
+          continue;
+        }
       }
 
       groups.push({
@@ -310,17 +330,17 @@ async function fetchJoinedGroups(onProgress, options = {}) {
 
   await client.disconnect();
 
-  if (todayOnlyUtc) {
+  if (hasDateFilter) {
     onProgress?.({
       type: "info",
-      text: `Filtered by UTC day: skipped ${skippedNotToday} not joined today, ${skippedUnknownJoinDate} with unknown join date.`,
+      text: `Filtered by UTC date: skipped ${skippedOutsideRange} outside range, ${skippedUnknownJoinDate} with unknown join date.`,
     });
   }
 
   onProgress?.({
     type: "done",
-    text: todayOnlyUtc
-      ? `\nDone. Found ${groups.length} groups joined today (UTC).`
+    text: hasDateFilter
+      ? `\nDone. Found ${groups.length} groups for UTC range ${dateFromUtc || "Any"} to ${dateToUtc || "Any"}.`
       : `\nDone. Found ${groups.length} joined groups.`,
   });
   return groups;
