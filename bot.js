@@ -11,6 +11,7 @@ const input = require("input");
 
 const LOGS_PATH = path.join(__dirname, "logs.json");
 const CONFIG_PATH = path.join(__dirname, "campaign.json");
+const SAFETY_STATE_PATH = path.join(__dirname, "tg_safety_state.json");
 
 process.on("unhandledRejection", (reason) => {
   if (reason?.message === "TIMEOUT" || String(reason).includes("TIMEOUT")) return;
@@ -55,7 +56,78 @@ function appendLog(entry) {
 function log(platform, target, status, message = "") {
   const time = new Date().toLocaleTimeString();
   console.log(`[${time}] [${platform}] ${target} [${status}] ${message}`);
-  appendLog({ time, platform, target, status, message });
+  appendLog({ time, ts: new Date().toISOString(), platform, target, status, message });
+}
+
+function readSafetyState() {
+  if (!fs.existsSync(SAFETY_STATE_PATH)) {
+    return { daily: { day: "", sent: 0 }, cooldownUntilMs: 0 };
+  }
+  try {
+    const parsed = JSON.parse(fs.readFileSync(SAFETY_STATE_PATH, "utf-8"));
+    return {
+      daily: {
+        day: String(parsed?.daily?.day || ""),
+        sent: Math.max(0, toInt(parsed?.daily?.sent, 0)),
+      },
+      cooldownUntilMs: Math.max(0, toInt(parsed?.cooldownUntilMs, 0)),
+      lastPeerFloodAt: parsed?.lastPeerFloodAt || "",
+      lastPeerFloodError: parsed?.lastPeerFloodError || "",
+      lastStopReason: parsed?.lastStopReason || "",
+    };
+  } catch {
+    return { daily: { day: "", sent: 0 }, cooldownUntilMs: 0 };
+  }
+}
+
+function writeSafetyState(state) {
+  fs.writeFileSync(SAFETY_STATE_PATH, JSON.stringify(state, null, 2));
+}
+
+function utcDayKey(dateInput = new Date()) {
+  const d = dateInput instanceof Date ? dateInput : new Date(dateInput);
+  if (Number.isNaN(d.getTime())) return "";
+  return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, "0")}-${String(d.getUTCDate()).padStart(2, "0")}`;
+}
+
+function ensureDailyWindow(state) {
+  const day = utcDayKey();
+  if (state.daily.day !== day) {
+    state.daily.day = day;
+    state.daily.sent = 0;
+  }
+}
+
+function formatMs(ms) {
+  const totalSeconds = Math.max(0, Math.round(ms / 1000));
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+  if (hours > 0) return `${hours}h ${minutes}m`;
+  if (minutes > 0) return `${minutes}m ${seconds}s`;
+  return `${seconds}s`;
+}
+
+function buildPeerFloodReason(details) {
+  const reasons = [
+    "Likely cause: Telegram anti-spam flagged this as cold outreach to users who may not have interacted with your account yet.",
+  ];
+  if (details.attempts <= 8) {
+    reasons.push("A short burst of new outbound DMs can trigger PEER_FLOOD quickly.");
+  }
+  if (details.minDelaySeconds < 140) {
+    reasons.push("Delay between messages is still relatively aggressive for first-contact outreach.");
+  }
+  if (details.newContactsCount > 0 && details.skippedHistory <= 1) {
+    reasons.push("Most recipients in this run were first-time contacts.");
+  }
+  if (details.dailySent >= Math.max(1, Math.floor(details.maxDmPerDay * 0.6))) {
+    reasons.push("Daily outbound volume is already high for this account trust level.");
+  }
+  reasons.push(
+    `Evidence: attempts=${details.attempts}, sent=${details.sent}, failures=${details.failures}, newContacts=${details.newContactsCount}, delay=${details.minDelaySeconds}-${details.maxDelaySeconds}s, daily=${details.dailySent}/${details.maxDmPerDay}.`
+  );
+  return reasons.join(" ");
 }
 
 function normalizeUsername(raw) {
@@ -90,14 +162,25 @@ function buildSafetyConfig(campaignSafety = {}) {
     stopOnPeerFlood: campaignSafety.stopOnPeerFlood !== false,
     skipPreviouslyMessaged: campaignSafety.skipPreviouslyMessaged !== false,
     maxDmPerRun: Math.max(1, toInt(campaignSafety.maxDmPerRun, toInt(process.env.TG_MAX_DM_PER_RUN, 15))),
+    maxDmPerDay: Math.max(1, toInt(campaignSafety.maxDmPerDay, toInt(process.env.TG_MAX_DM_PER_DAY, 30))),
     maxFailuresPerRun: Math.max(1, toInt(campaignSafety.maxFailuresPerRun, toInt(process.env.TG_MAX_FAILURES_PER_RUN, 4))),
     minDelaySeconds: Math.max(45, toInt(campaignSafety.minDelaySeconds, toInt(process.env.TG_SAFE_MIN_DELAY_SECONDS, 90))),
     maxDelaySeconds: Math.max(60, toInt(campaignSafety.maxDelaySeconds, toInt(process.env.TG_SAFE_MAX_DELAY_SECONDS, 180))),
+    coldLeadMinDelaySeconds: Math.max(90, toInt(campaignSafety.coldLeadMinDelaySeconds, toInt(process.env.TG_COLD_MIN_DELAY_SECONDS, 140))),
     breakEvery: Math.max(1, toInt(campaignSafety.breakEvery, toInt(process.env.TG_BREAK_EVERY, 4))),
     breakMinSeconds: Math.max(30, toInt(campaignSafety.breakMinSeconds, toInt(process.env.TG_BREAK_MIN_SECONDS, 180))),
     breakMaxSeconds: Math.max(45, toInt(campaignSafety.breakMaxSeconds, toInt(process.env.TG_BREAK_MAX_SECONDS, 420))),
+    peerFloodCooldownMinutes: Math.max(
+      10,
+      toInt(campaignSafety.peerFloodCooldownMinutes, toInt(process.env.TG_PEER_FLOOD_COOLDOWN_MINUTES, 720))
+    ),
+    floodWaitBufferSeconds: Math.max(
+      30,
+      toInt(campaignSafety.floodWaitBufferSeconds, toInt(process.env.TG_FLOOD_WAIT_BUFFER_SECONDS, 120))
+    ),
   };
   if (cfg.maxDelaySeconds < cfg.minDelaySeconds) cfg.maxDelaySeconds = cfg.minDelaySeconds;
+  if (cfg.coldLeadMinDelaySeconds > cfg.maxDelaySeconds) cfg.maxDelaySeconds = cfg.coldLeadMinDelaySeconds;
   if (cfg.breakMaxSeconds < cfg.breakMinSeconds) cfg.breakMaxSeconds = cfg.breakMinSeconds;
   return cfg;
 }
@@ -189,22 +272,65 @@ if (!fs.existsSync(CONFIG_PATH)) {
 const campaign = JSON.parse(fs.readFileSync(CONFIG_PATH, "utf-8"));
 const telegram = campaign?.telegram || {};
 const tgTemplateList = safeArray(campaign?.tgTemplates);
+const templateShuffle = campaign?.templateShuffle !== false;
 const safety = buildSafetyConfig(campaign?.safety || {});
 
-let templateIndex = 0;
-function nextTgTemplate() {
-  const fallback = [
-    `Hey [NAME]
-We are a gaming provider and we have built games tailored for Meme Tokens and GambleFi users. We see a strong fit with [TOKEN NAME], and we believe your holders would love seeing your token actively used inside our games.
+const DEFAULT_TEMPLATES = [
+  `Hey [NAME]
+We are a gaming provider and we build games tailored for Meme Tokens and GambleFi users. We see a strong fit with [TOKEN NAME], and we believe your holders would love seeing your token actively used inside our games.
 
-We would love to explore a partnership and discuss how we can integrate your token into our games. If this interests you, lets connect and walk you through the full offering.
+We would love to explore a partnership and discuss how we can integrate your token into our games. If this interests you, let's connect and walk you through the full offering.
 
 Looking forward to hearing from you!`,
-  ];
-  const list = tgTemplateList.length ? [String(tgTemplateList[0])] : fallback;
-  const message = list[templateIndex % list.length];
+  `Hey [NAME]
+We are a gaming provider building game experiences for Meme Tokens and GambleFi users. [TOKEN NAME] feels like a strong fit, and your holders would likely enjoy seeing real token utility inside our games.
+
+We would love to explore a partnership and discuss how we can integrate your token into our games. If this sounds interesting, let's connect and walk you through the full offering.
+
+Looking forward to hearing from you!`,
+  `Hey [NAME]
+We are a gaming provider focused on Meme Token and GambleFi audiences. We see a clear match with [TOKEN NAME], and we believe your community would value seeing the token used directly in our games.
+
+We would love to explore a partnership and discuss how we can integrate your token into our games. If you're open to it, let's connect and walk you through the full offering.
+
+Looking forward to hearing from you!`,
+];
+
+function sanitizeTemplateList(list) {
+  const clean = safeArray(list)
+    .map((t) => String(t || "").trim())
+    .filter(Boolean);
+  return clean.length ? clean : DEFAULT_TEMPLATES;
+}
+
+const preparedTemplateList = sanitizeTemplateList(tgTemplateList);
+let templateIndex = 0;
+let lastTemplateIdx = -1;
+let shuffleBag = [];
+
+function nextTgTemplate() {
+  if (preparedTemplateList.length === 1) return preparedTemplateList[0];
+
+  if (templateShuffle) {
+    if (!shuffleBag.length) {
+      shuffleBag = [...Array(preparedTemplateList.length).keys()];
+      for (let i = shuffleBag.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffleBag[i], shuffleBag[j]] = [shuffleBag[j], shuffleBag[i]];
+      }
+      if (shuffleBag.length > 1 && shuffleBag[0] === lastTemplateIdx) {
+        [shuffleBag[0], shuffleBag[1]] = [shuffleBag[1], shuffleBag[0]];
+      }
+    }
+    const pickedIndex = shuffleBag.shift();
+    lastTemplateIdx = pickedIndex;
+    return preparedTemplateList[pickedIndex];
+  }
+
+  const idx = templateIndex % preparedTemplateList.length;
   templateIndex++;
-  return message;
+  lastTemplateIdx = idx;
+  return preparedTemplateList[idx];
 }
 
 async function runTelegram() {
@@ -234,34 +360,85 @@ async function runTelegram() {
   fs.writeFileSync(sessionFile, client.session.save());
   log("Telegram", "AUTH", "info", "Session ready");
 
-  const configuredMin = Math.max(toInt(telegram?.delaySeconds, 60), safety.minDelaySeconds);
-  const configuredMax = Math.max(toInt(telegram?.delaySecondsMax, 90), safety.maxDelaySeconds, configuredMin);
-
-  log(
-    "Telegram Safety",
-    "CONFIG",
-    "info",
-    `maxDmPerRun=${safety.maxDmPerRun}, maxFailuresPerRun=${safety.maxFailuresPerRun}, delay=${configuredMin}-${configuredMax}s, breakEvery=${safety.breakEvery}, break=${safety.breakMinSeconds}-${safety.breakMaxSeconds}s`
-  );
-
   let hardStopReason = "";
   let failures = 0;
   let dmsSentThisRun = 0;
   let attempts = 0;
+  const safetyState = readSafetyState();
+  ensureDailyWindow(safetyState);
+  const configuredMin = Math.max(toInt(telegram?.delaySeconds, 60), safety.minDelaySeconds);
+  const configuredMax = Math.max(toInt(telegram?.delaySecondsMax, 90), safety.maxDelaySeconds, configuredMin);
 
   try {
+    const nowMs = Date.now();
+    writeSafetyState(safetyState);
+
+    if (safetyState.cooldownUntilMs > nowMs) {
+      const remainingMs = safetyState.cooldownUntilMs - nowMs;
+      log(
+        "Telegram Safety",
+        "COOLDOWN",
+        "failed",
+        `Run blocked: cooldown active for ${formatMs(remainingMs)} (until ${new Date(safetyState.cooldownUntilMs).toISOString()}).`
+      );
+      if (safetyState.lastPeerFloodError) {
+        log("Telegram Safety", "LAST_ERROR", "info", `Previous flood signal: ${safetyState.lastPeerFloodError}`);
+      }
+      return;
+    }
+
+    const dailyRemaining = Math.max(0, safety.maxDmPerDay - safetyState.daily.sent);
+    if (dailyRemaining <= 0) {
+      log(
+        "Telegram Safety",
+        "DAILY_CAP",
+        "failed",
+        `Daily DM cap reached for UTC day ${safetyState.daily.day} (${safetyState.daily.sent}/${safety.maxDmPerDay}).`
+      );
+      return;
+    }
+
+    log(
+      "Telegram Safety",
+      "CONFIG",
+      "info",
+      `maxDmPerRun=${safety.maxDmPerRun}, maxDmPerDay=${safety.maxDmPerDay}, remainingToday=${dailyRemaining}, maxFailuresPerRun=${safety.maxFailuresPerRun}, delay=${configuredMin}-${configuredMax}s, breakEvery=${safety.breakEvery}, break=${safety.breakMinSeconds}-${safety.breakMaxSeconds}s, templates=${preparedTemplateList.length}, templateMode=${templateShuffle ? "shuffle" : "sequence"}`
+    );
+
     const uniqueTargets = buildDmTargets(telegram);
     const previouslyMessaged = safety.skipPreviouslyMessaged ? getPreviouslyMessagedSet() : new Set();
     const filteredForFresh = uniqueTargets.filter((t) => !previouslyMessaged.has(normalizeUsername(t.username)));
-    const dmTargets = filteredForFresh.slice(0, safety.maxDmPerRun);
+    const runLimitedTargets = filteredForFresh.slice(0, safety.maxDmPerRun);
+    const dmTargets = runLimitedTargets.slice(0, dailyRemaining);
+    const coldLeadMode = filteredForFresh.length > 0 && filteredForFresh.length === uniqueTargets.length;
+    const effectiveMinDelay = coldLeadMode ? Math.max(configuredMin, safety.coldLeadMinDelaySeconds) : configuredMin;
+    const effectiveMaxDelay = Math.max(configuredMax, effectiveMinDelay);
+
     const skippedByHistory = uniqueTargets.length - filteredForFresh.length;
-    const skippedByCap = filteredForFresh.length - dmTargets.length;
+    const skippedByRunCap = filteredForFresh.length - runLimitedTargets.length;
+    const skippedByDailyCap = runLimitedTargets.length - dmTargets.length;
 
     if (skippedByHistory > 0) {
       log("Telegram Safety", "FILTER", "info", `Skipped ${skippedByHistory} usernames already messaged earlier`);
     }
-    if (skippedByCap > 0) {
-      log("Telegram Safety", "FILTER", "info", `Skipped ${skippedByCap} usernames due to maxDmPerRun cap`);
+    if (skippedByRunCap > 0) {
+      log("Telegram Safety", "FILTER", "info", `Skipped ${skippedByRunCap} usernames due to maxDmPerRun cap`);
+    }
+    if (skippedByDailyCap > 0) {
+      log(
+        "Telegram Safety",
+        "FILTER",
+        "info",
+        `Skipped ${skippedByDailyCap} usernames due to daily cap (${safetyState.daily.sent}/${safety.maxDmPerDay} used).`
+      );
+    }
+    if (coldLeadMode && dmTargets.length > 0) {
+      log(
+        "Telegram Safety",
+        "WARN",
+        "info",
+        `All selected targets are first-contact leads. Using stricter delay=${effectiveMinDelay}-${effectiveMaxDelay}s.`
+      );
     }
 
     for (let i = 0; i < dmTargets.length; i++) {
@@ -272,6 +449,8 @@ async function runTelegram() {
         const message = renderDmMessage(nextTgTemplate(), target);
         await client.sendMessage(username, { message });
         dmsSentThisRun++;
+        safetyState.daily.sent++;
+        writeSafetyState(safetyState);
         log("Telegram DM", username, "sent", message.slice(0, 80));
       } catch (err) {
         failures++;
@@ -282,12 +461,43 @@ async function runTelegram() {
           hardStopReason = info.isPeerFlood
             ? "PEER_FLOOD detected by Telegram"
             : `FLOOD_WAIT detected (${info.floodWaitSeconds || "unknown"}s)`;
+
+          const reason = buildPeerFloodReason({
+            attempts,
+            sent: dmsSentThisRun,
+            failures,
+            minDelaySeconds: effectiveMinDelay,
+            maxDelaySeconds: effectiveMaxDelay,
+            newContactsCount: filteredForFresh.length,
+            skippedHistory: skippedByHistory,
+            dailySent: safetyState.daily.sent,
+            maxDmPerDay: safety.maxDmPerDay,
+          });
+          log("Telegram Safety", "REASON", "failed", reason);
+
+          const cooldownSeconds = info.isFloodWait && info.floodWaitSeconds
+            ? info.floodWaitSeconds + safety.floodWaitBufferSeconds
+            : safety.peerFloodCooldownMinutes * 60;
+          safetyState.cooldownUntilMs = Date.now() + cooldownSeconds * 1000;
+          safetyState.lastPeerFloodAt = new Date().toISOString();
+          safetyState.lastPeerFloodError = info.raw;
+          safetyState.lastStopReason = hardStopReason;
+          writeSafetyState(safetyState);
+
+          log(
+            "Telegram Safety",
+            "COOLDOWN",
+            "info",
+            `Cooldown started for ${formatMs(cooldownSeconds * 1000)} (until ${new Date(safetyState.cooldownUntilMs).toISOString()}).`
+          );
           log("Telegram Safety", "STOP", "info", `${hardStopReason}. Stopping campaign to protect account.`);
           break;
         }
 
         if (failures >= safety.maxFailuresPerRun) {
           hardStopReason = `Reached maxFailuresPerRun (${safety.maxFailuresPerRun})`;
+          safetyState.lastStopReason = hardStopReason;
+          writeSafetyState(safetyState);
           log("Telegram Safety", "STOP", "info", `${hardStopReason}. Stopping campaign.`);
           break;
         }
@@ -297,7 +507,7 @@ async function runTelegram() {
 
       const isLast = i >= dmTargets.length - 1;
       if (!isLast) {
-        await sleep(randomDelayMs(configuredMin, configuredMax));
+        await sleep(randomDelayMs(effectiveMinDelay, effectiveMaxDelay));
       }
 
       if (!isLast && dmsSentThisRun > 0 && dmsSentThisRun % safety.breakEvery === 0) {
@@ -323,7 +533,7 @@ async function runTelegram() {
           }
         }
         if (hardStopReason) break;
-        await sleep(randomDelayMs(configuredMin, configuredMax));
+        await sleep(randomDelayMs(effectiveMinDelay, effectiveMaxDelay));
       }
     }
 
@@ -331,7 +541,7 @@ async function runTelegram() {
       "Telegram Safety",
       "SUMMARY",
       hardStopReason ? "failed" : "info",
-      `attempts=${attempts}, sent=${dmsSentThisRun}, failures=${failures}${hardStopReason ? `, stop=${hardStopReason}` : ""}`
+      `attempts=${attempts}, sent=${dmsSentThisRun}, failures=${failures}, dailySent=${safetyState.daily.sent}/${safety.maxDmPerDay}${hardStopReason ? `, stop=${hardStopReason}` : ""}`
     );
   } finally {
     await client.disconnect();

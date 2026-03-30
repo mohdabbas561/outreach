@@ -460,5 +460,33 @@
     "target": "BREAK",
     "status": "info",
     "message": "Cooling down for 195s"
+  },
+  {
+    "time": "10:31:45 AM",
+    "platform": "Telegram DM",
+    "target": "@southsid3dave",
+    "status": "failed",
+    "message": "PEER_FLOOD"
+  },
+  {
+    "time": "10:31:45 AM",
+    "platform": "Telegram Safety",
+    "target": "STOP",
+    "status": "info",
+    "message": "PEER_FLOOD detected by Telegram. Stopping campaign to protect account."
+  },
+  {
+    "time": "10:31:45 AM",
+    "platform": "Telegram Safety",
+    "target": "SUMMARY",
+    "status": "failed",
+    "message": "attempts=5, sent=4, failures=1, stop=PEER_FLOOD detected by Telegram"
+  },
+  {
+    "time": "10:31:45 AM",
+    "platform": "Telegram",
+    "target": "SESSION",
+    "status": "info",
+    "message": "Disconnected"
   }
 ]
