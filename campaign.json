@@ -1,39 +1,248 @@
 {
   "telegram": {
     "usernames": [
-      "@Oxclo_ver",
-      "@Daniel_7159",
-      "@TemiJat",
-      "@finalleo",
-      "@HEN_D1",
-      "@Monster0045",
-      "@ZygothefrogOriginal",
-      "@coltvortex",
-      "@xonthephone",
-      "@h4nl4b",
-      "@jeious",
-      "@yellwmoon",
-      "@jamiexl",
-      "@TrenchRepe",
-      "@padaraang",
-      "@NexBar0xc",
-      "@dogleadercult",
-      "@Primelayerr",
-      "@Xstoner56789",
-      "@johnningbd",
-      "@TheLastSwinger",
-      "@FinGrey02",
-      "@mfzezima",
-      "@D4rthSol"
+      "@bitcoinbenny69OO",
+      "@BobSmith69420",
+      "@spyraxx",
+      "@OXAnkh",
+      "@southsid3dave",
+      "@prydr_io",
+      "@utakatatendo2",
+      "@neraracing",
+      "@Anon_MEMEr",
+      "@Rydersaurus",
+      "@A8pe_33",
+      "@SaigonDragon",
+      "@Token_Chef",
+      "@Estman36",
+      "@cryptorapz",
+      "@CryptoRapManager",
+      "@og99official",
+      "@prechigold14",
+      "@kisomata",
+      "@jimont88",
+      "@fakeitormakeit",
+      "@JustMeAndrew",
+      "@WirexOne",
+      "@Jokeszs",
+      "@communicativebravo",
+      "@katzcrypto",
+      "@CedCryptotroll",
+      "@noxxtxx",
+      "@SamSunTQ",
+      "@Ruudvoo",
+      "@Usernumver1",
+      "@Sixfrom6ix",
+      "@CorleoneTx",
+      "@DONTFUCKingDARE",
+      "@bigwavedave89",
+      "@DUFY47",
+      "@PumpFun711"
+    ],
+    "targets": [
+      {
+        "username": "@bitcoinbenny69OO",
+        "name": ".BitcoinBenny",
+        "tokenName": "$MPX6900"
+      },
+      {
+        "username": "@BobSmith69420",
+        "name": "Bob Smith",
+        "tokenName": "$MPX6900"
+      },
+      {
+        "username": "@spyraxx",
+        "name": "B",
+        "tokenName": "$MPX6900"
+      },
+      {
+        "username": "@OXAnkh",
+        "name": "Ankh",
+        "tokenName": "$MEMECOIN"
+      },
+      {
+        "username": "@southsid3dave",
+        "name": "Dave",
+        "tokenName": "$THE"
+      },
+      {
+        "username": "@prydr_io",
+        "name": "Prydr JohJong",
+        "tokenName": "$THE"
+      },
+      {
+        "username": "@utakatatendo2",
+        "name": "Tamaki senpai",
+        "tokenName": "$THE"
+      },
+      {
+        "username": "@neraracing",
+        "name": "Patrick Nera",
+        "tokenName": "$THE"
+      },
+      {
+        "username": "@Anon_MEMEr",
+        "name": "Anon Memer",
+        "tokenName": "$THE"
+      },
+      {
+        "username": "@Rydersaurus",
+        "name": "Ryder",
+        "tokenName": "$THE"
+      },
+      {
+        "username": "@A8pe_33",
+        "name": "Elegant Human",
+        "tokenName": "$THE"
+      },
+      {
+        "username": "@SaigonDragon",
+        "name": "Saigon Dragon",
+        "tokenName": "$THE"
+      },
+      {
+        "username": "@Token_Chef",
+        "name": "Token Chef",
+        "tokenName": "$THE"
+      },
+      {
+        "username": "@Estman36",
+        "name": "Estman",
+        "tokenName": "$THE"
+      },
+      {
+        "username": "@cryptorapz",
+        "name": "2Blocks Shakur   @CryptoRapCalls 💿",
+        "tokenName": "$YNOT"
+      },
+      {
+        "username": "@CryptoRapManager",
+        "name": "Y Not💿Crypto Rap",
+        "tokenName": "$YNOT"
+      },
+      {
+        "username": "@og99official",
+        "name": "99",
+        "tokenName": "$THE"
+      },
+      {
+        "username": "@prechigold14",
+        "name": "Prechi (the bluetick queen) Gold",
+        "tokenName": "$THE"
+      },
+      {
+        "username": "@kisomata",
+        "name": "kiso",
+        "tokenName": "$THE"
+      },
+      {
+        "username": "@jimont88",
+        "name": "Jimont88",
+        "tokenName": "$CLIPPY"
+      },
+      {
+        "username": "@fakeitormakeit",
+        "name": "A",
+        "tokenName": "$CLIPPY"
+      },
+      {
+        "username": "@JustMeAndrew",
+        "name": "Don Vito Corleone",
+        "tokenName": "$CLIPPY"
+      },
+      {
+        "username": "@WirexOne",
+        "name": "Wirex 🧪",
+        "tokenName": "$CLIPPY"
+      },
+      {
+        "username": "@Jokeszs",
+        "name": "Jokez",
+        "tokenName": "$CLIPPY"
+      },
+      {
+        "username": "@communicativebravo",
+        "name": "Duy ⚫️🛠️⛰️🚐",
+        "tokenName": "$CLIPPY"
+      },
+      {
+        "username": "@katzcrypto",
+        "name": "Katz",
+        "tokenName": "$CLIPPY"
+      },
+      {
+        "username": "@CedCryptotroll",
+        "name": "Céd📎",
+        "tokenName": "$CLIPPY"
+      },
+      {
+        "username": "@noxxtxx",
+        "name": "ㅤcnox",
+        "tokenName": "$CLIPPY"
+      },
+      {
+        "username": "@SamSunTQ",
+        "name": "Samsun📎",
+        "tokenName": "$CLIPPY"
+      },
+      {
+        "username": "@Ruudvoo",
+        "name": "RVO",
+        "tokenName": "$CLIPPY"
+      },
+      {
+        "username": "@Usernumver1",
+        "name": "Qvist",
+        "tokenName": "$CLIPPY"
+      },
+      {
+        "username": "@Sixfrom6ix",
+        "name": "-6ix- (Blood Arc) 🩸",
+        "tokenName": "$CLIPPY"
+      },
+      {
+        "username": "@CorleoneTx",
+        "name": "Corl",
+        "tokenName": "$CLIPPY"
+      },
+      {
+        "username": "@DONTFUCKingDARE",
+        "name": "Bulldog",
+        "tokenName": "$PFU"
+      },
+      {
+        "username": "@bigwavedave89",
+        "name": "David",
+        "tokenName": "$PFU"
+      },
+      {
+        "username": "@DUFY47",
+        "name": "Capt.🪖💀🏴‍☠️",
+        "tokenName": "$PFU"
+      },
+      {
+        "username": "@PumpFun711",
+        "name": "PumpFun711",
+        "tokenName": "$PFU"
+      }
     ],
     "groups": [],
-    "delaySeconds": 78,
-    "delaySecondsMax": 120
+    "delaySeconds": 64,
+    "delaySecondsMax": 95
+  },
+  "safety": {
+    "stopOnPeerFlood": true,
+    "skipPreviouslyMessaged": true,
+    "maxDmPerRun": 15,
+    "maxFailuresPerRun": 4,
+    "minDelaySeconds": 90,
+    "maxDelaySeconds": 180,
+    "breakEvery": 4,
+    "breakMinSeconds": 180,
+    "breakMaxSeconds": 420
   },
   "tgTemplates": [
-    "Hey man! Luci here from Moonshot Win, a cross-chain crash game. We'd love to add your token to our game to give it more utility and visibility. Let me know if I can share more details.",
-    "Hey! Luci from Moonshot Win here. We run a cross-chain crash game and would like to integrate your token to bring it more exposure and real use in our platform. Happy to share details if you're interested.",
-    "Hi! This is Luci from Moonshot Win. We're building a cross-chain crash game and would love to feature your token inside the game for added utility and reach. Let me know if you'd like to hear more."
+    "Hey [NAME]\nWe are a gaming provider and we have built games tailored for Meme Tokens and GambleFi users. We see a strong fit with [TOKEN NAME], and we believe your holders would love seeing your token actively used inside our games.\n\nWe would love to explore a partnership and discuss how we can integrate your token into our games. If this interests you, lets connect and walk you through the full offering.\n\nLooking forward to hearing from you!"
   ],
-  "generatedAt": "2026-03-29T06:47:31.185Z"
+  "generatedAt": "2026-03-30T04:48:55.273Z"
 }

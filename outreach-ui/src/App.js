@@ -4,9 +4,12 @@ const SERVER = process.env.NODE_ENV === "production" ? "" : "http://localhost:30
 const TABS = ["Telegram", "Dex Scraper", "TG Admins", "History", "Logs", "Account"];
 
 const DEFAULT_TG_TEMPLATES = [
-  `Hey man! Luci here from Moonshot Win, a cross-chain crash game. We'd love to add your token to our game to give it more utility and visibility. Let me know if I can share more details.`,
-  `Hey! Luci from Moonshot Win here. We run a cross-chain crash game and would like to integrate your token to bring it more exposure and real use in our platform. Happy to share details if you're interested.`,
-  `Hi! This is Luci from Moonshot Win. We're building a cross-chain crash game and would love to feature your token inside the game for added utility and reach. Let me know if you'd like to hear more.`,
+  `Hey [NAME]
+We are a gaming provider and we have built games tailored for Meme Tokens and GambleFi users. We see a strong fit with [TOKEN NAME], and we believe your holders would love seeing your token actively used inside our games.
+
+We would love to explore a partnership and discuss how we can integrate your token into our games. If this interests you, lets connect and walk you through the full offering.
+
+Looking forward to hearing from you!`,
 ];
 
 // ── Design tokens ──────────────────────────────────────────────────────────────
@@ -156,7 +159,7 @@ function StatCard({ val, label, color }) {
   );
 }
 
-function ResultsTable({ results = [], doneProjects = new Set() }) {
+function ResultsTable({ results = [], doneProjects = new Set(), joinedLinks = new Set() }) {
   if (!results.length) return <div style={{ color: "#ddeeff", textAlign: "center", padding: 40 }}>No results</div>;
   const visible = results.filter(r => !doneProjects.has((r.tgLink || r.name || "").toLowerCase()));
   const hidden = results.length - visible.length;
@@ -172,54 +175,50 @@ function ResultsTable({ results = [], doneProjects = new Set() }) {
           </tr>
         </thead>
         <tbody>
-          {visible.map((r, i) => (
-            <tr key={i} style={{ borderBottom: "1px solid #0a1020" }}>
+          {visible.map((r, i) => {
+            const joined = Boolean(r.tgLink && joinedLinks.has(String(r.tgLink).toLowerCase()));
+            return (
+            <tr key={i} style={{ borderBottom: "1px solid #0a1020", opacity: joined ? 0.45 : 1 }}>
               <td style={{ color: "#ddeeff", padding: "10px 16px", fontSize: 11 }}>{String(i + 1).padStart(2, "0")}</td>
               <td style={{ padding: "10px 16px", maxWidth: 200 }}>
                 <div style={{ color: "#ffffff", fontWeight: 600, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{r.name}</div>
                 {r.chainId && <div style={{ color: "#ddeeff", fontSize: 10, marginTop: 2 }}>{r.chainId}</div>}
               </td>
-              <td style={{ padding: "10px 16px" }}><SocialLink href={r.tgLink} label="TG" color={GN} /></td>
+              <td style={{ padding: "10px 16px", display: "flex", gap: 8, alignItems: "center" }}>
+                <SocialLink href={r.tgLink} label="TG" color={GN} />
+                {joined && <Tag color="#3a5575">Joined</Tag>}
+              </td>
               <td style={{ padding: "10px 16px" }}><SocialLink href={r.xLink} label="X" color={BL} /></td>
               <td style={{ padding: "10px 16px" }}><SocialLink href={r.discordLink} label="DSC" color={PU} /></td>
             </tr>
-          ))}
+          )})}
         </tbody>
       </table>
     </div>
   );
 }
 
-function TemplateEditor({ templates, setTemplates, editing, setEditing }) {
+function TemplateEditor({ templates, setTemplates }) {
+  const current = String((templates && templates[0]) || DEFAULT_TG_TEMPLATES[0] || "");
   return (
     <div>
-      <label style={$.label}>Message Templates — rotates per recipient</label>
-      <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-        {templates.map((t, i) => (
-          <div key={i} style={{ ...$.card, border: `1px solid ${editing === i ? GN + "55" : "#1a2540"}`, transition: "border-color 0.2s" }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: editing === i ? 12 : 0 }}>
-              <span style={{ color: "#ddeeff", fontSize: 10, letterSpacing: "0.1em", fontWeight: 700 }}>TEMPLATE {i + 1}</span>
-              <div style={{ display: "flex", gap: 6 }}>
-                <button onClick={() => setEditing(editing === i ? null : i)} style={$.btnSm(GL)}>{editing === i ? "DONE" : "EDIT"}</button>
-                {templates.length > 1 && <button onClick={() => { setEditing(null); setTemplates(p => p.filter((_, idx) => idx !== i)); }} style={$.btnSm(RD)}>DEL</button>}
-              </div>
-            </div>
-            {editing === i
-              ? <textarea value={t} onChange={e => setTemplates(p => p.map((tp, idx) => idx === i ? e.target.value : tp))} rows={4} style={{ ...$.input, resize: "vertical" }} />
-              : <div style={{ color: "#ffffff", fontSize: 13, lineHeight: 1.8, marginTop: 8 }}>{t}</div>
-            }
-          </div>
-        ))}
-        <button onClick={() => setTemplates(p => [...p, "Hey! Luci from Moonshot Win — let me know if you'd like to hear more."])}
-          style={{ ...$.btn(GN), background: "none", border: `1px dashed ${GN}25`, boxShadow: "none", textAlign: "center" }}>
-          + ADD TEMPLATE
-        </button>
+      <label style={$.label}>Message Template - single message with placeholders</label>
+      <div style={{ ...$.card }}>
+        <div style={{ color: "#ddeeff", fontSize: 11, marginBottom: 10 }}>
+          Placeholders supported: [NAME], [TOKEN NAME]
+        </div>
+        <textarea
+          value={current}
+          onChange={e => setTemplates([e.target.value])}
+          rows={10}
+          style={{ ...$.input, resize: "vertical", lineHeight: 1.7 }}
+        />
       </div>
     </div>
   );
 }
 
-// ── Main App ─────────────────────────────────────────────────────────────────
+// Main App ─────────────────────────────────────────────────────────────────
 export default function App() {
   const [tab, setTab] = useState("Telegram");
   const [isCompact, setIsCompact] = useState(() => {
@@ -230,7 +229,6 @@ export default function App() {
   // Campaign
   const [tgUsernames, setTgUsernames] = useState("");
   const [tgTemplates, setTgTemplates] = useState(DEFAULT_TG_TEMPLATES);
-  const [editingTpl, setEditingTpl] = useState(null);
   const [tgDelay, setTgDelay] = useState(60);
   const [tgDelayMax, setTgDelayMax] = useState(90);
   const [botRunning, setBotRunning] = useState(false);
@@ -263,6 +261,8 @@ export default function App() {
   const [contacted, setContacted] = useState(new Set());
   const [blacklistedGroups, setBlacklistedGroups] = useState(new Set());
   const [doneProjects, setDoneProjects] = useState(new Set());
+  const [joinedTgLinks, setJoinedTgLinks] = useState(new Set());
+  const [joinedLinksLoading, setJoinedLinksLoading] = useState(false);
 
   // Auth
   const [tgAuth, setTgAuth] = useState({ loggedIn: false, phone: null, apiId: null });
@@ -319,6 +319,44 @@ export default function App() {
     return d.toISOString().slice(0, 10);
   };
 
+  const extractTokenFromGroupName = (groupName) => {
+    const cleaned = String(groupName || "")
+      .replace(/https?:\/\/\S+/g, "")
+      .replace(/[^A-Za-z0-9$ ]+/g, " ")
+      .trim();
+    if (!cleaned) return "$TOKEN";
+    const parts = cleaned.split(/\s+/).filter(Boolean);
+    const tokenCandidate = parts.find((p) => p.startsWith("$")) || parts[0];
+    if (!tokenCandidate) return "$TOKEN";
+    const token = tokenCandidate.replace(/[^A-Za-z0-9$]/g, "");
+    if (!token) return "$TOKEN";
+    return token.startsWith("$") ? token.toUpperCase() : `$${token.toUpperCase()}`;
+  };
+
+  const queueTargetsFromAdminResults = () => {
+    const lines = [];
+    const seen = new Set();
+    for (const group of tgAdminResults) {
+      const tokenName = extractTokenFromGroupName(group.groupName);
+      for (const member of group.members || []) {
+        if (tgAdminFilter !== "all" && !String(member.role || "").toLowerCase().includes(tgAdminFilter.toLowerCase())) continue;
+        const username = String(member.username || "");
+        if (!username.startsWith("@")) continue;
+        const normalized = username.toLowerCase();
+        if (contacted.has(normalized) || seen.has(normalized)) continue;
+        seen.add(normalized);
+        const name = String(member.displayName || "there").replace(/[|]/g, " ").trim() || "there";
+        lines.push(`${username} | ${name} | ${tokenName}`);
+      }
+    }
+    if (!lines.length) {
+      alert("No new admins/mods available to queue.");
+      return;
+    }
+    setTgUsernames(lines.join("\n"));
+    setTab("Telegram");
+  };
+
   function applyJoinedDatePreset(preset) {
     if (preset === "all") {
       setJoinedDateFromUtc("");
@@ -368,6 +406,26 @@ export default function App() {
     fetch(`${SERVER}/api/auth/tg/status`).then(r => r.json()).then(d => setTgAuth(d)).catch(() => {});
   }, []);
 
+  async function refreshJoinedTgLinks() {
+    if (!tgAuth.loggedIn) return;
+    setJoinedLinksLoading(true);
+    try {
+      const d = await fetch(`${SERVER}/api/tg/joined-links`).then(r => r.json());
+      if (d?.ok) {
+        setJoinedTgLinks(new Set((d.links || []).map((l) => String(l).toLowerCase())));
+      }
+    } catch {
+      // ignore
+    }
+    setJoinedLinksLoading(false);
+  }
+
+  useEffect(() => {
+    if (tab === "History" && tgAuth.loggedIn) {
+      refreshJoinedTgLinks();
+    }
+  }, [tab, tgAuth.loggedIn]);
+
   useEffect(() => { liveEndRef.current?.scrollIntoView({ behavior: "smooth" }); }, [liveLines]);
   useEffect(() => { dexLogsEndRef.current?.scrollIntoView({ behavior: "smooth" }); }, [dexLogs]);
   useEffect(() => { tgAdminLogsEndRef.current?.scrollIntoView({ behavior: "smooth" }); }, [tgAdminLogs]);
@@ -376,9 +434,58 @@ export default function App() {
   // ── Handlers ──
   async function handleRunTG() {
     if (!serverOnline) { alert("Server offline!"); return; }
+    const parsedTargets = tgUsernames
+      .split("\n")
+      .map((line) => line.trim())
+      .filter(Boolean)
+      .map((line) => {
+        const parts = line.split("|").map((p) => p.trim()).filter(Boolean);
+        const username = parts[0] || "";
+        if (!username) return null;
+        const safeUsername = username.startsWith("@") ? username : `@${username}`;
+        let name = "there";
+        let tokenName = "$TOKEN";
+        if (parts[1]) {
+          if (parts[1].startsWith("$")) tokenName = parts[1].toUpperCase();
+          else name = parts[1];
+        }
+        if (parts[2]) {
+          if (parts[2].startsWith("$")) tokenName = parts[2].toUpperCase();
+          else if (name === "there") name = parts[2];
+        }
+        return { username: safeUsername, name: name || "there", tokenName: tokenName || "$TOKEN" };
+      })
+      .filter(Boolean);
+
+    if (!parsedTargets.length) {
+      alert("Add at least one Telegram target.");
+      return;
+    }
+
+    const singleTemplate = String((tgTemplates && tgTemplates[0]) || DEFAULT_TG_TEMPLATES[0] || "");
+    const safeMinDelay = Math.max(90, tgDelay);
+    const safeMaxDelay = Math.max(safeMinDelay, Math.max(180, tgDelayMax));
     const config = {
-      telegram: { usernames: tgUsernames.split("\n").map(s => s.trim()).filter(Boolean), groups: [], delaySeconds: tgDelay, delaySecondsMax: tgDelayMax },
-      tgTemplates, generatedAt: new Date().toISOString(),
+      telegram: {
+        usernames: parsedTargets.map((t) => t.username),
+        targets: parsedTargets,
+        groups: [],
+        delaySeconds: tgDelay,
+        delaySecondsMax: tgDelayMax,
+      },
+      safety: {
+        stopOnPeerFlood: true,
+        skipPreviouslyMessaged: true,
+        maxDmPerRun: 15,
+        maxFailuresPerRun: 4,
+        minDelaySeconds: safeMinDelay,
+        maxDelaySeconds: safeMaxDelay,
+        breakEvery: 4,
+        breakMinSeconds: 180,
+        breakMaxSeconds: 420,
+      },
+      tgTemplates: [singleTemplate],
+      generatedAt: new Date().toISOString(),
     };
     await fetch(`${SERVER}/api/campaign`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(config) });
     const res = await fetch(`${SERVER}/api/run`, { method: "POST" });
@@ -500,6 +607,15 @@ export default function App() {
   }
 
   async function handleTgAdminScrape() {
+    let latestContacted = contacted;
+    try {
+      const d = await fetch(`${SERVER}/api/contacted`).then(r => r.json());
+      latestContacted = new Set((d.contacted || []).map(u => (u.startsWith("@") ? u.toLowerCase() : `@${u.toLowerCase()}`)));
+      setContacted(latestContacted);
+    } catch {
+      // ignore and use current set
+    }
+
     const groups = joinedGroups
       .filter(g => selectedGroups.has(getGroupKey(g)))
       .map(g => g.ref || g.link)
@@ -524,7 +640,14 @@ export default function App() {
       }, 1500);
     };
     await new Promise(r => setTimeout(r, 400));
-    await fetch(`${SERVER}/api/tg/scrape-admins`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ groups }) });
+    await fetch(`${SERVER}/api/tg/scrape-admins`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        groups,
+        excludeUsernames: Array.from(latestContacted),
+      }),
+    });
   }
 
   function getAdmins(results, filter = "all") {
@@ -679,9 +802,12 @@ export default function App() {
               <div style={$.card}>
                 <label style={$.label}>Usernames to DM — one per line</label>
                 <textarea value={tgUsernames} onChange={e => setTgUsernames(e.target.value)} rows={9}
-                  style={{ ...$.input, resize: "vertical" }} placeholder={"@username1\n@username2\n@username3"} />
+                  style={{ ...$.input, resize: "vertical" }} placeholder={"@username\n@username | Name | $TOKEN"} />
                 <div style={{ color: "#ddeeff", fontSize: 11, marginTop: 8, letterSpacing: "0.05em" }}>
                   {tgUsernames.split("\n").filter(Boolean).length} targets queued
+                </div>
+                <div style={{ color: "#6a8aaa", fontSize: 10, marginTop: 6 }}>
+                  Format: <code style={{ color: "#9ec4e8" }}>@username | Name | $TOKEN</code>
                 </div>
               </div>
 
@@ -689,7 +815,7 @@ export default function App() {
                 <label style={$.label}>Delay between messages</label>
                 <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
                   {[
-                    { label: "MIN", val: tgDelay, set: v => setTgDelay(v), min: 15, max: 180, color: GN },
+                    { label: "MIN", val: tgDelay, set: v => setTgDelay(v), min: 60, max: 240, color: GN },
                     { label: "MAX", val: tgDelayMax, set: v => setTgDelayMax(v), min: tgDelay, max: 300, color: GL },
                   ].map(({ label, val, set, min, max, color }) => (
                     <div key={label} style={{ display: "flex", alignItems: "center", gap: 14 }}>
@@ -699,7 +825,7 @@ export default function App() {
                       <span style={{ color, fontWeight: 800, fontSize: 18, minWidth: 48, textAlign: "right", textShadow: glow(color, 6) }}>{val}s</span>
                     </div>
                   ))}
-                  <div style={{ color: "#ddeeff", fontSize: 11 }}>Random {tgDelay}–{tgDelayMax}s between each message</div>
+                  <div style={{ color: "#ddeeff", fontSize: 11 }}>Random {tgDelay}-{tgDelayMax}s between each message (safety mode enforces >= 90s and cooldown breaks)</div>
                 </div>
               </div>
 
@@ -716,7 +842,7 @@ export default function App() {
 
             {/* Right: templates */}
             <div style={$.card}>
-              <TemplateEditor templates={tgTemplates} setTemplates={setTgTemplates} editing={editingTpl} setEditing={setEditingTpl} />
+              <TemplateEditor templates={tgTemplates} setTemplates={setTgTemplates} />
             </div>
           </div>
         )}
@@ -887,6 +1013,7 @@ export default function App() {
                     <StatCard val={getAdmins(tgAdminResults, "Owner").length} label="Owners" color={GL} />
                     <StatCard val={all.filter(m => m.username.startsWith("@")).length} label="With @handle" color={PU} />
                     <div style={{ marginLeft: "auto", display: "flex", gap: 8, alignItems: "center" }}>
+                      <button onClick={queueTargetsFromAdminResults} style={$.btnSm(GN)}>QUEUE FOR DM</button>
                       <button onClick={() => copyUsernames(tgAdminResults, tgAdminFilter)} style={$.btnSm(BL)}>
                         {tgAdminCopied ? "✓ COPIED!" : "COPY @HANDLES"}
                       </button>
@@ -1001,14 +1128,18 @@ export default function App() {
                         {unique.map((r, i) => {
                           const key = (r.tgLink || r.name || "").toLowerCase();
                           const isDone = doneProjects.has(key);
+                          const isJoined = Boolean(r.tgLink && joinedTgLinks.has(String(r.tgLink).toLowerCase()));
                           return (
-                            <tr key={i} style={{ borderBottom: "1px solid #070b18", opacity: isDone ? 0.3 : 1 }}>
+                            <tr key={i} style={{ borderBottom: "1px solid #070b18", opacity: isDone ? 0.3 : isJoined ? 0.45 : 1 }}>
                               <td style={{ color: "#ddeeff", padding: "9px 16px", fontSize: 11 }}>{String(i + 1).padStart(2, "0")}</td>
                               <td style={{ padding: "9px 16px", maxWidth: 200 }}>
                                 <div style={{ color: isDone ? "#6a8aaa" : "#e8f0ff", fontWeight: 600, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", textDecoration: isDone ? "line-through" : "none" }}>{r.name}</div>
                                 {r.chainId && <div style={{ color: "#ddeeff", fontSize: 10 }}>{r.chainId}</div>}
                               </td>
-                              <td style={{ padding: "9px 16px" }}><SocialLink href={r.tgLink} label="TG" color={GN} /></td>
+                              <td style={{ padding: "9px 16px", display: "flex", gap: 8, alignItems: "center" }}>
+                                <SocialLink href={r.tgLink} label="TG" color={GN} />
+                                {isJoined && <Tag color="#3a5575">Joined</Tag>}
+                              </td>
                               <td style={{ padding: "9px 16px" }}><SocialLink href={r.xLink} label="X" color={BL} /></td>
                               <td style={{ padding: "9px 16px" }}><SocialLink href={r.discordLink} label="DSC" color={PU} /></td>
                               <td style={{ padding: "9px 16px" }}>
@@ -1034,7 +1165,7 @@ export default function App() {
                     <p style={{ margin: "3px 0 0", color: "#ddeeff", fontSize: 12 }}>{new Date(viewingEntry.scrapedAt).toLocaleString()}</p>
                   </div>
                 </div>
-                <div style={$.card}><ResultsTable results={viewingEntry.results} doneProjects={doneProjects} /></div>
+                <div style={$.card}><ResultsTable results={viewingEntry.results} doneProjects={doneProjects} joinedLinks={joinedTgLinks} /></div>
               </div>
             ) : (
               <div>
@@ -1044,6 +1175,11 @@ export default function App() {
                     <p style={{ margin: "5px 0 0", color: "#ddeeff", fontSize: 13 }}>All previous DexScreener scrapes</p>
                   </div>
                   <div style={{ display: "flex", gap: 9 }}>
+                    {tgAuth.loggedIn && (
+                      <button onClick={refreshJoinedTgLinks} disabled={joinedLinksLoading} style={{ ...$.btnSm("#3a5575"), opacity: joinedLinksLoading ? 0.45 : 1 }}>
+                        {joinedLinksLoading ? "SYNCING JOINED..." : "SYNC JOINED GROUPS"}
+                      </button>
+                    )}
                     {dexHistory.length > 0 && <button onClick={() => setViewAllScrapes(true)} style={$.btnSm(GN)}>VIEW ALL UNIQUE →</button>}
                     <button onClick={async () => {
                       if (!window.confirm("Clear ALL history and logs?")) return;
@@ -1126,34 +1262,42 @@ export default function App() {
               <button onClick={() => { setLogs([]); setLiveLines([]); }} style={$.btnSm("#3a5575")}>CLEAR</button>
             </div>
 
-            {liveLines.length > 0 && (
-              <div style={{ background: "#030609", border: `1px solid ${GL}20`, borderRadius: 10, padding: "14px 18px", marginBottom: 20, maxHeight: 240, overflowY: "auto", fontSize: 12, lineHeight: 1.9, fontFamily: "monospace" }}>
-                <div style={{ color: GL, fontSize: 9, letterSpacing: "0.2em", marginBottom: 10, fontWeight: 700 }}>TERMINAL OUTPUT</div>
-                {liveLines.map((line, i) => <div key={i} style={{ color: "#ddeeff" }}>{line}</div>)}
-                <div ref={liveEndRef} />
+                        <div style={{ ...$.card, padding: "14px 18px", background: "#02060d", border: "1px solid #103155" }}>
+              <div style={{ color: GL, fontSize: 10, letterSpacing: "0.18em", marginBottom: 10, fontWeight: 700 }}>
+                TERMINAL LOGS
               </div>
-            )}
-
-            <div style={{ ...$.card, padding: 0, overflow: "hidden", maxHeight: 600 }}>
-              {logs.length === 0 ? (
-                <div style={{ color: "#ddeeff", textAlign: "center", padding: 60, fontSize: 13 }}>No logs yet — run a campaign from the Telegram tab</div>
-              ) : (
-                <div style={{ overflowY: "auto", maxHeight: 600 }}>
-                  {logs.map((log, i) => {
-                    const sc = log.status === "sent" ? GN : log.status === "failed" ? RD : log.status === "positive" ? BL : "#3a5575";
-                    return (
-                      <div key={i} style={{ display: "flex", gap: 12, alignItems: "flex-start", padding: "10px 18px", borderBottom: "1px solid #070b18", background: log.status === "positive" ? `${BL}08` : "transparent" }}>
-                        <span style={{ color: "#3a5070", fontSize: 11, whiteSpace: "nowrap", paddingTop: 2, flexShrink: 0 }}>{log.time}</span>
-                        <Tag color={GN}>{log.platform}</Tag>
-                        <span style={{ color: "#ffffff", fontSize: 13, whiteSpace: "nowrap", fontWeight: 600, flexShrink: 0 }}>{log.target}</span>
-                        <Tag color={sc}>{log.status}</Tag>
-                        <span style={{ color: "#ddeeff", fontSize: 12, flex: 1, lineHeight: 1.6, minWidth: 0 }}>{log.message}</span>
-                      </div>
-                    );
-                  })}
-                  <div ref={logsEndRef} />
+              {(liveLines.length > 0
+                ? liveLines.map((line, i) => ({
+                    key: `live-${i}`,
+                    text: String(line),
+                    isError: /failed|error|peer_flood|flood_wait|denied|forbidden/i.test(String(line)),
+                  }))
+                : logs.map((log, i) => ({
+                    key: `hist-${i}`,
+                    text: `[${log.time}] [${log.platform}] ${log.target} [${log.status}] ${log.message}`,
+                    isError: String(log.status || "").toLowerCase() === "failed",
+                  }))
+              ).map((row) => (
+                <div
+                  key={row.key}
+                  style={{
+                    fontFamily: "monospace",
+                    fontSize: 13,
+                    lineHeight: 1.7,
+                    color: row.isError ? "#ff5c5c" : "#56ff9a",
+                    whiteSpace: "pre-wrap",
+                    wordBreak: "break-word",
+                  }}
+                >
+                  {row.text}
+                </div>
+              ))}
+              {liveLines.length === 0 && logs.length === 0 && (
+                <div style={{ color: "#56ff9a", fontFamily: "monospace", fontSize: 13 }}>
+                  No logs yet - run a campaign from the Telegram tab
                 </div>
               )}
+              <div ref={liveLines.length > 0 ? liveEndRef : logsEndRef} />
             </div>
           </div>
         )}
@@ -1265,4 +1409,7 @@ export default function App() {
     </div>
   );
 }
+
+
+
 

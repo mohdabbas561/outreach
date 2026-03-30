@@ -1,5 +1,97 @@
 [
   {
+    "id": 1774845822625,
+    "scrapedAt": "2026-03-30T04:43:42.625Z",
+    "url": "https://dexscreener.com/?rankBy=trendingScoreH24&order=desc&chainIds=solana,base,polygon,arbitrum,sui,avalanche,aptos,seiv2&minLiq=10000&minMarketCap=500000&minAge=100&min5MTxns=1&profile=1",
+    "count": 10,
+    "withX": 10,
+    "withDiscord": 2,
+    "mode": "mixed",
+    "rounds": 2,
+    "results": [
+      {
+        "name": "$PAWEE",
+        "tgLink": "https://t.me/pawempire",
+        "xLink": "https://x.com/the_pawempire",
+        "discordLink": null,
+        "chainId": "solana",
+        "tokenAddress": "F3bvPMJxCGbFfetnvQqwdhWDHU54vfLumVmPfnXKpump"
+      },
+      {
+        "name": "$ROFL",
+        "tgLink": "https://t.me/roflonsolana",
+        "xLink": "https://x.com/i/communities/2038347169283899534",
+        "discordLink": null,
+        "chainId": "solana",
+        "tokenAddress": "4gx3SKwa8cGCXb6SkFGQzQHVXBsYQPzDw8jAYAfCpump"
+      },
+      {
+        "name": "$PFU",
+        "tgLink": "https://t.me/PixelatedFartingUnicorn",
+        "xLink": "https://x.com/i/communities/2037651054834110882",
+        "discordLink": null,
+        "chainId": "solana",
+        "tokenAddress": "GYJiHto1hfxa5eKmZF8gLbXeCmekGYwG4qUmqN13pump"
+      },
+      {
+        "name": "$CLIPPY",
+        "tgLink": "https://t.me/ClippySol",
+        "xLink": "https://x.com/TheClippyMeme",
+        "discordLink": null,
+        "chainId": "solana",
+        "tokenAddress": "GKjAe1bQXXLoEitJYSuyw6qt97tTVoKkGEgWPEo6pump"
+      },
+      {
+        "name": "$WHITEWOLF",
+        "tgLink": "https://t.me/thewhitewolfcoin",
+        "xLink": "https://x.com/WhiteWolfsolana",
+        "discordLink": null,
+        "chainId": "solana",
+        "tokenAddress": "FENkD7PRftzLyLgZZ4R3mBkww2ceWf7KWEnK9Hyzpump"
+      },
+      {
+        "name": "$YNOT",
+        "tgLink": "https://t.me/cryptorapcalls",
+        "xLink": "https://x.com/cryptorapcalls/",
+        "discordLink": "https://discord.gg/hKwWDfcWvp",
+        "chainId": "solana",
+        "tokenAddress": "2MsXjGge1F9GY2uHXaKZijreBi2zeg4ib7fjpTuKpump"
+      },
+      {
+        "name": "$MEME",
+        "tgLink": "https://t.me/TheMostElegantMonkeyArmy",
+        "xLink": "https://x.com/stayelegant_",
+        "discordLink": null,
+        "chainId": "solana",
+        "tokenAddress": "7cyAGa4XsNDnSgnFuwmVFgp9JGqZoZYkiVyFPSke9CuP"
+      },
+      {
+        "name": "$MEME",
+        "tgLink": "https://t.me/memecoin/",
+        "xLink": "https://x.com/memecoin",
+        "discordLink": "http://discord.gg/memeland",
+        "chainId": "ethereum",
+        "tokenAddress": "0xb131f4A55907B10d1F0A50d8ab8FA09EC342cd74"
+      },
+      {
+        "name": "$MPX6900",
+        "tgLink": "https://t.me/mpx6900portal",
+        "xLink": "https://x.com/MPX6900",
+        "discordLink": null,
+        "chainId": "solana",
+        "tokenAddress": "39Mzpdw7NDGiXmZZGWiCdR6Nzoc7muWuYkPsVDV4pump"
+      },
+      {
+        "name": "$MEME",
+        "tgLink": "https://t.me/Memecoin_Supercycle_CTO",
+        "xLink": "https://x.com/Memesupercycle1?t=zQ7VH8Dj3WoBWRgVdzBKdQ&s=09",
+        "discordLink": null,
+        "chainId": "ethereum",
+        "tokenAddress": "0x69420EEA8B66241C3EBA937861dAEb6464C2559D"
+      }
+    ]
+  },
+  {
     "id": 1774624128806,
     "scrapedAt": "2026-03-27T15:08:48.806Z",
     "url": "https://dexscreener.com/?rankBy=trendingScoreH24&order=desc&chainIds=solana,base,polygon,arbitrum,sui,avalanche,aptos,seiv2&minLiq=10000&minMarketCap=500000&minAge=100&min5MTxns=1&profile=1",

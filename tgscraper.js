@@ -14,6 +14,14 @@ function normalizeId(value) {
   return value.toString();
 }
 
+function normalizeUsernameHandle(value) {
+  if (!value) return "";
+  const str = String(value).trim().toLowerCase();
+  if (!str) return "";
+  if (str.startsWith("@")) return str;
+  return `@${str}`;
+}
+
 function isGroupEntity(entity) {
   if (!entity) return false;
   const className = entity.className || "";
@@ -84,7 +92,7 @@ function classifyRole(participant) {
   return null;
 }
 
-function buildAdminEntries(participants, users, groupName, groupLink, onProgress) {
+function buildAdminEntries(participants, users, groupName, groupLink, onProgress, excludedUsernamesSet) {
   const entries = [];
 
   for (const participant of participants) {
@@ -98,6 +106,12 @@ function buildAdminEntries(participants, users, groupName, groupLink, onProgress
     const username = user.username ? `@${user.username}` : null;
     const displayName = [user.firstName, user.lastName].filter(Boolean).join(" ") || "Unknown";
     const userId = normalizeId(user.id);
+
+    const normalizedUsername = username ? normalizeUsernameHandle(username) : "";
+    if (normalizedUsername && excludedUsernamesSet?.has(normalizedUsername)) {
+      onProgress?.({ type: "skip", text: `  - ${username} skipped (already messaged)` });
+      continue;
+    }
 
     const entry = {
       username: username || `ID:${userId}`,
@@ -115,7 +129,7 @@ function buildAdminEntries(participants, users, groupName, groupLink, onProgress
   return entries;
 }
 
-async function getAdminsForEntity(client, entity, groupName, groupLink, onProgress) {
+async function getAdminsForEntity(client, entity, groupName, groupLink, onProgress, excludedUsernamesSet) {
   const { Api } = require("telegram");
 
   if (entity.className === "Channel") {
@@ -132,7 +146,7 @@ async function getAdminsForEntity(client, entity, groupName, groupLink, onProgre
     const participants = result.participants || [];
     const users = result.users || [];
     onProgress?.({ type: "info", text: `Found ${participants.length} admins/mods` });
-    return buildAdminEntries(participants, users, groupName, groupLink, onProgress);
+    return buildAdminEntries(participants, users, groupName, groupLink, onProgress, excludedUsernamesSet);
   }
 
   if (entity.className === "Chat") {
@@ -147,7 +161,7 @@ async function getAdminsForEntity(client, entity, groupName, groupLink, onProgre
     const users = full.users || [];
     const adminCandidates = participants.filter((p) => (p.className || "").endsWith("Creator") || (p.className || "").endsWith("Admin"));
     onProgress?.({ type: "info", text: `Found ${adminCandidates.length} admins/mods` });
-    return buildAdminEntries(adminCandidates, users, groupName, groupLink, onProgress);
+    return buildAdminEntries(adminCandidates, users, groupName, groupLink, onProgress, excludedUsernamesSet);
   }
 
   throw new Error(`Unsupported entity type: ${entity.className || "Unknown"}`);
@@ -244,6 +258,7 @@ async function fetchJoinedGroups(onProgress, options = {}) {
     dateToUtc = tmp;
   }
   const hasDateFilter = Boolean(dateFromUtc || dateToUtc);
+  const includeJoinDates = options.includeJoinDates !== false || hasDateFilter;
 
   const apiId = parseInt(process.env.TG_API_ID, 10);
   const apiHash = process.env.TG_API_HASH;
@@ -291,7 +306,7 @@ async function fetchJoinedGroups(onProgress, options = {}) {
 
       if (!ref.value) continue;
 
-      const joinedAtUtc = await resolveJoinedAtUtc(client, entity, selfId);
+      const joinedAtUtc = includeJoinDates ? await resolveJoinedAtUtc(client, entity, selfId) : null;
       const joinedDateKey = joinedAtUtc ? toUtcDateKey(joinedAtUtc) : "";
       const joinedTodayUtc = joinedDateKey ? joinedDateKey === toUtcDateKey(new Date()) : false;
 
@@ -346,7 +361,7 @@ async function fetchJoinedGroups(onProgress, options = {}) {
   return groups;
 }
 
-async function scrapeGroupAdmins(groupRefs, onProgress) {
+async function scrapeGroupAdmins(groupRefs, onProgress, options = {}) {
   const { TelegramClient } = require("telegram");
   const { StringSession } = require("telegram/sessions");
 
@@ -374,6 +389,18 @@ async function scrapeGroupAdmins(groupRefs, onProgress) {
   }
 
   const allResults = [];
+  const excludedUsernamesSet = new Set(
+    (Array.isArray(options.excludeUsernames) ? options.excludeUsernames : [])
+      .map((u) => normalizeUsernameHandle(u))
+      .filter(Boolean)
+  );
+
+  if (excludedUsernamesSet.size > 0) {
+    onProgress?.({
+      type: "info",
+      text: `Skipping ${excludedUsernamesSet.size} usernames already messaged.`,
+    });
+  }
 
   let groupLookup = { byId: new Map(), byUsername: new Map() };
   try {
@@ -428,7 +455,7 @@ async function scrapeGroupAdmins(groupRefs, onProgress) {
       onProgress?.({ type: "info", text: `Group: ${groupName}` });
 
       try {
-        const groupResults = await getAdminsForEntity(client, entity, groupName, groupLink, onProgress);
+        const groupResults = await getAdminsForEntity(client, entity, groupName, groupLink, onProgress, excludedUsernamesSet);
         allResults.push({
           groupLink,
           groupName,

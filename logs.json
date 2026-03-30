@@ -89,5 +89,376 @@
     "target": "@Daniel_7159",
     "status": "sent",
     "message": "Hey! Luci from Moonshot Win here. We run a cross-chain crash..."
+  },
+  {
+    "time": "12:21:28 PM",
+    "platform": "Telegram DM",
+    "target": "@TemiJat",
+    "status": "failed",
+    "message": "400: PEER_FLOOD (caused by messages.SendMessage)"
+  },
+  {
+    "time": "7:57:21 AM",
+    "platform": "Telegram",
+    "target": "AUTH",
+    "status": "info",
+    "message": "Session ready"
+  },
+  {
+    "time": "7:57:21 AM",
+    "platform": "Telegram Safety",
+    "target": "CONFIG",
+    "status": "info",
+    "message": "maxDmPerRun=15, maxFailuresPerRun=4, delay=90-180s, breakEvery=4, break=180-420s"
+  },
+  {
+    "time": "7:57:21 AM",
+    "platform": "Telegram Safety",
+    "target": "FILTER",
+    "status": "info",
+    "message": "Skipped 6 usernames due to maxDmPerRun cap"
+  },
+  {
+    "time": "7:57:21 AM",
+    "platform": "Telegram DM",
+    "target": "@temijat",
+    "status": "sent",
+    "message": "Hey 👋 Luci here from Moonshot Win. Quick ask: would you be open to a short coll"
+  },
+  {
+    "time": "7:59:43 AM",
+    "platform": "Telegram DM",
+    "target": "@finalleo",
+    "status": "sent",
+    "message": "Hi! Luci here 🙂 Is it okay if I share a 2-line idea that could fit your token/c"
+  },
+  {
+    "time": "8:00:34 AM",
+    "platform": "Telegram",
+    "target": "AUTH",
+    "status": "info",
+    "message": "Session ready"
+  },
+  {
+    "time": "8:00:34 AM",
+    "platform": "Telegram Safety",
+    "target": "CONFIG",
+    "status": "info",
+    "message": "maxDmPerRun=15, maxFailuresPerRun=4, delay=90-180s, breakEvery=4, break=180-420s"
+  },
+  {
+    "time": "8:00:34 AM",
+    "platform": "Telegram Safety",
+    "target": "FILTER",
+    "status": "info",
+    "message": "Skipped 4 usernames due to maxDmPerRun cap"
+  },
+  {
+    "time": "8:00:34 AM",
+    "platform": "Telegram DM",
+    "target": "@hen_d1",
+    "status": "sent",
+    "message": "Hey 👋 Luci here from Moonshot Win. Quick ask: would you be open to a short coll"
+  },
+  {
+    "time": "8:02:28 AM",
+    "platform": "Telegram DM",
+    "target": "@monster0045",
+    "status": "sent",
+    "message": "Hi! Luci here 🙂 Is it okay if I share a 2-line idea that could fit your token/c"
+  },
+  {
+    "time": "8:04:23 AM",
+    "platform": "Telegram DM",
+    "target": "@zygothefrogoriginal",
+    "status": "sent",
+    "message": "Hey there 👋 Hope your day is going well. I had one relevant idea for your proje"
+  },
+  {
+    "time": "8:07:09 AM",
+    "platform": "Telegram DM",
+    "target": "@coltvortex",
+    "status": "sent",
+    "message": "Hey 👋 Luci here from Moonshot Win. Quick ask: would you be open to a short coll"
+  },
+  {
+    "time": "8:09:51 AM",
+    "platform": "Telegram Safety",
+    "target": "BREAK",
+    "status": "info",
+    "message": "Cooling down for 286s"
+  },
+  {
+    "time": "8:14:37 AM",
+    "platform": "Telegram DM",
+    "target": "@xonthephone",
+    "status": "sent",
+    "message": "Hi! Luci here 🙂 Is it okay if I share a 2-line idea that could fit your token/c"
+  },
+  {
+    "time": "8:16:44 AM",
+    "platform": "Telegram DM",
+    "target": "@h4nl4b",
+    "status": "failed",
+    "message": "ALLOW_PAYMENT_REQUIRED"
+  },
+  {
+    "time": "8:18:55 AM",
+    "platform": "Telegram DM",
+    "target": "@jeious",
+    "status": "failed",
+    "message": "ALLOW_PAYMENT_REQUIRED"
+  },
+  {
+    "time": "8:20:26 AM",
+    "platform": "Telegram DM",
+    "target": "@yellwmoon",
+    "status": "failed",
+    "message": "ALLOW_PAYMENT_REQUIRED"
+  },
+  {
+    "time": "8:23:19 AM",
+    "platform": "Telegram DM",
+    "target": "@jamiexl",
+    "status": "sent",
+    "message": "Hey there 👋 Hope your day is going well. I had one relevant idea for your proje"
+  },
+  {
+    "time": "8:24:51 AM",
+    "platform": "Telegram DM",
+    "target": "@trenchrepe",
+    "status": "sent",
+    "message": "Hey 👋 Luci here from Moonshot Win. Quick ask: would you be open to a short coll"
+  },
+  {
+    "time": "8:26:42 AM",
+    "platform": "Telegram DM",
+    "target": "@padaraang",
+    "status": "failed",
+    "message": "ALLOW_PAYMENT_REQUIRED"
+  },
+  {
+    "time": "8:26:42 AM",
+    "platform": "Telegram Safety",
+    "target": "STOP",
+    "status": "info",
+    "message": "Reached maxFailuresPerRun (4). Stopping campaign."
+  },
+  {
+    "time": "8:26:42 AM",
+    "platform": "Telegram Safety",
+    "target": "SUMMARY",
+    "status": "failed",
+    "message": "attempts=11, sent=7, failures=4, stop=Reached maxFailuresPerRun (4)"
+  },
+  {
+    "time": "8:26:42 AM",
+    "platform": "Telegram",
+    "target": "SESSION",
+    "status": "info",
+    "message": "Disconnected"
+  },
+  {
+    "time": "8:29:05 AM",
+    "platform": "Telegram",
+    "target": "AUTH",
+    "status": "info",
+    "message": "Session ready"
+  },
+  {
+    "time": "8:29:05 AM",
+    "platform": "Telegram Safety",
+    "target": "CONFIG",
+    "status": "info",
+    "message": "maxDmPerRun=15, maxFailuresPerRun=4, delay=90-180s, breakEvery=4, break=180-420s"
+  },
+  {
+    "time": "8:29:05 AM",
+    "platform": "Telegram Safety",
+    "target": "FILTER",
+    "status": "info",
+    "message": "Skipped 9 usernames already messaged earlier"
+  },
+  {
+    "time": "8:29:05 AM",
+    "platform": "Telegram DM",
+    "target": "@h4nl4b",
+    "status": "failed",
+    "message": "ALLOW_PAYMENT_REQUIRED"
+  },
+  {
+    "time": "8:31:14 AM",
+    "platform": "Telegram",
+    "target": "AUTH",
+    "status": "info",
+    "message": "Session ready"
+  },
+  {
+    "time": "8:31:14 AM",
+    "platform": "Telegram Safety",
+    "target": "CONFIG",
+    "status": "info",
+    "message": "maxDmPerRun=15, maxFailuresPerRun=4, delay=90-180s, breakEvery=4, break=180-420s"
+  },
+  {
+    "time": "8:31:14 AM",
+    "platform": "Telegram Safety",
+    "target": "FILTER",
+    "status": "info",
+    "message": "Skipped 1 usernames already messaged earlier"
+  },
+  {
+    "time": "8:31:15 AM",
+    "platform": "Telegram DM",
+    "target": "@padaraang",
+    "status": "failed",
+    "message": "ALLOW_PAYMENT_REQUIRED"
+  },
+  {
+    "time": "8:32:01 AM",
+    "platform": "Telegram",
+    "target": "AUTH",
+    "status": "info",
+    "message": "Session ready"
+  },
+  {
+    "time": "8:32:01 AM",
+    "platform": "Telegram Safety",
+    "target": "CONFIG",
+    "status": "info",
+    "message": "maxDmPerRun=15, maxFailuresPerRun=4, delay=90-180s, breakEvery=4, break=180-420s"
+  },
+  {
+    "time": "8:32:01 AM",
+    "platform": "Telegram DM",
+    "target": "@nexbar0xc",
+    "status": "failed",
+    "message": "ALLOW_PAYMENT_REQUIRED"
+  },
+  {
+    "time": "8:33:33 AM",
+    "platform": "Telegram DM",
+    "target": "@dogleadercult",
+    "status": "failed",
+    "message": "ALLOW_PAYMENT_REQUIRED"
+  },
+  {
+    "time": "8:35:52 AM",
+    "platform": "Telegram DM",
+    "target": "@primelayerr",
+    "status": "sent",
+    "message": "Hey there 👋 Hope your day is going well. I had one collab idea for your project"
+  },
+  {
+    "time": "8:37:51 AM",
+    "platform": "Telegram DM",
+    "target": "@xstoner56789",
+    "status": "sent",
+    "message": "Hey 👋 Luci here from Moonshot Win. Quick ask: would you be open to a short coll"
+  },
+  {
+    "time": "8:40:22 AM",
+    "platform": "Telegram DM",
+    "target": "@johnningbd",
+    "status": "sent",
+    "message": "Hi! Luci here 🙂 Is it okay if I share a 2-line collab idea that could fit your "
+  },
+  {
+    "time": "8:43:08 AM",
+    "platform": "Telegram DM",
+    "target": "@thelastswinger",
+    "status": "sent",
+    "message": "Hey there 👋 Hope your day is going well. I had one collab idea for your project"
+  },
+  {
+    "time": "8:45:00 AM",
+    "platform": "Telegram Safety",
+    "target": "BREAK",
+    "status": "info",
+    "message": "Cooling down for 315s"
+  },
+  {
+    "time": "8:50:16 AM",
+    "platform": "Telegram DM",
+    "target": "@fingrey02",
+    "status": "sent",
+    "message": "Hey 👋 Luci here from Moonshot Win. Quick ask: would you be open to a short coll"
+  },
+  {
+    "time": "8:52:31 AM",
+    "platform": "Telegram DM",
+    "target": "@d4rthsol",
+    "status": "sent",
+    "message": "Hi! Luci here 🙂 Is it okay if I share a 2-line collab idea that could fit your "
+  },
+  {
+    "time": "8:52:31 AM",
+    "platform": "Telegram Safety",
+    "target": "SUMMARY",
+    "status": "info",
+    "message": "attempts=8, sent=6, failures=2"
+  },
+  {
+    "time": "8:52:31 AM",
+    "platform": "Telegram",
+    "target": "SESSION",
+    "status": "info",
+    "message": "Disconnected"
+  },
+  {
+    "time": "10:18:56 AM",
+    "platform": "Telegram",
+    "target": "AUTH",
+    "status": "info",
+    "message": "Session ready"
+  },
+  {
+    "time": "10:18:56 AM",
+    "platform": "Telegram Safety",
+    "target": "CONFIG",
+    "status": "info",
+    "message": "maxDmPerRun=15, maxFailuresPerRun=4, delay=90-180s, breakEvery=4, break=180-420s"
+  },
+  {
+    "time": "10:18:56 AM",
+    "platform": "Telegram Safety",
+    "target": "FILTER",
+    "status": "info",
+    "message": "Skipped 22 usernames due to maxDmPerRun cap"
+  },
+  {
+    "time": "10:18:56 AM",
+    "platform": "Telegram DM",
+    "target": "@bitcoinbenny69oo",
+    "status": "sent",
+    "message": "Hey .BitcoinBenny\nWe are a gaming provider and we have built games tailored for "
+  },
+  {
+    "time": "10:21:51 AM",
+    "platform": "Telegram DM",
+    "target": "@bobsmith69420",
+    "status": "sent",
+    "message": "Hey Bob Smith\nWe are a gaming provider and we have built games tailored for Meme"
+  },
+  {
+    "time": "10:24:50 AM",
+    "platform": "Telegram DM",
+    "target": "@spyraxx",
+    "status": "sent",
+    "message": "Hey B\nWe are a gaming provider and we have built games tailored for Meme Tokens "
+  },
+  {
+    "time": "10:26:59 AM",
+    "platform": "Telegram DM",
+    "target": "@oxankh",
+    "status": "sent",
+    "message": "Hey Ankh\nWe are a gaming provider and we have built games tailored for Meme Toke"
+  },
+  {
+    "time": "10:28:29 AM",
+    "platform": "Telegram Safety",
+    "target": "BREAK",
+    "status": "info",
+    "message": "Cooling down for 195s"
   }
 ]

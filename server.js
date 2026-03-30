@@ -119,13 +119,17 @@ app.get("/api/tg/stream", (req, res) => {
 });
 
 app.post("/api/tg/scrape-admins", async (req, res) => {
-  const { groups } = req.body;
+  const { groups, excludeUsernames } = req.body;
   if (!groups?.length) return res.status(400).json({ ok: false, error: "No groups provided" });
   res.json({ ok: true });
   delete require.cache[require.resolve("./tgscraper")];
   const { scrapeGroupAdmins } = require("./tgscraper");
   try {
-    const results = await scrapeGroupAdmins(groups, (p) => broadcastTg({ ...p, stage: "tgscrape" }));
+    const results = await scrapeGroupAdmins(
+      groups,
+      (p) => broadcastTg({ ...p, stage: "tgscrape" }),
+      { excludeUsernames }
+    );
     const entry = { id: Date.now(), scrapedAt: new Date().toISOString(), results };
     const histFile = path.join(__dirname, "tg_admin_history.json");
     const hist = fs.existsSync(histFile) ? JSON.parse(fs.readFileSync(histFile)) : [];
@@ -165,6 +169,20 @@ app.post("/api/tg/fetch-joined-groups", async (req, res) => {
     broadcastJoined({ type: "results", groups, stage: "joinedgroups" });
   } catch (err) {
     broadcastJoined({ type: "error", text: `Failed: ${err.message}`, stage: "joinedgroups" });
+  }
+});
+
+app.get("/api/tg/joined-links", async (req, res) => {
+  delete require.cache[require.resolve("./tgscraper")];
+  const { fetchJoinedGroups } = require("./tgscraper");
+  try {
+    const groups = await fetchJoinedGroups(null, { includeJoinDates: false });
+    const links = groups
+      .map((g) => (g?.link ? String(g.link).toLowerCase() : ""))
+      .filter(Boolean);
+    res.json({ ok: true, links: [...new Set(links)] });
+  } catch (err) {
+    res.status(500).json({ ok: false, error: err.message, links: [] });
   }
 });
 
