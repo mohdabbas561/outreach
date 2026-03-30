@@ -5,9 +5,21 @@ const TABS = ["Telegram", "Dex Scraper", "TG Admins", "History", "Logs", "Accoun
 
 const DEFAULT_TG_TEMPLATES = [
   `Hey [NAME]
-We are a gaming provider and we have built games tailored for Meme Tokens and GambleFi users. We see a strong fit with [TOKEN NAME], and we believe your holders would love seeing your token actively used inside our games.
+We are a gaming provider and we build games tailored for Meme Tokens and GambleFi users. We see a strong fit with [TOKEN NAME], and we believe your holders would love seeing your token actively used inside our games.
 
-We would love to explore a partnership and discuss how we can integrate your token into our games. If this interests you, lets connect and walk you through the full offering.
+We would love to explore a partnership and discuss how we can integrate your token into our games. If this interests you, let's connect and walk you through the full offering.
+
+Looking forward to hearing from you!`,
+  `Hey [NAME]
+We are a gaming provider building game experiences for Meme Tokens and GambleFi users. [TOKEN NAME] feels like a strong fit, and your holders would likely enjoy seeing real token utility inside our games.
+
+We would love to explore a partnership and discuss how we can integrate your token into our games. If this sounds interesting, let's connect and walk you through the full offering.
+
+Looking forward to hearing from you!`,
+  `Hey [NAME]
+We are a gaming provider focused on Meme Token and GambleFi audiences. We see a clear match with [TOKEN NAME], and we believe your community would value seeing the token used directly in our games.
+
+We would love to explore a partnership and discuss how we can integrate your token into our games. If you're open to it, let's connect and walk you through the full offering.
 
 Looking forward to hearing from you!`,
 ];
@@ -199,20 +211,64 @@ function ResultsTable({ results = [], doneProjects = new Set(), joinedLinks = ne
 }
 
 function TemplateEditor({ templates, setTemplates }) {
-  const current = String((templates && templates[0]) || DEFAULT_TG_TEMPLATES[0] || "");
+  const safeTemplates = (Array.isArray(templates) ? templates : [])
+    .map((t) => String(t || ""))
+    .filter((t) => t.trim().length > 0);
+  const list = safeTemplates.length ? safeTemplates : [...DEFAULT_TG_TEMPLATES];
+
+  const updateAt = (index, value) => {
+    const next = [...list];
+    next[index] = value;
+    setTemplates(next);
+  };
+
+  const removeAt = (index) => {
+    if (list.length <= 1) return;
+    const next = list.filter((_, i) => i !== index);
+    setTemplates(next.length ? next : [DEFAULT_TG_TEMPLATES[0]]);
+  };
+
+  const addTemplate = () => {
+    const seed = list[0] || DEFAULT_TG_TEMPLATES[0];
+    setTemplates([...list, seed]);
+  };
+
+  const resetDefaults = () => setTemplates([...DEFAULT_TG_TEMPLATES]);
+
   return (
     <div>
-      <label style={$.label}>Message Template - single message with placeholders</label>
-      <div style={{ ...$.card }}>
-        <div style={{ color: "#ddeeff", fontSize: 11, marginBottom: 10 }}>
-          Placeholders supported: [NAME], [TOKEN NAME]
-        </div>
-        <textarea
-          value={current}
-          onChange={e => setTemplates([e.target.value])}
-          rows={10}
-          style={{ ...$.input, resize: "vertical", lineHeight: 1.7 }}
-        />
+      <label style={$.label}>Message Templates - shuffled per recipient</label>
+      <div style={{ color: "#ddeeff", fontSize: 11, marginBottom: 10 }}>
+        Placeholders supported: [NAME], [TOKEN NAME]
+      </div>
+      <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 12 }}>
+        <button onClick={addTemplate} style={$.btnSm(GN)}>+ ADD TEMPLATE</button>
+        <button onClick={resetDefaults} style={$.btnSm("#3a5575")}>RESET DEFAULT 3</button>
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+        {list.map((template, index) => (
+          <div key={index} style={{ ...$.card, padding: "14px 14px" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10, marginBottom: 8 }}>
+              <Tag color={BL}>Template {index + 1}</Tag>
+              <button
+                onClick={() => removeAt(index)}
+                disabled={list.length <= 1}
+                style={{ ...$.btnSm(RD), opacity: list.length <= 1 ? 0.35 : 1, cursor: list.length <= 1 ? "not-allowed" : "pointer" }}
+              >
+                DEL
+              </button>
+            </div>
+            <textarea
+              value={template}
+              onChange={e => updateAt(index, e.target.value)}
+              rows={8}
+              style={{ ...$.input, resize: "vertical", lineHeight: 1.7 }}
+            />
+          </div>
+        ))}
+      </div>
+      <div style={{ color: "#6a8aaa", fontSize: 10, marginTop: 8 }}>
+        Templates are auto-shuffled so recipients do not get the exact same message order.
       </div>
     </div>
   );
@@ -462,7 +518,14 @@ export default function App() {
       return;
     }
 
-    const singleTemplate = String((tgTemplates && tgTemplates[0]) || DEFAULT_TG_TEMPLATES[0] || "");
+    const preparedTemplates = (Array.isArray(tgTemplates) ? tgTemplates : [])
+      .map((t) => String(t || "").trim())
+      .filter(Boolean);
+    if (!preparedTemplates.length) {
+      alert("Add at least one message template.");
+      return;
+    }
+
     const safeMinDelay = Math.max(90, tgDelay);
     const safeMaxDelay = Math.max(safeMinDelay, Math.max(180, tgDelayMax));
     const config = {
@@ -484,7 +547,8 @@ export default function App() {
         breakMinSeconds: 180,
         breakMaxSeconds: 420,
       },
-      tgTemplates: [singleTemplate],
+      tgTemplates: preparedTemplates,
+      templateShuffle: true,
       generatedAt: new Date().toISOString(),
     };
     await fetch(`${SERVER}/api/campaign`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(config) });
