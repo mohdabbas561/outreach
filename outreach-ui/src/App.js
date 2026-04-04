@@ -316,6 +316,7 @@ export default function App() {
   const [selectedGroups, setSelectedGroups] = useState(new Set());
   const [contacted, setContacted] = useState(new Set());
   const [blacklistedGroups, setBlacklistedGroups] = useState(new Set());
+  const [blockedAdmins, setBlockedAdmins] = useState(new Set());
   const [doneProjects, setDoneProjects] = useState(new Set());
   const [joinedTgLinks, setJoinedTgLinks] = useState(new Set());
   const [joinedLinksLoading, setJoinedLinksLoading] = useState(false);
@@ -389,6 +390,30 @@ export default function App() {
     return token.startsWith("$") ? token.toUpperCase() : `$${token.toUpperCase()}`;
   };
 
+  const blockAdmin = async (username) => {
+    const key = String(username).toLowerCase().trim();
+    setBlockedAdmins(prev => new Set([...prev, key]));
+    try {
+      await fetch(`${SERVER}/api/block-admin`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username: key }),
+      });
+    } catch { /* ignore — already updated locally */ }
+  };
+
+  const unblockAdmin = async (username) => {
+    const key = String(username).toLowerCase().trim();
+    setBlockedAdmins(prev => { const n = new Set(prev); n.delete(key); return n; });
+    try {
+      await fetch(`${SERVER}/api/block-admin`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username: key }),
+      });
+    } catch { /* ignore */ }
+  };
+
   const queueTargetsFromAdminResults = () => {
     const lines = [];
     const seen = new Set();
@@ -399,7 +424,7 @@ export default function App() {
         const username = String(member.username || "");
         if (!username.startsWith("@")) continue;
         const normalized = username.toLowerCase();
-        if (contacted.has(normalized) || seen.has(normalized)) continue;
+        if (contacted.has(normalized) || seen.has(normalized) || blockedAdmins.has(normalized)) continue;
         seen.add(normalized);
         const name = String(member.displayName || "there").replace(/[|]/g, " ").trim() || "there";
         lines.push(`${username} | ${name} | ${tokenName}`);
@@ -458,6 +483,7 @@ export default function App() {
       setContacted(new Set((d.contacted || []).map(u => u.startsWith("@") ? u.toLowerCase() : "@" + u.toLowerCase())));
     }).catch(() => {});
     fetch(`${SERVER}/api/blacklisted-groups`).then(r => r.json()).then(d => setBlacklistedGroups(new Set(d.groups || []))).catch(() => {});
+    fetch(`${SERVER}/api/blocked-admins`).then(r => r.json()).then(d => setBlockedAdmins(new Set(d.admins || []))).catch(() => {});
     fetch(`${SERVER}/api/done-projects`).then(r => r.json()).then(d => setDoneProjects(new Set((d.projects || []).map(p => p.toLowerCase())))).catch(() => {});
     fetch(`${SERVER}/api/auth/tg/status`).then(r => r.json()).then(d => setTgAuth(d)).catch(() => {});
   }, []);
@@ -1076,6 +1102,7 @@ export default function App() {
                     <StatCard val={all.length} label="Total Admins" color={BL} />
                     <StatCard val={getAdmins(tgAdminResults, "Owner").length} label="Owners" color={GL} />
                     <StatCard val={all.filter(m => m.username.startsWith("@")).length} label="With @handle" color={PU} />
+                    <StatCard val={blockedAdmins.size} label="Blocked" color="#ff4466" />
                     <div style={{ marginLeft: "auto", display: "flex", gap: 8, alignItems: "center" }}>
                       <button onClick={queueTargetsFromAdminResults} style={$.btnSm(GN)}>QUEUE FOR DM</button>
                       <button onClick={() => copyUsernames(tgAdminResults, tgAdminFilter)} style={$.btnSm(BL)}>
@@ -1090,10 +1117,10 @@ export default function App() {
                   </div>
 
                   <div style={{ display: "flex", gap: 7, marginBottom: 18 }}>
-                    {["all", "Owner", "Admin", "Moderator"].map(f => (
+                    {["all", "Owner", "Admin", "Moderator", "blocked"].map(f => (
                       <button key={f} onClick={() => setTgAdminFilter(f)}
-                        style={{ ...$.btnSm(tgAdminFilter === f ? GN : "#3a5575"), border: `1px solid ${tgAdminFilter === f ? GN + "55" : "#1a2540"}` }}>
-                        {f === "all" ? "All" : f + "s"} ({getAdmins(tgAdminResults, f).length})
+                        style={{ ...$.btnSm(tgAdminFilter === f ? (f === "blocked" ? "#ff4466" : GN) : "#3a5575"), border: `1px solid ${tgAdminFilter === f ? (f === "blocked" ? "#ff446655" : GN + "55") : "#1a2540"}` }}>
+                        {f === "all" ? "All" : f === "blocked" ? `🚫 Blocked (${blockedAdmins.size})` : f + "s"}{f !== "blocked" && f !== "all" ? ` (${getAdmins(tgAdminResults, f).length})` : ""}
                       </button>
                     ))}
                   </div>
@@ -1101,6 +1128,9 @@ export default function App() {
                   {tgAdminResults.map((group, gi) => {
                     const filtered = group.members.filter(m => {
                       const u = (m.username?.startsWith("@") ? m.username : "@" + m.username).toLowerCase();
+                      const isBlocked = blockedAdmins.has(u) || blockedAdmins.has(m.username?.toLowerCase());
+                      if (tgAdminFilter === "blocked") return isBlocked;
+                      if (isBlocked) return false; // hide blocked from all other views
                       return !contacted.has(u) && (tgAdminFilter === "all" || m.role.toLowerCase().includes(tgAdminFilter.toLowerCase()));
                     });
                     if (!filtered.length) return null;
@@ -1124,25 +1154,48 @@ export default function App() {
                         <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
                           <thead>
                             <tr style={{ borderBottom: "1px solid #0f1a30" }}>
-                              {["Username", "Display Name", "Role"].map(h => (
+                              {["Username", "Display Name", "Role", ""].map(h => (
                                 <th key={h} style={{ color: GL, fontSize: 10, letterSpacing: "0.1em", textTransform: "uppercase", padding: "8px 16px", textAlign: "left", fontWeight: 700 }}>{h}</th>
                               ))}
                             </tr>
                           </thead>
                           <tbody>
-                            {filtered.map((m, mi) => (
-                              <tr key={mi} style={{ borderBottom: "1px solid #070b18" }}>
+                            {filtered.map((m, mi) => {
+                              const uKey = (m.username?.startsWith("@") ? m.username : "@" + m.username).toLowerCase();
+                              const isBlocked = blockedAdmins.has(uKey) || blockedAdmins.has(m.username?.toLowerCase());
+                              return (
+                              <tr key={mi} style={{ borderBottom: "1px solid #070b18", opacity: isBlocked ? 0.45 : 1, background: isBlocked ? "#1a0010" : "transparent" }}>
                                 <td style={{ padding: "9px 16px" }}>
                                   {m.username.startsWith("@")
-                                    ? <a href={`https://t.me/${m.username.slice(1)}`} target="_blank" rel="noreferrer" style={{ color: GN, fontWeight: 700, textDecoration: "none", textShadow: glow(GN, 6) }}>{m.username} ↗</a>
+                                    ? <a href={`https://t.me/${m.username.slice(1)}`} target="_blank" rel="noreferrer" style={{ color: isBlocked ? "#ff4466" : GN, fontWeight: 700, textDecoration: isBlocked ? "line-through" : "none", textShadow: glow(isBlocked ? "#ff4466" : GN, 6) }}>{m.username} ↗</a>
                                     : <span style={{ color: "#ddeeff", fontStyle: "italic" }}>{m.username}</span>}
                                 </td>
-                                <td style={{ color: "#ffffff", padding: "9px 16px" }}>{m.displayName}</td>
+                                <td style={{ color: isBlocked ? "#6a8aaa" : "#ffffff", padding: "9px 16px", textDecoration: isBlocked ? "line-through" : "none" }}>{m.displayName}</td>
                                 <td style={{ padding: "9px 16px" }}>
-                                  <Tag color={m.role.startsWith("Owner") ? GL : m.role.startsWith("Mod") ? PU : BL}>{m.role}</Tag>
+                                  <Tag color={isBlocked ? "#ff4466" : m.role.startsWith("Owner") ? GL : m.role.startsWith("Mod") ? PU : BL}>
+                                    {isBlocked ? "BLOCKED" : m.role}
+                                  </Tag>
+                                </td>
+                                <td style={{ padding: "9px 16px", textAlign: "right" }}>
+                                  {isBlocked ? (
+                                    <button
+                                      onClick={() => unblockAdmin(uKey)}
+                                      title="Unblock this admin"
+                                      style={{ background: "transparent", border: "1px solid #3a5575", borderRadius: 4, color: "#6a8aaa", cursor: "pointer", fontSize: 11, padding: "3px 8px", letterSpacing: "0.05em" }}>
+                                      ↩ UNBLOCK
+                                    </button>
+                                  ) : (
+                                    <button
+                                      onClick={() => blockAdmin(uKey)}
+                                      title="Block this admin — never show or queue again"
+                                      style={{ background: "transparent", border: "1px solid #ff446633", borderRadius: 4, color: "#ff4466", cursor: "pointer", fontSize: 13, padding: "2px 7px", fontWeight: 700, lineHeight: 1 }}>
+                                      ✕
+                                    </button>
+                                  )}
                                 </td>
                               </tr>
-                            ))}
+                              );
+                            })}
                           </tbody>
                         </table>
                       </div>
@@ -1473,7 +1526,3 @@ export default function App() {
     </div>
   );
 }
-
-
-
-

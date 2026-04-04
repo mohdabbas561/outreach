@@ -1,1680 +1,703 @@
 [
   {
-    "id": 1774846101486,
-    "scrapedAt": "2026-03-30T04:48:21.486Z",
+    "id": 1775312210125,
+    "scrapedAt": "2026-04-04T14:16:50.125Z",
     "results": [
       {
         "groupLink": null,
-        "groupName": "MPX6900",
+        "groupName": "SHIB ON BASE",
         "members": [
           {
-            "username": "@bitcoinbenny69OO",
-            "displayName": ".BitcoinBenny",
-            "role": "Admin",
-            "userId": "7208732606",
-            "group": "MPX6900",
+            "username": "@PAULSHIBALIEN",
+            "displayName": "PAUL VIKING SHIB ALIEN",
+            "role": "Admin (Owner)",
+            "userId": "8456749483",
+            "group": "SHIB ON BASE",
             "groupLink": null
           },
           {
-            "username": "@BobSmith69420",
-            "displayName": "Bob Smith",
+            "username": "@moondogmor17",
+            "displayName": "Armando",
+            "role": "Admin (MARKET WIZARD)",
+            "userId": "2141433605",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "ID:8236765963",
+            "displayName": "Mykey (Will not DM)",
+            "role": "Admin (OG FLOKI)",
+            "userId": "8236765963",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@Danny_G_dnyce0013",
+            "displayName": "Danny G",
+            "role": "Admin (OG Artist)",
+            "userId": "6212611343",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@RealVamonos",
+            "displayName": "Vamonos",
+            "role": "Admin (Grumpy shib)",
+            "userId": "1877880961",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@B0yD74",
+            "displayName": "Boyd/I Will Dm First 👀",
+            "role": "Admin",
+            "userId": "7715861121",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@benaj94",
+            "displayName": "Benj",
+            "role": "Admin (X man)",
+            "userId": "6991343691",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@Mikee111",
+            "displayName": "Mikkee",
+            "role": "Admin",
+            "userId": "7606418640",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@pocketrocket12",
+            "displayName": "JDH",
+            "role": "Admin",
+            "userId": "7251431764",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@nicklupe",
+            "displayName": "Nick",
+            "role": "Admin",
+            "userId": "1435493439",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@PRONK777",
+            "displayName": "Pronk {WILL NOT DM}",
+            "role": "Admin (OG MOFO)",
+            "userId": "1543560749",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@Northern_Detectorist",
+            "displayName": "Lee ND Crypto",
+            "role": "Admin",
+            "userId": "6580253437",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@sunboshi",
+            "displayName": "Sünboshï",
+            "role": "Admin (GAMPOPA.ETH)",
+            "userId": "1993626449",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@Pappazoomie",
+            "displayName": "Pappazoomie",
+            "role": "Admin (Papa Shib)",
+            "userId": "1718158293",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@johnnythefarmer",
+            "displayName": "Johnny The Farmer",
+            "role": "Admin (banana bread)",
+            "userId": "6446390124",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@JonnyKish",
+            "displayName": "Kish",
+            "role": "Admin (Shib Kish)",
+            "userId": "1512439144",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@Consta_11",
+            "displayName": "Constantin Null whale",
+            "role": "Admin (#2 WHALE)",
+            "userId": "911566711",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@KaspaKrusader",
+            "displayName": "Evolution",
+            "role": "Admin (Evolved Shib)",
+            "userId": "6012385044",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@k1nnah",
+            "displayName": "k1a | I WILL NEVER DM YOU ッ",
+            "role": "Admin (OG BUNKER RAKE)",
+            "userId": "6509516337",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@Kbscrypt",
+            "displayName": "KBS (WILL NOT DM)",
+            "role": "Admin (Mobile Home)",
+            "userId": "7189273490",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@ohnodev2",
+            "displayName": "OHNO Dev",
+            "role": "Admin",
+            "userId": "6926701772",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@meteversevikings",
+            "displayName": "PAUL VIKING GINGER BEARD",
             "role": "Owner",
-            "userId": "6954263845",
-            "group": "MPX6900",
+            "userId": "1813461338",
+            "group": "SHIB ON BASE",
             "groupLink": null
           },
           {
-            "username": "@spyraxx",
-            "displayName": "B",
+            "username": "@golfwhisky",
+            "displayName": "Gaz",
             "role": "Admin",
-            "userId": "6739189838",
-            "group": "MPX6900",
+            "userId": "1485976998",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@Eroc1",
+            "displayName": "Eroc (Will not DM First)",
+            "role": "Admin (HIGHER)",
+            "userId": "1681744903",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@Aghial",
+            "displayName": "Aghial",
+            "role": "Admin (IDEAS MAN)",
+            "userId": "2034894468",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@JoeShmowe",
+            "displayName": "Tim",
+            "role": "Admin (Designer)",
+            "userId": "6571537516",
+            "group": "SHIB ON BASE",
             "groupLink": null
           }
         ]
       },
       {
         "groupLink": null,
-        "groupName": "Memecoin (MEME)",
+        "groupName": "Chudjak",
         "members": [
           {
-            "username": "ID:23936660",
-            "displayName": "Ray Chan | Memeland",
+            "username": "@commanderchud",
+            "displayName": "Commander Chud",
             "role": "Admin",
-            "userId": "23936660",
-            "group": "Memecoin (MEME)",
+            "userId": "7175332335",
+            "group": "Chudjak",
             "groupLink": null
           },
           {
-            "username": "@OXAnkh",
-            "displayName": "Ankh",
-            "role": "Admin",
-            "userId": "393424694",
-            "group": "Memecoin (MEME)",
-            "groupLink": null
-          }
-        ]
-      },
-      {
-        "groupLink": "https://t.me/TheMostElegantMonkeyArmy",
-        "groupName": "The Most Elegant Monkey Army",
-        "members": [
-          {
-            "username": "@southsid3dave",
-            "displayName": "Dave",
-            "role": "Admin (CM)",
-            "userId": "6284563739",
-            "group": "The Most Elegant Monkey Army",
-            "groupLink": "https://t.me/TheMostElegantMonkeyArmy"
-          },
-          {
-            "username": "@prydr_io",
-            "displayName": "Prydr JohJong",
-            "role": "Admin (Team)",
-            "userId": "7599363421",
-            "group": "The Most Elegant Monkey Army",
-            "groupLink": "https://t.me/TheMostElegantMonkeyArmy"
-          },
-          {
-            "username": "@utakatatendo2",
-            "displayName": "Tamaki senpai",
-            "role": "Admin",
-            "userId": "5592057309",
-            "group": "The Most Elegant Monkey Army",
-            "groupLink": "https://t.me/TheMostElegantMonkeyArmy"
-          },
-          {
-            "username": "@neraracing",
-            "displayName": "Patrick Nera",
-            "role": "Admin",
-            "userId": "1764218029",
-            "group": "The Most Elegant Monkey Army",
-            "groupLink": "https://t.me/TheMostElegantMonkeyArmy"
-          },
-          {
-            "username": "@Anon_MEMEr",
-            "displayName": "Anon Memer",
-            "role": "Admin (OG Support)",
-            "userId": "7962012708",
-            "group": "The Most Elegant Monkey Army",
-            "groupLink": "https://t.me/TheMostElegantMonkeyArmy"
-          },
-          {
-            "username": "@Rydersaurus",
-            "displayName": "Ryder",
-            "role": "Admin (Team)",
-            "userId": "7152882283",
-            "group": "The Most Elegant Monkey Army",
-            "groupLink": "https://t.me/TheMostElegantMonkeyArmy"
-          },
-          {
-            "username": "@A8pe_33",
-            "displayName": "Elegant Human",
-            "role": "Admin",
-            "userId": "7001159122",
-            "group": "The Most Elegant Monkey Army",
-            "groupLink": "https://t.me/TheMostElegantMonkeyArmy"
-          },
-          {
-            "username": "@SaigonDragon",
-            "displayName": "Saigon Dragon",
-            "role": "Admin (OG)",
-            "userId": "1623850561",
-            "group": "The Most Elegant Monkey Army",
-            "groupLink": "https://t.me/TheMostElegantMonkeyArmy"
-          },
-          {
-            "username": "@Token_Chef",
-            "displayName": "Token Chef",
-            "role": "Owner (Team)",
-            "userId": "883524576",
-            "group": "The Most Elegant Monkey Army",
-            "groupLink": "https://t.me/TheMostElegantMonkeyArmy"
-          },
-          {
-            "username": "@Estman36",
-            "displayName": "Estman",
-            "role": "Admin (The Phoenix)",
-            "userId": "813570630",
-            "group": "The Most Elegant Monkey Army",
-            "groupLink": "https://t.me/TheMostElegantMonkeyArmy"
-          }
-        ]
-      },
-      {
-        "groupLink": "https://t.me/CryptoRapCalls",
-        "groupName": "📀$YNOT💿",
-        "members": [
-          {
-            "username": "@cryptorapz",
-            "displayName": "2Blocks Shakur | @CryptoRapCalls 💿",
-            "role": "Admin",
-            "userId": "1872892873",
-            "group": "📀$YNOT💿",
-            "groupLink": "https://t.me/CryptoRapCalls"
-          },
-          {
-            "username": "@CryptoRapManager",
-            "displayName": "Y Not💿Crypto Rap",
-            "role": "Owner (RapStar)",
-            "userId": "1691477267",
-            "group": "📀$YNOT💿",
-            "groupLink": "https://t.me/CryptoRapCalls"
-          }
-        ]
-      },
-      {
-        "groupLink": null,
-        "groupName": "The White Wolf Community",
-        "members": [
-          {
-            "username": "@og99official",
-            "displayName": "99",
-            "role": "Admin",
-            "userId": "6444420417",
-            "group": "The White Wolf Community",
-            "groupLink": null
-          },
-          {
-            "username": "@prechigold14",
-            "displayName": "Prechi (the bluetick queen) Gold",
-            "role": "Admin",
-            "userId": "7186500410",
-            "group": "The White Wolf Community",
-            "groupLink": null
-          },
-          {
-            "username": "@kisomata",
-            "displayName": "kiso",
-            "role": "Owner",
-            "userId": "5512599992",
-            "group": "The White Wolf Community",
-            "groupLink": null
-          }
-        ]
-      },
-      {
-        "groupLink": null,
-        "groupName": "Clippy Gang 📎",
-        "members": [
-          {
-            "username": "@jimont88",
-            "displayName": "Jimont88",
-            "role": "Admin",
-            "userId": "8144543157",
-            "group": "Clippy Gang 📎",
-            "groupLink": null
-          },
-          {
-            "username": "@fakeitormakeit",
-            "displayName": "A",
-            "role": "Admin (mod)",
-            "userId": "1115287424",
-            "group": "Clippy Gang 📎",
-            "groupLink": null
-          },
-          {
-            "username": "@JustMeAndrew",
-            "displayName": "Don Vito Corleone",
-            "role": "Admin (Godfather)",
-            "userId": "1405907669",
-            "group": "Clippy Gang 📎",
-            "groupLink": null
-          },
-          {
-            "username": "@WirexOne",
-            "displayName": "Wirex 🧪",
-            "role": "Admin (Mod)",
-            "userId": "5493802535",
-            "group": "Clippy Gang 📎",
-            "groupLink": null
-          },
-          {
-            "username": "@Jokeszs",
-            "displayName": "Jokez",
-            "role": "Admin",
-            "userId": "5722874727",
-            "group": "Clippy Gang 📎",
-            "groupLink": null
-          },
-          {
-            "username": "@communicativebravo",
-            "displayName": "Duy ⚫️🛠️⛰️🚐",
-            "role": "Admin",
-            "userId": "1334939981",
-            "group": "Clippy Gang 📎",
-            "groupLink": null
-          },
-          {
-            "username": "@katzcrypto",
-            "displayName": "Katz",
-            "role": "Admin",
-            "userId": "7571980609",
-            "group": "Clippy Gang 📎",
-            "groupLink": null
-          },
-          {
-            "username": "@CedCryptotroll",
-            "displayName": "Céd📎",
-            "role": "Admin (mod)",
-            "userId": "5642322889",
-            "group": "Clippy Gang 📎",
-            "groupLink": null
-          },
-          {
-            "username": "@noxxtxx",
-            "displayName": "ㅤcnox",
-            "role": "Admin (mod)",
-            "userId": "2041519074",
-            "group": "Clippy Gang 📎",
-            "groupLink": null
-          },
-          {
-            "username": "ID:6207798567",
-            "displayName": "FarAway",
-            "role": "Admin (mod)",
-            "userId": "6207798567",
-            "group": "Clippy Gang 📎",
-            "groupLink": null
-          },
-          {
-            "username": "@SamSunTQ",
-            "displayName": "Samsun📎",
-            "role": "Admin",
-            "userId": "5755457416",
-            "group": "Clippy Gang 📎",
-            "groupLink": null
-          },
-          {
-            "username": "@Ruudvoo",
-            "displayName": "RVO",
-            "role": "Admin (mod)",
-            "userId": "6273746238",
-            "group": "Clippy Gang 📎",
-            "groupLink": null
-          },
-          {
-            "username": "@Usernumver1",
-            "displayName": "Qvist",
-            "role": "Admin",
-            "userId": "7937465556",
-            "group": "Clippy Gang 📎",
-            "groupLink": null
-          },
-          {
-            "username": "ID:7016170469",
-            "displayName": "topblaster",
-            "role": "Admin",
-            "userId": "7016170469",
-            "group": "Clippy Gang 📎",
-            "groupLink": null
-          },
-          {
-            "username": "@Sixfrom6ix",
-            "displayName": "-6ix- (Blood Arc) 🩸",
-            "role": "Admin",
-            "userId": "6816750821",
-            "group": "Clippy Gang 📎",
-            "groupLink": null
-          },
-          {
-            "username": "@CorleoneTx",
-            "displayName": "Corl",
-            "role": "Owner",
-            "userId": "6834106495",
-            "group": "Clippy Gang 📎",
-            "groupLink": null
-          }
-        ]
-      },
-      {
-        "groupLink": "https://t.me/PixelatedFartingUnicorn",
-        "groupName": "Pixelated Farting Unicorn $PFU",
-        "members": [
-          {
-            "username": "@DONTFUCKingDARE",
-            "displayName": "Bulldog",
-            "role": "Admin",
-            "userId": "8292090964",
-            "group": "Pixelated Farting Unicorn $PFU",
-            "groupLink": "https://t.me/PixelatedFartingUnicorn"
-          },
-          {
-            "username": "@bigwavedave89",
-            "displayName": "David",
-            "role": "Admin",
-            "userId": "5382139168",
-            "group": "Pixelated Farting Unicorn $PFU",
-            "groupLink": "https://t.me/PixelatedFartingUnicorn"
-          },
-          {
-            "username": "@DUFY47",
-            "displayName": "Capt.🪖💀🏴‍☠️",
-            "role": "Admin (Mod)",
-            "userId": "7896153409",
-            "group": "Pixelated Farting Unicorn $PFU",
-            "groupLink": "https://t.me/PixelatedFartingUnicorn"
-          },
-          {
-            "username": "@PumpFun711",
-            "displayName": "PumpFun711",
-            "role": "Owner (Dev)",
-            "userId": "1108146302",
-            "group": "Pixelated Farting Unicorn $PFU",
-            "groupLink": "https://t.me/PixelatedFartingUnicorn"
-          }
-        ]
-      },
-      {
-        "groupLink": "https://t.me/roflonsolana",
-        "groupName": "$ROFL - Rolling on the floor laughing",
-        "members": []
-      },
-      {
-        "groupLink": null,
-        "groupName": "PAW EMPIRE",
-        "members": []
-      }
-    ]
-  },
-  {
-    "id": 1774839447967,
-    "scrapedAt": "2026-03-30T02:57:27.967Z",
-    "results": [
-      {
-        "groupLink": "https://t.me/ZygoSwap",
-        "groupName": "ZygoSwap",
-        "members": [
-          {
-            "username": "@FurinaMusicAssistant_3",
-            "displayName": "Furina Music Assistant 3",
-            "role": "Admin",
-            "userId": "5001524648",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@Ethan_Roy2",
-            "displayName": "Ethan Roy⚡",
-            "role": "Admin (BNB Ambassador)",
-            "userId": "6486298566",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@cryptoinflencer",
-            "displayName": "Marketting Head Crypto By HASH ( VERIFY FROM BIO)",
-            "role": "Admin (Ambassador)",
-            "userId": "1920597674",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "ID:6445692925",
-            "displayName": "Unknown",
-            "role": "Admin (Moderator)",
-            "userId": "6445692925",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@Oxclo_ver",
-            "displayName": "Clover",
-            "role": "Admin (AMBASSADOR)",
-            "userId": "8326392983",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@Daniel_7159",
-            "displayName": "Leo Dan",
-            "role": "Admin (Ambassador)",
-            "userId": "6594158819",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@TemiJat",
-            "displayName": "Temi Jat",
-            "role": "Admin (Administrator)",
-            "userId": "6528543893",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@finalleo",
-            "displayName": "Leonard MOD (Don’t check my bio 🤪)",
-            "role": "Admin (Administrator)",
-            "userId": "5566460628",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@HEN_D1",
-            "displayName": "Hendricks",
-            "role": "Admin (Administrator)",
-            "userId": "5208221474",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@Monster0045",
-            "displayName": "The Monster",
-            "role": "Admin (Administrator)",
-            "userId": "7562494377",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@ZygothefrogOriginal",
-            "displayName": "Zygo Frog",
-            "role": "Owner (Co-Developer)",
-            "userId": "7599021971",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          }
-        ]
-      },
-      {
-        "groupLink": null,
-        "groupName": "NEKOKICHI",
-        "members": []
-      },
-      {
-        "groupLink": "https://t.me/theleaderdapang",
-        "groupName": "Dà Pàng | $dapang",
-        "members": [
-          {
-            "username": "@coltvortex",
-            "displayName": "Colt Vortex",
-            "role": "Admin (mod)",
-            "userId": "8229677081",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@xonthephone",
-            "displayName": "x.",
-            "role": "Admin (x)",
-            "userId": "7560261759",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@h4nl4b",
-            "displayName": "h4n",
-            "role": "Admin (h4n)",
-            "userId": "6902255158",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "ID:8524315896",
+            "username": "ID:7492536928",
             "displayName": "Unknown",
             "role": "Admin",
-            "userId": "8524315896",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
+            "userId": "7492536928",
+            "group": "Chudjak",
+            "groupLink": null
           },
           {
-            "username": "@jeious",
-            "displayName": "Jeious",
-            "role": "Admin (mod)",
-            "userId": "8606228004",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@yellwmoon",
-            "displayName": "Yellow",
-            "role": "Admin (Mod)",
-            "userId": "8648669793",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@jamiexl",
-            "displayName": "Jamie",
-            "role": "Admin (Mod)",
-            "userId": "8215826330",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@TrenchRepe",
-            "displayName": "Repe",
-            "role": "Admin",
-            "userId": "8611294097",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@padaraang",
-            "displayName": "Paddaara",
-            "role": "Admin (Mod)",
-            "userId": "8714006647",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@NexBar0xc",
-            "displayName": "NexB",
-            "role": "Admin",
-            "userId": "8712877496",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@dogleadercult",
-            "displayName": "Bibi",
-            "role": "Admin (Mod)",
-            "userId": "8616597076",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          }
-        ]
-      },
-      {
-        "groupLink": "https://t.me/unitytoken1",
-        "groupName": "UNITY 🪙 OFFICIALS TG",
-        "members": [
-          {
-            "username": "@Primelayerr",
-            "displayName": "FlúxVèctõr📈 📊",
-            "role": "Admin",
-            "userId": "7526324473",
-            "group": "UNITY 🪙 OFFICIALS TG",
-            "groupLink": "https://t.me/unitytoken1"
-          },
-          {
-            "username": "@Xstoner56789",
-            "displayName": "Big Stoner💨🩶",
-            "role": "Admin",
-            "userId": "7473628538",
-            "group": "UNITY 🪙 OFFICIALS TG",
-            "groupLink": "https://t.me/unitytoken1"
-          },
-          {
-            "username": "@johnningbd",
-            "displayName": "Jared",
-            "role": "Admin",
-            "userId": "8571119203",
-            "group": "UNITY 🪙 OFFICIALS TG",
-            "groupLink": "https://t.me/unitytoken1"
-          }
-        ]
-      },
-      {
-        "groupLink": "https://t.me/YOYOMINECRAFT",
-        "groupName": "YOYO the minecraft CAT",
-        "members": [
-          {
-            "username": "@ketchuppp22",
-            "displayName": "Ketchuppp",
-            "role": "Admin (Ketchuppp)",
-            "userId": "526219292",
-            "group": "YOYO the minecraft CAT",
-            "groupLink": "https://t.me/YOYOMINECRAFT"
-          },
-          {
-            "username": "@Captainharkness",
-            "displayName": "Captain",
-            "role": "Admin (help man)",
-            "userId": "8443915196",
-            "group": "YOYO the minecraft CAT",
-            "groupLink": "https://t.me/YOYOMINECRAFT"
-          }
-        ]
-      },
-      {
-        "groupLink": null,
-        "groupName": "SWING",
-        "members": [
-          {
-            "username": "@TheLastSwinger",
-            "displayName": "SWING",
+            "username": "@ciggie_437",
+            "displayName": "Ciggie 437",
             "role": "Owner",
-            "userId": "6240709350",
-            "group": "SWING",
+            "userId": "6911153702",
+            "group": "Chudjak",
+            "groupLink": null
+          },
+          {
+            "username": "@ChudjaksWife",
+            "displayName": "Lex [Thugalicious]",
+            "role": "Admin (chudjakswife)",
+            "userId": "7210429024",
+            "group": "Chudjak",
+            "groupLink": null
+          },
+          {
+            "username": "@hoxl4",
+            "displayName": "Janitor Chud",
+            "role": "Admin (Jannie)",
+            "userId": "7410064966",
+            "group": "Chudjak",
+            "groupLink": null
+          },
+          {
+            "username": "@redactedpat",
+            "displayName": "pathens",
+            "role": "Admin",
+            "userId": "5168086392",
+            "group": "Chudjak",
+            "groupLink": null
+          },
+          {
+            "username": "@whoadude69",
+            "displayName": "Whoa dude",
+            "role": "Admin (Admin)",
+            "userId": "5671858468",
+            "group": "Chudjak",
+            "groupLink": null
+          },
+          {
+            "username": "@EvanEvanEvanEvanEvanEvanEvan",
+            "displayName": "Evan",
+            "role": "Admin (Jannie)",
+            "userId": "536774189",
+            "group": "Chudjak",
+            "groupLink": null
+          },
+          {
+            "username": "@zogged",
+            "displayName": "wew",
+            "role": "Admin (Chuddie)",
+            "userId": "307256207",
+            "group": "Chudjak",
+            "groupLink": null
+          },
+          {
+            "username": "@derekforrealfr",
+            "displayName": "“whos that fudding on twitter??!”",
+            "role": "Admin (Jannie)",
+            "userId": "6580229566",
+            "group": "Chudjak",
+            "groupLink": null
+          },
+          {
+            "username": "@chamaa4200",
+            "displayName": "Chama 4200",
+            "role": "Admin (chudama)",
+            "userId": "6831131732",
+            "group": "Chudjak",
+            "groupLink": null
+          },
+          {
+            "username": "@kingduracel",
+            "displayName": "Duracel",
+            "role": "Admin (Jannie)",
+            "userId": "5685778669",
+            "group": "Chudjak",
+            "groupLink": null
+          },
+          {
+            "username": "@killerqueennz",
+            "displayName": "Yagami",
+            "role": "Admin (chuddie)",
+            "userId": "1839045031",
+            "group": "Chudjak",
             "groupLink": null
           }
         ]
       },
       {
-        "groupLink": null,
-        "groupName": "Pixel Cat CTO",
+        "groupLink": "https://t.me/SYFRai",
+        "groupName": "$SYFR AI Community",
         "members": [
           {
-            "username": "@FinGrey02",
-            "displayName": "Fin Grey 🎖",
-            "role": "Admin",
-            "userId": "7179488968",
-            "group": "Pixel Cat CTO",
-            "groupLink": null
-          },
-          {
-            "username": "@D4rthSol",
-            "displayName": "D4rth",
-            "role": "Owner",
-            "userId": "6215378182",
-            "group": "Pixel Cat CTO",
-            "groupLink": null
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": 1774837629029,
-    "scrapedAt": "2026-03-30T02:27:09.029Z",
-    "results": [
-      {
-        "groupLink": "https://t.me/ZygoSwap",
-        "groupName": "ZygoSwap",
-        "members": [
-          {
-            "username": "@FurinaMusicAssistant_3",
-            "displayName": "Furina Music Assistant 3",
-            "role": "Admin",
-            "userId": "5001524648",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@Ethan_Roy2",
-            "displayName": "Ethan Roy⚡",
-            "role": "Admin (BNB Ambassador)",
-            "userId": "6486298566",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@cryptoinflencer",
-            "displayName": "Marketting Head Crypto By HASH ( VERIFY FROM BIO)",
-            "role": "Admin (Ambassador)",
-            "userId": "1920597674",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "ID:6445692925",
-            "displayName": "Unknown",
-            "role": "Admin (Moderator)",
-            "userId": "6445692925",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@Oxclo_ver",
-            "displayName": "Clover",
-            "role": "Admin (AMBASSADOR)",
-            "userId": "8326392983",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@Daniel_7159",
-            "displayName": "Leo Dan",
-            "role": "Admin (Ambassador)",
-            "userId": "6594158819",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@TemiJat",
-            "displayName": "Temi Jat",
-            "role": "Admin (Administrator)",
-            "userId": "6528543893",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@finalleo",
-            "displayName": "Leonard MOD (Don’t check my bio 🤪)",
-            "role": "Admin (Administrator)",
-            "userId": "5566460628",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@HEN_D1",
-            "displayName": "Hendricks",
-            "role": "Admin (Administrator)",
-            "userId": "5208221474",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@Monster0045",
-            "displayName": "The Monster",
-            "role": "Admin (Administrator)",
-            "userId": "7562494377",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@ZygothefrogOriginal",
-            "displayName": "Zygo Frog",
-            "role": "Owner (Co-Developer)",
-            "userId": "7599021971",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          }
-        ]
-      },
-      {
-        "groupLink": null,
-        "groupName": "NEKOKICHI",
-        "members": []
-      },
-      {
-        "groupLink": "https://t.me/theleaderdapang",
-        "groupName": "Dà Pàng | $dapang",
-        "members": [
-          {
-            "username": "@coltvortex",
-            "displayName": "Colt Vortex",
-            "role": "Admin (mod)",
-            "userId": "8229677081",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@xonthephone",
-            "displayName": "x.",
-            "role": "Admin (x)",
-            "userId": "7560261759",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@h4nl4b",
-            "displayName": "h4n",
-            "role": "Admin (h4n)",
-            "userId": "6902255158",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "ID:8524315896",
-            "displayName": "Unknown",
-            "role": "Admin",
-            "userId": "8524315896",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@jeious",
-            "displayName": "Jeious",
-            "role": "Admin (mod)",
-            "userId": "8606228004",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@yellwmoon",
-            "displayName": "Yellow",
-            "role": "Admin (Mod)",
-            "userId": "8648669793",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@jamiexl",
-            "displayName": "Jamie",
-            "role": "Admin (Mod)",
-            "userId": "8215826330",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@TrenchRepe",
-            "displayName": "Repe",
-            "role": "Admin",
-            "userId": "8611294097",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@padaraang",
-            "displayName": "Paddaara",
-            "role": "Admin (Mod)",
-            "userId": "8714006647",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@NexBar0xc",
-            "displayName": "NexB",
-            "role": "Admin",
-            "userId": "8712877496",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@dogleadercult",
-            "displayName": "Bibi",
-            "role": "Admin (Mod)",
-            "userId": "8616597076",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          }
-        ]
-      },
-      {
-        "groupLink": "https://t.me/unitytoken1",
-        "groupName": "UNITY 🪙 OFFICIALS TG",
-        "members": [
-          {
-            "username": "@Primelayerr",
-            "displayName": "FlúxVèctõr📈 📊",
-            "role": "Admin",
-            "userId": "7526324473",
-            "group": "UNITY 🪙 OFFICIALS TG",
-            "groupLink": "https://t.me/unitytoken1"
-          },
-          {
-            "username": "@Xstoner56789",
-            "displayName": "Big Stoner💨🩶",
-            "role": "Admin",
-            "userId": "7473628538",
-            "group": "UNITY 🪙 OFFICIALS TG",
-            "groupLink": "https://t.me/unitytoken1"
-          },
-          {
-            "username": "@johnningbd",
-            "displayName": "Jared",
-            "role": "Admin",
-            "userId": "8571119203",
-            "group": "UNITY 🪙 OFFICIALS TG",
-            "groupLink": "https://t.me/unitytoken1"
-          }
-        ]
-      },
-      {
-        "groupLink": "https://t.me/YOYOMINECRAFT",
-        "groupName": "YOYO the minecraft CAT",
-        "members": [
-          {
-            "username": "@ketchuppp22",
-            "displayName": "Ketchuppp",
-            "role": "Admin (Ketchuppp)",
-            "userId": "526219292",
-            "group": "YOYO the minecraft CAT",
-            "groupLink": "https://t.me/YOYOMINECRAFT"
-          },
-          {
-            "username": "@Captainharkness",
-            "displayName": "Captain",
-            "role": "Admin (help man)",
-            "userId": "8443915196",
-            "group": "YOYO the minecraft CAT",
-            "groupLink": "https://t.me/YOYOMINECRAFT"
-          }
-        ]
-      },
-      {
-        "groupLink": null,
-        "groupName": "SWING",
-        "members": [
-          {
-            "username": "@TheLastSwinger",
-            "displayName": "SWING",
-            "role": "Owner",
-            "userId": "6240709350",
-            "group": "SWING",
-            "groupLink": null
-          }
-        ]
-      },
-      {
-        "groupLink": null,
-        "groupName": "Pixel Cat CTO",
-        "members": [
-          {
-            "username": "@FinGrey02",
-            "displayName": "Fin Grey 🎖",
-            "role": "Admin",
-            "userId": "7179488968",
-            "group": "Pixel Cat CTO",
-            "groupLink": null
-          },
-          {
-            "username": "@D4rthSol",
-            "displayName": "D4rth",
-            "role": "Owner",
-            "userId": "6215378182",
-            "group": "Pixel Cat CTO",
-            "groupLink": null
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": 1774766834931,
-    "scrapedAt": "2026-03-29T06:47:14.931Z",
-    "results": [
-      {
-        "groupLink": "https://t.me/ZygoSwap",
-        "groupName": "ZygoSwap",
-        "members": [
-          {
-            "username": "@FurinaMusicAssistant_3",
-            "displayName": "Furina Music Assistant 3",
-            "role": "Admin",
-            "userId": "5001524648",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@Ethan_Roy2",
-            "displayName": "Ethan Roy⚡",
-            "role": "Admin (BNB Ambassador)",
-            "userId": "6486298566",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@cryptoinflencer",
-            "displayName": "Marketting Head Crypto By HASH ( VERIFY FROM BIO)",
-            "role": "Admin (Ambassador)",
-            "userId": "1920597674",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "ID:6445692925",
-            "displayName": "Unknown",
-            "role": "Admin (Moderator)",
-            "userId": "6445692925",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@Oxclo_ver",
-            "displayName": "Clover",
-            "role": "Admin (AMBASSADOR)",
-            "userId": "8326392983",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@Daniel_7159",
-            "displayName": "Leo Dan",
-            "role": "Admin (Ambassador)",
-            "userId": "6594158819",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@TemiJat",
-            "displayName": "Temi Jat",
-            "role": "Admin (Administrator)",
-            "userId": "6528543893",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@finalleo",
-            "displayName": "Leonard MOD (Don’t check my bio 🤪)",
-            "role": "Admin (Administrator)",
-            "userId": "5566460628",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@HEN_D1",
-            "displayName": "Hendricks",
-            "role": "Admin (Administrator)",
-            "userId": "5208221474",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@Monster0045",
-            "displayName": "The Monster",
-            "role": "Admin (Administrator)",
-            "userId": "7562494377",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@ZygothefrogOriginal",
-            "displayName": "Zygo Frog",
-            "role": "Owner (Co-Developer)",
-            "userId": "7599021971",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          }
-        ]
-      },
-      {
-        "groupLink": null,
-        "groupName": "NEKOKICHI",
-        "members": []
-      },
-      {
-        "groupLink": "https://t.me/theleaderdapang",
-        "groupName": "Dà Pàng | $dapang",
-        "members": [
-          {
-            "username": "@coltvortex",
-            "displayName": "Colt Vortex",
-            "role": "Admin (mod)",
-            "userId": "8229677081",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@xonthephone",
-            "displayName": "x.",
-            "role": "Admin (x)",
-            "userId": "7560261759",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@h4nl4b",
-            "displayName": "h4n",
-            "role": "Admin (h4n)",
-            "userId": "6902255158",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "ID:8524315896",
-            "displayName": "Unknown",
-            "role": "Admin",
-            "userId": "8524315896",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@jeious",
-            "displayName": "Jeious",
-            "role": "Admin (mod)",
-            "userId": "8606228004",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@yellwmoon",
-            "displayName": "Yellow",
-            "role": "Admin (Mod)",
-            "userId": "8648669793",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@jamiexl",
-            "displayName": "Jamie",
-            "role": "Admin (Mod)",
-            "userId": "8215826330",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@TrenchRepe",
-            "displayName": "Repe",
-            "role": "Admin",
-            "userId": "8611294097",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@padaraang",
-            "displayName": "Paddaara",
-            "role": "Admin (Mod)",
-            "userId": "8714006647",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@NexBar0xc",
-            "displayName": "NexB",
-            "role": "Admin",
-            "userId": "8712877496",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@dogleadercult",
-            "displayName": "Bibi",
-            "role": "Admin (Mod)",
-            "userId": "8616597076",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          }
-        ]
-      },
-      {
-        "groupLink": "https://t.me/unitytoken1",
-        "groupName": "UNITY 🪙 OFFICIALS TG",
-        "members": [
-          {
-            "username": "@Primelayerr",
-            "displayName": "FlúxVèctõr📈 📊",
-            "role": "Admin",
-            "userId": "7526324473",
-            "group": "UNITY 🪙 OFFICIALS TG",
-            "groupLink": "https://t.me/unitytoken1"
-          },
-          {
-            "username": "@Xstoner56789",
-            "displayName": "Big Stoner💨🩶",
-            "role": "Admin",
-            "userId": "7473628538",
-            "group": "UNITY 🪙 OFFICIALS TG",
-            "groupLink": "https://t.me/unitytoken1"
-          },
-          {
-            "username": "@johnningbd",
-            "displayName": "Jared",
-            "role": "Admin",
-            "userId": "8571119203",
-            "group": "UNITY 🪙 OFFICIALS TG",
-            "groupLink": "https://t.me/unitytoken1"
-          }
-        ]
-      },
-      {
-        "groupLink": "https://t.me/YOYOMINECRAFT",
-        "groupName": "YOYO the minecraft CAT",
-        "members": [
-          {
-            "username": "@ketchuppp22",
-            "displayName": "Ketchuppp",
-            "role": "Admin (Ketchuppp)",
-            "userId": "526219292",
-            "group": "YOYO the minecraft CAT",
-            "groupLink": "https://t.me/YOYOMINECRAFT"
-          },
-          {
-            "username": "@Captainharkness",
-            "displayName": "Captain",
-            "role": "Admin (help man)",
-            "userId": "8443915196",
-            "group": "YOYO the minecraft CAT",
-            "groupLink": "https://t.me/YOYOMINECRAFT"
-          }
-        ]
-      },
-      {
-        "groupLink": null,
-        "groupName": "SWING",
-        "members": [
-          {
-            "username": "@TheLastSwinger",
-            "displayName": "SWING",
-            "role": "Owner",
-            "userId": "6240709350",
-            "group": "SWING",
-            "groupLink": null
-          }
-        ]
-      },
-      {
-        "groupLink": null,
-        "groupName": "Pixel Cat CTO",
-        "members": [
-          {
-            "username": "@FinGrey02",
-            "displayName": "Fin Grey 🎖",
-            "role": "Admin",
-            "userId": "7179488968",
-            "group": "Pixel Cat CTO",
-            "groupLink": null
-          },
-          {
-            "username": "@mfzezima",
-            "displayName": "MF Zezima",
-            "role": "Admin",
-            "userId": "7411603228",
-            "group": "Pixel Cat CTO",
-            "groupLink": null
-          },
-          {
-            "username": "@D4rthSol",
-            "displayName": "D4rth",
-            "role": "Owner",
-            "userId": "6215378182",
-            "group": "Pixel Cat CTO",
-            "groupLink": null
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": 1774627120374,
-    "scrapedAt": "2026-03-27T15:58:40.374Z",
-    "results": [
-      {
-        "groupLink": "https://t.me/ZygoSwap",
-        "groupName": "ZygoSwap",
-        "members": [
-          {
-            "username": "@FurinaMusicAssistant_3",
-            "displayName": "Furina Music Assistant 3",
-            "role": "Admin",
-            "userId": "5001524648",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@Ethan_Roy2",
-            "displayName": "Ethan Roy⚡",
-            "role": "Admin (BNB Ambassador)",
-            "userId": "6486298566",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@cryptoinflencer",
-            "displayName": "Marketting Head Crypto By HASH ( VERIFY FROM BIO)",
-            "role": "Admin (Ambassador)",
-            "userId": "1920597674",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "ID:6445692925",
-            "displayName": "Unknown",
-            "role": "Admin (Moderator)",
-            "userId": "6445692925",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@Oxclo_ver",
-            "displayName": "Clover",
-            "role": "Admin (AMBASSADOR)",
-            "userId": "8326392983",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@Daniel_7159",
-            "displayName": "Leo Dan",
-            "role": "Admin (Ambassador)",
-            "userId": "6594158819",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@TemiJat",
-            "displayName": "Temi Jat",
-            "role": "Admin (Administrator)",
-            "userId": "6528543893",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@finalleo",
-            "displayName": "Leonard MOD (Don’t check my bio 🤪)",
-            "role": "Admin (Administrator)",
-            "userId": "5566460628",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@HEN_D1",
-            "displayName": "Hendricks",
-            "role": "Admin (Administrator)",
-            "userId": "5208221474",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@Monster0045",
-            "displayName": "The Monster",
-            "role": "Admin (Administrator)",
-            "userId": "7562494377",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@ZygothefrogOriginal",
-            "displayName": "Zygo Frog",
-            "role": "Owner (Co-Developer)",
-            "userId": "7599021971",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          }
-        ]
-      },
-      {
-        "groupLink": null,
-        "groupName": "SWING",
-        "members": [
-          {
-            "username": "@TheLastSwinger",
-            "displayName": "SWING",
-            "role": "Owner",
-            "userId": "6240709350",
-            "group": "SWING",
-            "groupLink": null
-          }
-        ]
-      },
-      {
-        "groupLink": null,
-        "groupName": "The Pump Swing",
-        "members": [
-          {
-            "username": "@pumpswinger",
-            "displayName": "Titi",
-            "role": "Owner",
-            "userId": "7231218767",
-            "group": "The Pump Swing",
-            "groupLink": null
-          }
-        ]
-      },
-      {
-        "groupLink": "https://t.me/YOYOMINECRAFT",
-        "groupName": "YOYO the minecraft CAT",
-        "members": [
-          {
-            "username": "@WizzyChain",
-            "displayName": "Legend",
-            "role": "Admin",
-            "userId": "1384270378",
-            "group": "YOYO the minecraft CAT",
-            "groupLink": "https://t.me/YOYOMINECRAFT"
-          },
-          {
-            "username": "@ketchuppp22",
-            "displayName": "Ketchuppp",
-            "role": "Admin (Ketchuppp)",
-            "userId": "526219292",
-            "group": "YOYO the minecraft CAT",
-            "groupLink": "https://t.me/YOYOMINECRAFT"
-          },
-          {
-            "username": "@Captainharkness",
-            "displayName": "Captainharkness",
-            "role": "Admin (help man)",
-            "userId": "8443915196",
-            "group": "YOYO the minecraft CAT",
-            "groupLink": "https://t.me/YOYOMINECRAFT"
-          }
-        ]
-      },
-      {
-        "groupLink": "https://t.me/theleaderdapang",
-        "groupName": "Dà Pàng | $dapang",
-        "members": [
-          {
-            "username": "@coltvortex",
-            "displayName": "Colt Vortex",
-            "role": "Admin (mod)",
-            "userId": "8229677081",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@xonthephone",
-            "displayName": "x.",
-            "role": "Admin (x)",
-            "userId": "7560261759",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@h4nl4b",
-            "displayName": "h4n",
-            "role": "Admin (h4n)",
-            "userId": "6902255158",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "ID:8524315896",
-            "displayName": "Unknown",
-            "role": "Admin",
-            "userId": "8524315896",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@jeious",
-            "displayName": "Jeious",
-            "role": "Admin (mod)",
-            "userId": "8606228004",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@yellwmoon",
-            "displayName": "Yellow",
-            "role": "Admin (Mod)",
-            "userId": "8648669793",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@jamiexl",
-            "displayName": "Jamie",
-            "role": "Admin (Mod)",
-            "userId": "8215826330",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@TrenchRepe",
-            "displayName": "Repe",
-            "role": "Admin",
-            "userId": "8611294097",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@padaraang",
-            "displayName": "Paddaara",
-            "role": "Admin (Mod)",
-            "userId": "8714006647",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@NexBar0xc",
-            "displayName": "NexB",
-            "role": "Admin",
-            "userId": "8712877496",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@dogleadercult",
-            "displayName": "Bibi",
-            "role": "Admin (Mod)",
-            "userId": "8616597076",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          }
-        ]
-      },
-      {
-        "groupLink": "https://t.me/unitytoken1",
-        "groupName": "UNITY 🪙 OFFICIALS TG",
-        "members": [
-          {
-            "username": "@Jaychris522",
-            "displayName": "Jay chris",
-            "role": "Admin",
-            "userId": "8519768121",
-            "group": "UNITY 🪙 OFFICIALS TG",
-            "groupLink": "https://t.me/unitytoken1"
-          },
-          {
-            "username": "@Primelayerr",
-            "displayName": "FlúxVèctõr📈 📊",
-            "role": "Admin",
-            "userId": "7526324473",
-            "group": "UNITY 🪙 OFFICIALS TG",
-            "groupLink": "https://t.me/unitytoken1"
-          },
-          {
-            "username": "@Xstoner56789",
-            "displayName": "Big Stoner💨🩶",
-            "role": "Admin",
-            "userId": "7473628538",
-            "group": "UNITY 🪙 OFFICIALS TG",
-            "groupLink": "https://t.me/unitytoken1"
-          },
-          {
-            "username": "@patrickinng",
-            "displayName": "PatrickX45",
-            "role": "Admin",
-            "userId": "8571119203",
-            "group": "UNITY 🪙 OFFICIALS TG",
-            "groupLink": "https://t.me/unitytoken1"
-          },
-          {
-            "username": "@Oxandrewsol",
-            "displayName": "Oxandrewsol",
-            "role": "Admin (co founder)",
-            "userId": "7389743491",
-            "group": "UNITY 🪙 OFFICIALS TG",
-            "groupLink": "https://t.me/unitytoken1"
-          }
-        ]
-      },
-      {
-        "groupLink": null,
-        "groupName": "NEKOKICHI",
-        "members": []
-      },
-      {
-        "groupLink": null,
-        "groupName": "Pixel Cat CTO",
-        "members": [
-          {
-            "username": "@EmKKo23",
-            "displayName": "magic 🪄",
-            "role": "Admin",
-            "userId": "1564316141",
-            "group": "Pixel Cat CTO",
-            "groupLink": null
-          },
-          {
-            "username": "@FinGrey02",
-            "displayName": "Fin Grey 🎖",
-            "role": "Admin",
-            "userId": "7179488968",
-            "group": "Pixel Cat CTO",
-            "groupLink": null
-          },
-          {
-            "username": "@mfzezima",
-            "displayName": "MF Zezima",
-            "role": "Admin",
-            "userId": "7411603228",
-            "group": "Pixel Cat CTO",
-            "groupLink": null
-          },
-          {
-            "username": "@M4zterCrypto",
-            "displayName": "M4zterCrypto",
-            "role": "Admin",
-            "userId": "6877776375",
-            "group": "Pixel Cat CTO",
-            "groupLink": null
-          },
-          {
-            "username": "@marweeezy",
-            "displayName": "Marweezy",
-            "role": "Admin",
-            "userId": "513959588",
-            "group": "Pixel Cat CTO",
-            "groupLink": null
-          },
-          {
-            "username": "@D4rthSol",
-            "displayName": "D4rth",
-            "role": "Owner",
-            "userId": "6215378182",
-            "group": "Pixel Cat CTO",
-            "groupLink": null
-          }
-        ]
-      },
-      {
-        "groupLink": null,
-        "groupName": "$Aped",
-        "members": [
-          {
-            "username": "@BeastmodeOG",
-            "displayName": "BEASTMODE! ️🇨🇦 MMKK | CRYPTO CARTEL |",
-            "role": "Admin",
-            "userId": "7391947487",
-            "group": "$Aped",
-            "groupLink": null
-          },
-          {
-            "username": "@FADYMORIS",
-            "displayName": "FADY⚡️",
-            "role": "Admin",
-            "userId": "1165699723",
-            "group": "$Aped",
-            "groupLink": null
-          },
-          {
-            "username": "@hunter_cryptoTG",
-            "displayName": "Sayan",
-            "role": "Admin",
-            "userId": "6820682048",
-            "group": "$Aped",
-            "groupLink": null
-          },
-          {
-            "username": "@unphasedalways",
-            "displayName": "SNOW",
-            "role": "Admin",
-            "userId": "8002141431",
-            "group": "$Aped",
-            "groupLink": null
-          },
-          {
-            "username": "@Defi_Rayne",
-            "displayName": "Rayne",
-            "role": "Admin",
-            "userId": "6975682174",
-            "group": "$Aped",
-            "groupLink": null
-          },
-          {
-            "username": "@biggest_wizard",
-            "displayName": "Wizard 🪄",
-            "role": "Admin",
-            "userId": "7179497932",
-            "group": "$Aped",
-            "groupLink": null
-          },
-          {
-            "username": "@Naru_tuuz",
-            "displayName": "Uzumaki",
+            "username": "@limitlesstradez",
+            "displayName": "admmxm",
             "role": "Admin (MOD)",
-            "userId": "7689187833",
-            "group": "$Aped",
+            "userId": "981308027",
+            "group": "$SYFR AI Community",
+            "groupLink": "https://t.me/SYFRai"
+          },
+          {
+            "username": "@deepinprofitsllc",
+            "displayName": "BillionDolla Tariq📲💰🇭🇹",
+            "role": "Admin (MOD)",
+            "userId": "788622169",
+            "group": "$SYFR AI Community",
+            "groupLink": "https://t.me/SYFRai"
+          },
+          {
+            "username": "@blockchaintrillionaire",
+            "displayName": "Blockchain",
+            "role": "Admin",
+            "userId": "1177587972",
+            "group": "$SYFR AI Community",
+            "groupLink": "https://t.me/SYFRai"
+          },
+          {
+            "username": "@entitytrades",
+            "displayName": "Entity (CHANNEL IN BIO)",
+            "role": "Admin (SYFR MOD)",
+            "userId": "7556107187",
+            "group": "$SYFR AI Community",
+            "groupLink": "https://t.me/SYFRai"
+          },
+          {
+            "username": "@shitwillgetrugged",
+            "displayName": "YBK",
+            "role": "Admin (SYFR MOD)",
+            "userId": "7270547368",
+            "group": "$SYFR AI Community",
+            "groupLink": "https://t.me/SYFRai"
+          },
+          {
+            "username": "@pbehmiii",
+            "displayName": "AlterEgo",
+            "role": "Admin (SYFR MOD)",
+            "userId": "6180251564",
+            "group": "$SYFR AI Community",
+            "groupLink": "https://t.me/SYFRai"
+          },
+          {
+            "username": "@admmxm",
+            "displayName": "adxtradez",
+            "role": "Admin (SYFR MOD)",
+            "userId": "6413814048",
+            "group": "$SYFR AI Community",
+            "groupLink": "https://t.me/SYFRai"
+          },
+          {
+            "username": "@Degenerate_blixker",
+            "displayName": "BlixkFlowDegen",
+            "role": "Admin (SYFR MOD)",
+            "userId": "6690692709",
+            "group": "$SYFR AI Community",
+            "groupLink": "https://t.me/SYFRai"
+          },
+          {
+            "username": "@syfrtrades",
+            "displayName": "SYFR AI ( will not DM )",
+            "role": "Admin (SYFR)",
+            "userId": "6095946132",
+            "group": "$SYFR AI Community",
+            "groupLink": "https://t.me/SYFRai"
+          },
+          {
+            "username": "@wizcompounds",
+            "displayName": "Wiz ₿",
+            "role": "Admin (SYFR)",
+            "userId": "1986327271",
+            "group": "$SYFR AI Community",
+            "groupLink": "https://t.me/SYFRai"
+          }
+        ]
+      },
+      {
+        "groupLink": null,
+        "groupName": "Monkey Cult - MOLT",
+        "members": [
+          {
+            "username": "@KING_K007",
+            "displayName": "KING",
+            "role": "Admin (King)",
+            "userId": "1284736757",
+            "group": "Monkey Cult - MOLT",
             "groupLink": null
           },
           {
-            "username": "@SPY_NO_WAY",
-            "displayName": "SPY",
-            "role": "Admin (SPY GOAT)",
-            "userId": "5551371548",
-            "group": "$Aped",
+            "username": "@creator69",
+            "displayName": "Creator ⚡ Electrified (VCA)",
+            "role": "Admin",
+            "userId": "808744766",
+            "group": "Monkey Cult - MOLT",
             "groupLink": null
           },
           {
-            "username": "@levixxX80",
-            "displayName": "LEVI",
-            "role": "Owner",
-            "userId": "1659336071",
-            "group": "$Aped",
+            "username": "@BossFamTV",
+            "displayName": "🦍BossFam🇸🇻 [VCA]",
+            "role": "Admin",
+            "userId": "5129368218",
+            "group": "Monkey Cult - MOLT",
+            "groupLink": null
+          },
+          {
+            "username": "@JZKrypto",
+            "displayName": "⚡️🦍JZ🍌🦍[VCA]🌙",
+            "role": "Admin",
+            "userId": "2136495450",
+            "group": "Monkey Cult - MOLT",
+            "groupLink": null
+          },
+          {
+            "username": "@crypto_chick1",
+            "displayName": "CryptoChick ⚡️⚡️⚡️",
+            "role": "Admin",
+            "userId": "1376527465",
+            "group": "Monkey Cult - MOLT",
+            "groupLink": null
+          },
+          {
+            "username": "@primemonkey2",
+            "displayName": "Primate",
+            "role": "Admin",
+            "userId": "7717017041",
+            "group": "Monkey Cult - MOLT",
+            "groupLink": null
+          },
+          {
+            "username": "@Idk_brotha",
+            "displayName": "Almost Blue",
+            "role": "Admin",
+            "userId": "6507229875",
+            "group": "Monkey Cult - MOLT",
+            "groupLink": null
+          },
+          {
+            "username": "@justsayyes11",
+            "displayName": "QUEEN 🐵",
+            "role": "Admin",
+            "userId": "6017287922",
+            "group": "Monkey Cult - MOLT",
+            "groupLink": null
+          },
+          {
+            "username": "@EVolc10",
+            "displayName": "E Volcano[VCA] 🇵🇦",
+            "role": "Admin",
+            "userId": "1229395808",
+            "group": "Monkey Cult - MOLT",
+            "groupLink": null
+          },
+          {
+            "username": "@Antares_Aq",
+            "displayName": "Antares",
+            "role": "Admin",
+            "userId": "8637377857",
+            "group": "Monkey Cult - MOLT",
+            "groupLink": null
+          },
+          {
+            "username": "@Queen_Ape489",
+            "displayName": "Queen Ape",
+            "role": "Admin",
+            "userId": "8632522729",
+            "group": "Monkey Cult - MOLT",
+            "groupLink": null
+          },
+          {
+            "username": "@BadMonk3y",
+            "displayName": "BadMonk3y",
+            "role": "Admin",
+            "userId": "5668534376",
+            "group": "Monkey Cult - MOLT",
+            "groupLink": null
+          },
+          {
+            "username": "@NotMonkingAround",
+            "displayName": "Not Monking Around",
+            "role": "Admin",
+            "userId": "8777472991",
+            "group": "Monkey Cult - MOLT",
+            "groupLink": null
+          },
+          {
+            "username": "@ELPAPINUTZ",
+            "displayName": "EL PAPI NUTZ ⚡️🍌🦍",
+            "role": "Admin",
+            "userId": "8229865662",
+            "group": "Monkey Cult - MOLT",
+            "groupLink": null
+          },
+          {
+            "username": "@KAWS310",
+            "displayName": "KAWS",
+            "role": "Admin",
+            "userId": "1102297696",
+            "group": "Monkey Cult - MOLT",
+            "groupLink": null
+          },
+          {
+            "username": "ID:8557597499",
+            "displayName": "Royal",
+            "role": "Admin",
+            "userId": "8557597499",
+            "group": "Monkey Cult - MOLT",
+            "groupLink": null
+          },
+          {
+            "username": "@Sultanx420",
+            "displayName": "Sultan⚡️",
+            "role": "Admin",
+            "userId": "6431631560",
+            "group": "Monkey Cult - MOLT",
+            "groupLink": null
+          },
+          {
+            "username": "@FocusFi",
+            "displayName": "Focus⚔️",
+            "role": "Admin (Mod)",
+            "userId": "6907743038",
+            "group": "Monkey Cult - MOLT",
+            "groupLink": null
+          },
+          {
+            "username": "@jamal42069",
+            "displayName": "J King",
+            "role": "Admin",
+            "userId": "8309597253",
+            "group": "Monkey Cult - MOLT",
+            "groupLink": null
+          }
+        ]
+      },
+      {
+        "groupLink": "https://t.me/LMAOSOLCOIN",
+        "groupName": "LMAO Memes",
+        "members": []
+      },
+      {
+        "groupLink": null,
+        "groupName": "The Bull Mascot | $BULL",
+        "members": [
+          {
+            "username": "ID:1896960810",
+            "displayName": "CryptoFrog 𓆏",
+            "role": "Admin (Frog)",
+            "userId": "1896960810",
+            "group": "The Bull Mascot | $BULL",
+            "groupLink": null
+          },
+          {
+            "username": "@waynewinss",
+            "displayName": "Wayne",
+            "role": "Admin",
+            "userId": "8395451735",
+            "group": "The Bull Mascot | $BULL",
+            "groupLink": null
+          },
+          {
+            "username": "@solomon_nbn",
+            "displayName": "solomon",
+            "role": "Admin",
+            "userId": "6477459330",
+            "group": "The Bull Mascot | $BULL",
+            "groupLink": null
+          },
+          {
+            "username": "ID:7122341661",
+            "displayName": "Unknown",
+            "role": "Admin",
+            "userId": "7122341661",
+            "group": "The Bull Mascot | $BULL",
+            "groupLink": null
+          },
+          {
+            "username": "@rayzad",
+            "displayName": "tax",
+            "role": "Admin (tax)",
+            "userId": "7490528417",
+            "group": "The Bull Mascot | $BULL",
+            "groupLink": null
+          },
+          {
+            "username": "@mayiixo",
+            "displayName": "Mayi",
+            "role": "Admin (dev)",
+            "userId": "6679271018",
+            "group": "The Bull Mascot | $BULL",
+            "groupLink": null
+          },
+          {
+            "username": "@flash_bee",
+            "displayName": "Bumble Bee 🐝🧩",
+            "role": "Admin (raider)",
+            "userId": "1429008976",
+            "group": "The Bull Mascot | $BULL",
+            "groupLink": null
+          },
+          {
+            "username": "@jeffxcrypto",
+            "displayName": "Itsyaboijeff",
+            "role": "Admin (mod)",
+            "userId": "1936936645",
+            "group": "The Bull Mascot | $BULL",
+            "groupLink": null
+          },
+          {
+            "username": "@monkamo_1",
+            "displayName": "Mon Kamo",
+            "role": "Admin",
+            "userId": "8762868361",
+            "group": "The Bull Mascot | $BULL",
+            "groupLink": null
+          },
+          {
+            "username": "@beemosolx",
+            "displayName": "dia",
+            "role": "Admin",
+            "userId": "7817239253",
+            "group": "The Bull Mascot | $BULL",
+            "groupLink": null
+          },
+          {
+            "username": "@DEOCoon",
+            "displayName": "DIgiti",
+            "role": "Admin",
+            "userId": "8549870443",
+            "group": "The Bull Mascot | $BULL",
+            "groupLink": null
+          },
+          {
+            "username": "@Wulexxy3",
+            "displayName": "Wulex",
+            "role": "Admin (mod)",
+            "userId": "8520357215",
+            "group": "The Bull Mascot | $BULL",
+            "groupLink": null
+          },
+          {
+            "username": "@degenons",
+            "displayName": "Degen Worker",
+            "role": "Admin",
+            "userId": "7935700382",
+            "group": "The Bull Mascot | $BULL",
+            "groupLink": null
+          },
+          {
+            "username": "@Digi_Leo1",
+            "displayName": "Leo",
+            "role": "Admin",
+            "userId": "6477160766",
+            "group": "The Bull Mascot | $BULL",
+            "groupLink": null
+          },
+          {
+            "username": "@onlygem1",
+            "displayName": "Gem",
+            "role": "Owner (Gem)",
+            "userId": "837230727",
+            "group": "The Bull Mascot | $BULL",
             "groupLink": null
           }
         ]
@@ -1682,883 +705,704 @@
     ]
   },
   {
-    "id": 1774626454401,
-    "scrapedAt": "2026-03-27T15:47:34.401Z",
+    "id": 1775311854693,
+    "scrapedAt": "2026-04-04T14:10:54.693Z",
     "results": [
       {
         "groupLink": null,
-        "groupName": "NEKOKICHI",
+        "groupName": "SHIB ON BASE",
+        "members": [
+          {
+            "username": "@PAULSHIBALIEN",
+            "displayName": "PAUL VIKING SHIB ALIEN",
+            "role": "Admin (Owner)",
+            "userId": "8456749483",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@moondogmor17",
+            "displayName": "Armando",
+            "role": "Admin (MARKET WIZARD)",
+            "userId": "2141433605",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "ID:8236765963",
+            "displayName": "Mykey (Will not DM)",
+            "role": "Admin (OG FLOKI)",
+            "userId": "8236765963",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@Danny_G_dnyce0013",
+            "displayName": "Danny G",
+            "role": "Admin (OG Artist)",
+            "userId": "6212611343",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@RealVamonos",
+            "displayName": "Vamonos",
+            "role": "Admin (Grumpy shib)",
+            "userId": "1877880961",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@B0yD74",
+            "displayName": "Boyd/I Will Dm First 👀",
+            "role": "Admin",
+            "userId": "7715861121",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@benaj94",
+            "displayName": "Benj",
+            "role": "Admin (X man)",
+            "userId": "6991343691",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@Mikee111",
+            "displayName": "Mikkee",
+            "role": "Admin",
+            "userId": "7606418640",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@pocketrocket12",
+            "displayName": "JDH",
+            "role": "Admin",
+            "userId": "7251431764",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@nicklupe",
+            "displayName": "Nick",
+            "role": "Admin",
+            "userId": "1435493439",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@PRONK777",
+            "displayName": "Pronk {WILL NOT DM}",
+            "role": "Admin (OG MOFO)",
+            "userId": "1543560749",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@Northern_Detectorist",
+            "displayName": "Lee ND Crypto",
+            "role": "Admin",
+            "userId": "6580253437",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@sunboshi",
+            "displayName": "Sünboshï",
+            "role": "Admin (GAMPOPA.ETH)",
+            "userId": "1993626449",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@Pappazoomie",
+            "displayName": "Pappazoomie",
+            "role": "Admin (Papa Shib)",
+            "userId": "1718158293",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@johnnythefarmer",
+            "displayName": "Johnny The Farmer",
+            "role": "Admin (banana bread)",
+            "userId": "6446390124",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@JonnyKish",
+            "displayName": "Kish",
+            "role": "Admin (Shib Kish)",
+            "userId": "1512439144",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@Consta_11",
+            "displayName": "Constantin Null whale",
+            "role": "Admin (#2 WHALE)",
+            "userId": "911566711",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@KaspaKrusader",
+            "displayName": "Evolution",
+            "role": "Admin (Evolved Shib)",
+            "userId": "6012385044",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@k1nnah",
+            "displayName": "k1a | I WILL NEVER DM YOU ッ",
+            "role": "Admin (OG BUNKER RAKE)",
+            "userId": "6509516337",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@Kbscrypt",
+            "displayName": "KBS (WILL NOT DM)",
+            "role": "Admin (Mobile Home)",
+            "userId": "7189273490",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@ohnodev2",
+            "displayName": "OHNO Dev",
+            "role": "Admin",
+            "userId": "6926701772",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@meteversevikings",
+            "displayName": "PAUL VIKING GINGER BEARD",
+            "role": "Owner",
+            "userId": "1813461338",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@golfwhisky",
+            "displayName": "Gaz",
+            "role": "Admin",
+            "userId": "1485976998",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@Eroc1",
+            "displayName": "Eroc (Will not DM First)",
+            "role": "Admin (HIGHER)",
+            "userId": "1681744903",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@Aghial",
+            "displayName": "Aghial",
+            "role": "Admin (IDEAS MAN)",
+            "userId": "2034894468",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          },
+          {
+            "username": "@JoeShmowe",
+            "displayName": "Tim",
+            "role": "Admin (Designer)",
+            "userId": "6571537516",
+            "group": "SHIB ON BASE",
+            "groupLink": null
+          }
+        ]
+      },
+      {
+        "groupLink": null,
+        "groupName": "Chudjak",
+        "members": [
+          {
+            "username": "@commanderchud",
+            "displayName": "Commander Chud",
+            "role": "Admin",
+            "userId": "7175332335",
+            "group": "Chudjak",
+            "groupLink": null
+          },
+          {
+            "username": "ID:7492536928",
+            "displayName": "Unknown",
+            "role": "Admin",
+            "userId": "7492536928",
+            "group": "Chudjak",
+            "groupLink": null
+          },
+          {
+            "username": "@ciggie_437",
+            "displayName": "Ciggie 437",
+            "role": "Owner",
+            "userId": "6911153702",
+            "group": "Chudjak",
+            "groupLink": null
+          },
+          {
+            "username": "@ChudjaksWife",
+            "displayName": "Lex [Thugalicious]",
+            "role": "Admin (chudjakswife)",
+            "userId": "7210429024",
+            "group": "Chudjak",
+            "groupLink": null
+          },
+          {
+            "username": "@hoxl4",
+            "displayName": "Janitor Chud",
+            "role": "Admin (Jannie)",
+            "userId": "7410064966",
+            "group": "Chudjak",
+            "groupLink": null
+          },
+          {
+            "username": "@redactedpat",
+            "displayName": "pathens",
+            "role": "Admin",
+            "userId": "5168086392",
+            "group": "Chudjak",
+            "groupLink": null
+          },
+          {
+            "username": "@whoadude69",
+            "displayName": "Whoa dude",
+            "role": "Admin (Admin)",
+            "userId": "5671858468",
+            "group": "Chudjak",
+            "groupLink": null
+          },
+          {
+            "username": "@EvanEvanEvanEvanEvanEvanEvan",
+            "displayName": "Evan",
+            "role": "Admin (Jannie)",
+            "userId": "536774189",
+            "group": "Chudjak",
+            "groupLink": null
+          },
+          {
+            "username": "@zogged",
+            "displayName": "wew",
+            "role": "Admin (Chuddie)",
+            "userId": "307256207",
+            "group": "Chudjak",
+            "groupLink": null
+          },
+          {
+            "username": "@derekforrealfr",
+            "displayName": "“whos that fudding on twitter??!”",
+            "role": "Admin (Jannie)",
+            "userId": "6580229566",
+            "group": "Chudjak",
+            "groupLink": null
+          },
+          {
+            "username": "@chamaa4200",
+            "displayName": "Chama 4200",
+            "role": "Admin (chudama)",
+            "userId": "6831131732",
+            "group": "Chudjak",
+            "groupLink": null
+          },
+          {
+            "username": "@kingduracel",
+            "displayName": "Duracel",
+            "role": "Admin (Jannie)",
+            "userId": "5685778669",
+            "group": "Chudjak",
+            "groupLink": null
+          },
+          {
+            "username": "@killerqueennz",
+            "displayName": "Yagami",
+            "role": "Admin (chuddie)",
+            "userId": "1839045031",
+            "group": "Chudjak",
+            "groupLink": null
+          }
+        ]
+      },
+      {
+        "groupLink": "https://t.me/SYFRai",
+        "groupName": "$SYFR AI Community",
+        "members": [
+          {
+            "username": "@limitlesstradez",
+            "displayName": "admmxm",
+            "role": "Admin (MOD)",
+            "userId": "981308027",
+            "group": "$SYFR AI Community",
+            "groupLink": "https://t.me/SYFRai"
+          },
+          {
+            "username": "@deepinprofitsllc",
+            "displayName": "BillionDolla Tariq📲💰🇭🇹",
+            "role": "Admin (MOD)",
+            "userId": "788622169",
+            "group": "$SYFR AI Community",
+            "groupLink": "https://t.me/SYFRai"
+          },
+          {
+            "username": "@blockchaintrillionaire",
+            "displayName": "Blockchain",
+            "role": "Admin",
+            "userId": "1177587972",
+            "group": "$SYFR AI Community",
+            "groupLink": "https://t.me/SYFRai"
+          },
+          {
+            "username": "@entitytrades",
+            "displayName": "Entity (CHANNEL IN BIO)",
+            "role": "Admin (SYFR MOD)",
+            "userId": "7556107187",
+            "group": "$SYFR AI Community",
+            "groupLink": "https://t.me/SYFRai"
+          },
+          {
+            "username": "@shitwillgetrugged",
+            "displayName": "YBK",
+            "role": "Admin (SYFR MOD)",
+            "userId": "7270547368",
+            "group": "$SYFR AI Community",
+            "groupLink": "https://t.me/SYFRai"
+          },
+          {
+            "username": "@pbehmiii",
+            "displayName": "AlterEgo",
+            "role": "Admin (SYFR MOD)",
+            "userId": "6180251564",
+            "group": "$SYFR AI Community",
+            "groupLink": "https://t.me/SYFRai"
+          },
+          {
+            "username": "@admmxm",
+            "displayName": "adxtradez",
+            "role": "Admin (SYFR MOD)",
+            "userId": "6413814048",
+            "group": "$SYFR AI Community",
+            "groupLink": "https://t.me/SYFRai"
+          },
+          {
+            "username": "@Degenerate_blixker",
+            "displayName": "BlixkFlowDegen",
+            "role": "Admin (SYFR MOD)",
+            "userId": "6690692709",
+            "group": "$SYFR AI Community",
+            "groupLink": "https://t.me/SYFRai"
+          },
+          {
+            "username": "@syfrtrades",
+            "displayName": "SYFR AI ( will not DM )",
+            "role": "Admin (SYFR)",
+            "userId": "6095946132",
+            "group": "$SYFR AI Community",
+            "groupLink": "https://t.me/SYFRai"
+          },
+          {
+            "username": "@wizcompounds",
+            "displayName": "Wiz ₿",
+            "role": "Admin (SYFR)",
+            "userId": "1986327271",
+            "group": "$SYFR AI Community",
+            "groupLink": "https://t.me/SYFRai"
+          }
+        ]
+      },
+      {
+        "groupLink": null,
+        "groupName": "Monkey Cult - MOLT",
+        "members": [
+          {
+            "username": "@KING_K007",
+            "displayName": "KING",
+            "role": "Admin (King)",
+            "userId": "1284736757",
+            "group": "Monkey Cult - MOLT",
+            "groupLink": null
+          },
+          {
+            "username": "@creator69",
+            "displayName": "Creator ⚡ Electrified (VCA)",
+            "role": "Admin",
+            "userId": "808744766",
+            "group": "Monkey Cult - MOLT",
+            "groupLink": null
+          },
+          {
+            "username": "@BossFamTV",
+            "displayName": "🦍BossFam🇸🇻 [VCA]",
+            "role": "Admin",
+            "userId": "5129368218",
+            "group": "Monkey Cult - MOLT",
+            "groupLink": null
+          },
+          {
+            "username": "@JZKrypto",
+            "displayName": "⚡️🦍JZ🍌🦍[VCA]🌙",
+            "role": "Admin",
+            "userId": "2136495450",
+            "group": "Monkey Cult - MOLT",
+            "groupLink": null
+          },
+          {
+            "username": "@crypto_chick1",
+            "displayName": "CryptoChick ⚡️⚡️⚡️",
+            "role": "Admin",
+            "userId": "1376527465",
+            "group": "Monkey Cult - MOLT",
+            "groupLink": null
+          },
+          {
+            "username": "@primemonkey2",
+            "displayName": "Primate",
+            "role": "Admin",
+            "userId": "7717017041",
+            "group": "Monkey Cult - MOLT",
+            "groupLink": null
+          },
+          {
+            "username": "@Idk_brotha",
+            "displayName": "Almost Blue",
+            "role": "Admin",
+            "userId": "6507229875",
+            "group": "Monkey Cult - MOLT",
+            "groupLink": null
+          },
+          {
+            "username": "@justsayyes11",
+            "displayName": "QUEEN 🐵",
+            "role": "Admin",
+            "userId": "6017287922",
+            "group": "Monkey Cult - MOLT",
+            "groupLink": null
+          },
+          {
+            "username": "@EVolc10",
+            "displayName": "E Volcano[VCA] 🇵🇦",
+            "role": "Admin",
+            "userId": "1229395808",
+            "group": "Monkey Cult - MOLT",
+            "groupLink": null
+          },
+          {
+            "username": "@Antares_Aq",
+            "displayName": "Antares",
+            "role": "Admin",
+            "userId": "8637377857",
+            "group": "Monkey Cult - MOLT",
+            "groupLink": null
+          },
+          {
+            "username": "@Queen_Ape489",
+            "displayName": "Queen Ape",
+            "role": "Admin",
+            "userId": "8632522729",
+            "group": "Monkey Cult - MOLT",
+            "groupLink": null
+          },
+          {
+            "username": "@BadMonk3y",
+            "displayName": "BadMonk3y",
+            "role": "Admin",
+            "userId": "5668534376",
+            "group": "Monkey Cult - MOLT",
+            "groupLink": null
+          },
+          {
+            "username": "@NotMonkingAround",
+            "displayName": "Not Monking Around",
+            "role": "Admin",
+            "userId": "8777472991",
+            "group": "Monkey Cult - MOLT",
+            "groupLink": null
+          },
+          {
+            "username": "@ELPAPINUTZ",
+            "displayName": "EL PAPI NUTZ ⚡️🍌🦍",
+            "role": "Admin",
+            "userId": "8229865662",
+            "group": "Monkey Cult - MOLT",
+            "groupLink": null
+          },
+          {
+            "username": "@KAWS310",
+            "displayName": "KAWS",
+            "role": "Admin",
+            "userId": "1102297696",
+            "group": "Monkey Cult - MOLT",
+            "groupLink": null
+          },
+          {
+            "username": "ID:8557597499",
+            "displayName": "Royal",
+            "role": "Admin",
+            "userId": "8557597499",
+            "group": "Monkey Cult - MOLT",
+            "groupLink": null
+          },
+          {
+            "username": "@Sultanx420",
+            "displayName": "Sultan⚡️",
+            "role": "Admin",
+            "userId": "6431631560",
+            "group": "Monkey Cult - MOLT",
+            "groupLink": null
+          },
+          {
+            "username": "@FocusFi",
+            "displayName": "Focus⚔️",
+            "role": "Admin (Mod)",
+            "userId": "6907743038",
+            "group": "Monkey Cult - MOLT",
+            "groupLink": null
+          },
+          {
+            "username": "@jamal42069",
+            "displayName": "J King",
+            "role": "Admin",
+            "userId": "8309597253",
+            "group": "Monkey Cult - MOLT",
+            "groupLink": null
+          }
+        ]
+      },
+      {
+        "groupLink": "https://t.me/LMAOSOLCOIN",
+        "groupName": "LMAO Memes",
         "members": []
       },
       {
-        "groupLink": "https://t.me/YOYOMINECRAFT",
-        "groupName": "YOYO the minecraft CAT",
-        "members": [
-          {
-            "username": "@WizzyChain",
-            "displayName": "Legend",
-            "role": "Admin",
-            "userId": "1384270378",
-            "group": "YOYO the minecraft CAT",
-            "groupLink": "https://t.me/YOYOMINECRAFT"
-          },
-          {
-            "username": "@ketchuppp22",
-            "displayName": "Ketchuppp",
-            "role": "Admin (Ketchuppp)",
-            "userId": "526219292",
-            "group": "YOYO the minecraft CAT",
-            "groupLink": "https://t.me/YOYOMINECRAFT"
-          },
-          {
-            "username": "@Captainharkness",
-            "displayName": "Captainharkness",
-            "role": "Admin (help man)",
-            "userId": "8443915196",
-            "group": "YOYO the minecraft CAT",
-            "groupLink": "https://t.me/YOYOMINECRAFT"
-          }
-        ]
-      },
-      {
         "groupLink": null,
-        "groupName": "The Pump Swing",
+        "groupName": "The Bull Mascot | $BULL",
         "members": [
           {
-            "username": "@pumpswinger",
-            "displayName": "Titi",
-            "role": "Owner",
-            "userId": "7231218767",
-            "group": "The Pump Swing",
+            "username": "ID:1896960810",
+            "displayName": "CryptoFrog 𓆏",
+            "role": "Admin (Frog)",
+            "userId": "1896960810",
+            "group": "The Bull Mascot | $BULL",
             "groupLink": null
-          }
-        ]
-      },
-      {
-        "groupLink": "https://t.me/ZygoSwap",
-        "groupName": "ZygoSwap",
-        "members": [
+          },
           {
-            "username": "@FurinaMusicAssistant_3",
-            "displayName": "Furina Music Assistant 3",
+            "username": "@waynewinss",
+            "displayName": "Wayne",
             "role": "Admin",
-            "userId": "5001524648",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
+            "userId": "8395451735",
+            "group": "The Bull Mascot | $BULL",
+            "groupLink": null
           },
           {
-            "username": "@Ethan_Roy2",
-            "displayName": "Ethan Roy⚡",
-            "role": "Admin (BNB Ambassador)",
-            "userId": "6486298566",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
+            "username": "@solomon_nbn",
+            "displayName": "solomon",
+            "role": "Admin",
+            "userId": "6477459330",
+            "group": "The Bull Mascot | $BULL",
+            "groupLink": null
           },
           {
-            "username": "@cryptoinflencer",
-            "displayName": "Marketting Head Crypto By HASH ( VERIFY FROM BIO)",
-            "role": "Admin (Ambassador)",
-            "userId": "1920597674",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "ID:6445692925",
-            "displayName": "Unknown",
-            "role": "Admin (Moderator)",
-            "userId": "6445692925",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@Oxclo_ver",
-            "displayName": "Clover",
-            "role": "Admin (AMBASSADOR)",
-            "userId": "8326392983",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@Daniel_7159",
-            "displayName": "Leo Dan",
-            "role": "Admin (Ambassador)",
-            "userId": "6594158819",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@TemiJat",
-            "displayName": "Temi Jat",
-            "role": "Admin (Administrator)",
-            "userId": "6528543893",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@finalleo",
-            "displayName": "Leonard MOD (Don’t check my bio 🤪)",
-            "role": "Admin (Administrator)",
-            "userId": "5566460628",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@HEN_D1",
-            "displayName": "Hendricks",
-            "role": "Admin (Administrator)",
-            "userId": "5208221474",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@Monster0045",
-            "displayName": "The Monster",
-            "role": "Admin (Administrator)",
-            "userId": "7562494377",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@ZygothefrogOriginal",
-            "displayName": "Zygo Frog",
-            "role": "Owner (Co-Developer)",
-            "userId": "7599021971",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          }
-        ]
-      },
-      {
-        "groupLink": "https://t.me/theleaderdapang",
-        "groupName": "Dà Pàng | $dapang",
-        "members": [
-          {
-            "username": "@coltvortex",
-            "displayName": "Colt Vortex",
-            "role": "Admin (mod)",
-            "userId": "8229677081",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@xonthephone",
-            "displayName": "x.",
-            "role": "Admin (x)",
-            "userId": "7560261759",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@h4nl4b",
-            "displayName": "h4n",
-            "role": "Admin (h4n)",
-            "userId": "6902255158",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "ID:8524315896",
+            "username": "ID:7122341661",
             "displayName": "Unknown",
             "role": "Admin",
-            "userId": "8524315896",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
+            "userId": "7122341661",
+            "group": "The Bull Mascot | $BULL",
+            "groupLink": null
           },
           {
-            "username": "@jeious",
-            "displayName": "Jeious",
+            "username": "@rayzad",
+            "displayName": "tax",
+            "role": "Admin (tax)",
+            "userId": "7490528417",
+            "group": "The Bull Mascot | $BULL",
+            "groupLink": null
+          },
+          {
+            "username": "@mayiixo",
+            "displayName": "Mayi",
+            "role": "Admin (dev)",
+            "userId": "6679271018",
+            "group": "The Bull Mascot | $BULL",
+            "groupLink": null
+          },
+          {
+            "username": "@flash_bee",
+            "displayName": "Bumble Bee 🐝🧩",
+            "role": "Admin (raider)",
+            "userId": "1429008976",
+            "group": "The Bull Mascot | $BULL",
+            "groupLink": null
+          },
+          {
+            "username": "@jeffxcrypto",
+            "displayName": "Itsyaboijeff",
             "role": "Admin (mod)",
-            "userId": "8606228004",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@yellwmoon",
-            "displayName": "Yellow",
-            "role": "Admin (Mod)",
-            "userId": "8648669793",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@jamiexl",
-            "displayName": "Jamie",
-            "role": "Admin (Mod)",
-            "userId": "8215826330",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@TrenchRepe",
-            "displayName": "Repe",
-            "role": "Admin",
-            "userId": "8611294097",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@padaraang",
-            "displayName": "Paddaara",
-            "role": "Admin (Mod)",
-            "userId": "8714006647",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@NexBar0xc",
-            "displayName": "NexB",
-            "role": "Admin",
-            "userId": "8712877496",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@dogleadercult",
-            "displayName": "Bibi",
-            "role": "Admin (Mod)",
-            "userId": "8616597076",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          }
-        ]
-      },
-      {
-        "groupLink": null,
-        "groupName": "Pixel Cat CTO",
-        "members": [
-          {
-            "username": "@EmKKo23",
-            "displayName": "magic 🪄",
-            "role": "Admin",
-            "userId": "1564316141",
-            "group": "Pixel Cat CTO",
+            "userId": "1936936645",
+            "group": "The Bull Mascot | $BULL",
             "groupLink": null
           },
           {
-            "username": "@FinGrey02",
-            "displayName": "Fin Grey 🎖",
+            "username": "@monkamo_1",
+            "displayName": "Mon Kamo",
             "role": "Admin",
-            "userId": "7179488968",
-            "group": "Pixel Cat CTO",
+            "userId": "8762868361",
+            "group": "The Bull Mascot | $BULL",
             "groupLink": null
           },
           {
-            "username": "@mfzezima",
-            "displayName": "MF Zezima",
+            "username": "@beemosolx",
+            "displayName": "dia",
             "role": "Admin",
-            "userId": "7411603228",
-            "group": "Pixel Cat CTO",
+            "userId": "7817239253",
+            "group": "The Bull Mascot | $BULL",
             "groupLink": null
           },
           {
-            "username": "@M4zterCrypto",
-            "displayName": "M4zterCrypto",
+            "username": "@DEOCoon",
+            "displayName": "DIgiti",
             "role": "Admin",
-            "userId": "6877776375",
-            "group": "Pixel Cat CTO",
+            "userId": "8549870443",
+            "group": "The Bull Mascot | $BULL",
             "groupLink": null
           },
           {
-            "username": "@marweeezy",
-            "displayName": "Marweezy",
-            "role": "Admin",
-            "userId": "513959588",
-            "group": "Pixel Cat CTO",
-            "groupLink": null
-          },
-          {
-            "username": "@D4rthSol",
-            "displayName": "D4rth",
-            "role": "Owner",
-            "userId": "6215378182",
-            "group": "Pixel Cat CTO",
-            "groupLink": null
-          }
-        ]
-      },
-      {
-        "groupLink": null,
-        "groupName": "SWING",
-        "members": [
-          {
-            "username": "@TheLastSwinger",
-            "displayName": "SWING",
-            "role": "Owner",
-            "userId": "6240709350",
-            "group": "SWING",
-            "groupLink": null
-          }
-        ]
-      },
-      {
-        "groupLink": null,
-        "groupName": "$Aped",
-        "members": [
-          {
-            "username": "@BeastmodeOG",
-            "displayName": "BEASTMODE! ️🇨🇦 MMKK | CRYPTO CARTEL |",
-            "role": "Admin",
-            "userId": "7391947487",
-            "group": "$Aped",
-            "groupLink": null
-          },
-          {
-            "username": "@FADYMORIS",
-            "displayName": "FADY⚡️",
-            "role": "Admin",
-            "userId": "1165699723",
-            "group": "$Aped",
-            "groupLink": null
-          },
-          {
-            "username": "@hunter_cryptoTG",
-            "displayName": "Sayan",
-            "role": "Admin",
-            "userId": "6820682048",
-            "group": "$Aped",
-            "groupLink": null
-          },
-          {
-            "username": "@unphasedalways",
-            "displayName": "SNOW",
-            "role": "Admin",
-            "userId": "8002141431",
-            "group": "$Aped",
-            "groupLink": null
-          },
-          {
-            "username": "@Defi_Rayne",
-            "displayName": "Rayne",
-            "role": "Admin",
-            "userId": "6975682174",
-            "group": "$Aped",
-            "groupLink": null
-          },
-          {
-            "username": "@biggest_wizard",
-            "displayName": "Wizard 🪄",
-            "role": "Admin",
-            "userId": "7179497932",
-            "group": "$Aped",
-            "groupLink": null
-          },
-          {
-            "username": "@Naru_tuuz",
-            "displayName": "Uzumaki",
-            "role": "Admin (MOD)",
-            "userId": "7689187833",
-            "group": "$Aped",
-            "groupLink": null
-          },
-          {
-            "username": "@SPY_NO_WAY",
-            "displayName": "SPY",
-            "role": "Admin (SPY GOAT)",
-            "userId": "5551371548",
-            "group": "$Aped",
-            "groupLink": null
-          },
-          {
-            "username": "@levixxX80",
-            "displayName": "LEVI",
-            "role": "Owner",
-            "userId": "1659336071",
-            "group": "$Aped",
-            "groupLink": null
-          }
-        ]
-      },
-      {
-        "groupLink": "https://t.me/unitytoken1",
-        "groupName": "UNITY 🪙 OFFICIALS TG",
-        "members": [
-          {
-            "username": "@Jaychris522",
-            "displayName": "Jay chris",
-            "role": "Admin",
-            "userId": "8519768121",
-            "group": "UNITY 🪙 OFFICIALS TG",
-            "groupLink": "https://t.me/unitytoken1"
-          },
-          {
-            "username": "@Primelayerr",
-            "displayName": "FlúxVèctõr📈 📊",
-            "role": "Admin",
-            "userId": "7526324473",
-            "group": "UNITY 🪙 OFFICIALS TG",
-            "groupLink": "https://t.me/unitytoken1"
-          },
-          {
-            "username": "@Xstoner56789",
-            "displayName": "Big Stoner💨🩶",
-            "role": "Admin",
-            "userId": "7473628538",
-            "group": "UNITY 🪙 OFFICIALS TG",
-            "groupLink": "https://t.me/unitytoken1"
-          },
-          {
-            "username": "@patrickinng",
-            "displayName": "PatrickX45",
-            "role": "Admin",
-            "userId": "8571119203",
-            "group": "UNITY 🪙 OFFICIALS TG",
-            "groupLink": "https://t.me/unitytoken1"
-          },
-          {
-            "username": "@Oxandrewsol",
-            "displayName": "Oxandrewsol",
-            "role": "Admin (co founder)",
-            "userId": "7389743491",
-            "group": "UNITY 🪙 OFFICIALS TG",
-            "groupLink": "https://t.me/unitytoken1"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": 1774626199239,
-    "scrapedAt": "2026-03-27T15:43:19.239Z",
-    "results": [
-      {
-        "groupLink": null,
-        "groupName": "The Pump Swing",
-        "members": [
-          {
-            "username": "@pumpswinger",
-            "displayName": "Titi",
-            "role": "Owner",
-            "userId": "7231218767",
-            "group": "The Pump Swing",
-            "groupLink": null
-          }
-        ]
-      },
-      {
-        "groupLink": null,
-        "groupName": "NEKOKICHI",
-        "members": []
-      },
-      {
-        "groupLink": "https://t.me/YOYOMINECRAFT",
-        "groupName": "YOYO the minecraft CAT",
-        "members": [
-          {
-            "username": "@WizzyChain",
-            "displayName": "Legend",
-            "role": "Admin",
-            "userId": "1384270378",
-            "group": "YOYO the minecraft CAT",
-            "groupLink": "https://t.me/YOYOMINECRAFT"
-          },
-          {
-            "username": "@ketchuppp22",
-            "displayName": "Ketchuppp",
-            "role": "Admin (Ketchuppp)",
-            "userId": "526219292",
-            "group": "YOYO the minecraft CAT",
-            "groupLink": "https://t.me/YOYOMINECRAFT"
-          },
-          {
-            "username": "@Captainharkness",
-            "displayName": "Captainharkness",
-            "role": "Admin (help man)",
-            "userId": "8443915196",
-            "group": "YOYO the minecraft CAT",
-            "groupLink": "https://t.me/YOYOMINECRAFT"
-          }
-        ]
-      },
-      {
-        "groupLink": "https://t.me/ZygoSwap",
-        "groupName": "ZygoSwap",
-        "members": [
-          {
-            "username": "@FurinaMusicAssistant_3",
-            "displayName": "Furina Music Assistant 3",
-            "role": "Admin",
-            "userId": "5001524648",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@Ethan_Roy2",
-            "displayName": "Ethan Roy⚡",
-            "role": "Admin (BNB Ambassador)",
-            "userId": "6486298566",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@cryptoinflencer",
-            "displayName": "Marketting Head Crypto By HASH ( VERIFY FROM BIO)",
-            "role": "Admin (Ambassador)",
-            "userId": "1920597674",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "ID:6445692925",
-            "displayName": "Unknown",
-            "role": "Admin (Moderator)",
-            "userId": "6445692925",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@Oxclo_ver",
-            "displayName": "Clover",
-            "role": "Admin (AMBASSADOR)",
-            "userId": "8326392983",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@Daniel_7159",
-            "displayName": "Leo Dan",
-            "role": "Admin (Ambassador)",
-            "userId": "6594158819",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@TemiJat",
-            "displayName": "Temi Jat",
-            "role": "Admin (Administrator)",
-            "userId": "6528543893",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@finalleo",
-            "displayName": "Leonard MOD (Don’t check my bio 🤪)",
-            "role": "Admin (Administrator)",
-            "userId": "5566460628",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@HEN_D1",
-            "displayName": "Hendricks",
-            "role": "Admin (Administrator)",
-            "userId": "5208221474",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@Monster0045",
-            "displayName": "The Monster",
-            "role": "Admin (Administrator)",
-            "userId": "7562494377",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          },
-          {
-            "username": "@ZygothefrogOriginal",
-            "displayName": "Zygo Frog",
-            "role": "Owner (Co-Developer)",
-            "userId": "7599021971",
-            "group": "ZygoSwap",
-            "groupLink": "https://t.me/ZygoSwap"
-          }
-        ]
-      },
-      {
-        "groupLink": null,
-        "groupName": "Pixel Cat CTO",
-        "members": [
-          {
-            "username": "@EmKKo23",
-            "displayName": "magic 🪄",
-            "role": "Admin",
-            "userId": "1564316141",
-            "group": "Pixel Cat CTO",
-            "groupLink": null
-          },
-          {
-            "username": "@FinGrey02",
-            "displayName": "Fin Grey 🎖",
-            "role": "Admin",
-            "userId": "7179488968",
-            "group": "Pixel Cat CTO",
-            "groupLink": null
-          },
-          {
-            "username": "@mfzezima",
-            "displayName": "MF Zezima",
-            "role": "Admin",
-            "userId": "7411603228",
-            "group": "Pixel Cat CTO",
-            "groupLink": null
-          },
-          {
-            "username": "@M4zterCrypto",
-            "displayName": "M4zterCrypto",
-            "role": "Admin",
-            "userId": "6877776375",
-            "group": "Pixel Cat CTO",
-            "groupLink": null
-          },
-          {
-            "username": "@marweeezy",
-            "displayName": "Marweezy",
-            "role": "Admin",
-            "userId": "513959588",
-            "group": "Pixel Cat CTO",
-            "groupLink": null
-          },
-          {
-            "username": "@D4rthSol",
-            "displayName": "D4rth",
-            "role": "Owner",
-            "userId": "6215378182",
-            "group": "Pixel Cat CTO",
-            "groupLink": null
-          }
-        ]
-      },
-      {
-        "groupLink": null,
-        "groupName": "$Aped",
-        "members": [
-          {
-            "username": "@BeastmodeOG",
-            "displayName": "BEASTMODE! ️🇨🇦 MMKK | CRYPTO CARTEL |",
-            "role": "Admin",
-            "userId": "7391947487",
-            "group": "$Aped",
-            "groupLink": null
-          },
-          {
-            "username": "@FADYMORIS",
-            "displayName": "FADY⚡️",
-            "role": "Admin",
-            "userId": "1165699723",
-            "group": "$Aped",
-            "groupLink": null
-          },
-          {
-            "username": "@hunter_cryptoTG",
-            "displayName": "Sayan",
-            "role": "Admin",
-            "userId": "6820682048",
-            "group": "$Aped",
-            "groupLink": null
-          },
-          {
-            "username": "@unphasedalways",
-            "displayName": "SNOW",
-            "role": "Admin",
-            "userId": "8002141431",
-            "group": "$Aped",
-            "groupLink": null
-          },
-          {
-            "username": "@Defi_Rayne",
-            "displayName": "Rayne",
-            "role": "Admin",
-            "userId": "6975682174",
-            "group": "$Aped",
-            "groupLink": null
-          },
-          {
-            "username": "@biggest_wizard",
-            "displayName": "Wizard 🪄",
-            "role": "Admin",
-            "userId": "7179497932",
-            "group": "$Aped",
-            "groupLink": null
-          },
-          {
-            "username": "@Naru_tuuz",
-            "displayName": "Uzumaki",
-            "role": "Admin (MOD)",
-            "userId": "7689187833",
-            "group": "$Aped",
-            "groupLink": null
-          },
-          {
-            "username": "@SPY_NO_WAY",
-            "displayName": "SPY",
-            "role": "Admin (SPY GOAT)",
-            "userId": "5551371548",
-            "group": "$Aped",
-            "groupLink": null
-          },
-          {
-            "username": "@levixxX80",
-            "displayName": "LEVI",
-            "role": "Owner",
-            "userId": "1659336071",
-            "group": "$Aped",
-            "groupLink": null
-          }
-        ]
-      },
-      {
-        "groupLink": "https://t.me/unitytoken1",
-        "groupName": "UNITY 🪙 OFFICIALS TG",
-        "members": [
-          {
-            "username": "@Jaychris522",
-            "displayName": "Jay chris",
-            "role": "Admin",
-            "userId": "8519768121",
-            "group": "UNITY 🪙 OFFICIALS TG",
-            "groupLink": "https://t.me/unitytoken1"
-          },
-          {
-            "username": "@Primelayerr",
-            "displayName": "FlúxVèctõr📈 📊",
-            "role": "Admin",
-            "userId": "7526324473",
-            "group": "UNITY 🪙 OFFICIALS TG",
-            "groupLink": "https://t.me/unitytoken1"
-          },
-          {
-            "username": "@Xstoner56789",
-            "displayName": "Big Stoner💨🩶",
-            "role": "Admin",
-            "userId": "7473628538",
-            "group": "UNITY 🪙 OFFICIALS TG",
-            "groupLink": "https://t.me/unitytoken1"
-          },
-          {
-            "username": "@patrickinng",
-            "displayName": "PatrickX45",
-            "role": "Admin",
-            "userId": "8571119203",
-            "group": "UNITY 🪙 OFFICIALS TG",
-            "groupLink": "https://t.me/unitytoken1"
-          },
-          {
-            "username": "@Oxandrewsol",
-            "displayName": "Oxandrewsol",
-            "role": "Admin (co founder)",
-            "userId": "7389743491",
-            "group": "UNITY 🪙 OFFICIALS TG",
-            "groupLink": "https://t.me/unitytoken1"
-          }
-        ]
-      },
-      {
-        "groupLink": null,
-        "groupName": "SWING",
-        "members": [
-          {
-            "username": "@TheLastSwinger",
-            "displayName": "SWING",
-            "role": "Owner",
-            "userId": "6240709350",
-            "group": "SWING",
-            "groupLink": null
-          }
-        ]
-      },
-      {
-        "groupLink": "https://t.me/theleaderdapang",
-        "groupName": "Dà Pàng | $dapang",
-        "members": [
-          {
-            "username": "@coltvortex",
-            "displayName": "Colt Vortex",
+            "username": "@Wulexxy3",
+            "displayName": "Wulex",
             "role": "Admin (mod)",
-            "userId": "8229677081",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
+            "userId": "8520357215",
+            "group": "The Bull Mascot | $BULL",
+            "groupLink": null
           },
           {
-            "username": "@xonthephone",
-            "displayName": "x.",
-            "role": "Admin (x)",
-            "userId": "7560261759",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@h4nl4b",
-            "displayName": "h4n",
-            "role": "Admin (h4n)",
-            "userId": "6902255158",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "ID:8524315896",
-            "displayName": "Unknown",
+            "username": "@degenons",
+            "displayName": "Degen Worker",
             "role": "Admin",
-            "userId": "8524315896",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
+            "userId": "7935700382",
+            "group": "The Bull Mascot | $BULL",
+            "groupLink": null
           },
           {
-            "username": "@jeious",
-            "displayName": "Jeious",
-            "role": "Admin (mod)",
-            "userId": "8606228004",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@yellwmoon",
-            "displayName": "Yellow",
-            "role": "Admin (Mod)",
-            "userId": "8648669793",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@jamiexl",
-            "displayName": "Jamie",
-            "role": "Admin (Mod)",
-            "userId": "8215826330",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@TrenchRepe",
-            "displayName": "Repe",
+            "username": "@Digi_Leo1",
+            "displayName": "Leo",
             "role": "Admin",
-            "userId": "8611294097",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
+            "userId": "6477160766",
+            "group": "The Bull Mascot | $BULL",
+            "groupLink": null
           },
           {
-            "username": "@padaraang",
-            "displayName": "Paddaara",
-            "role": "Admin (Mod)",
-            "userId": "8714006647",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@NexBar0xc",
-            "displayName": "NexB",
-            "role": "Admin",
-            "userId": "8712877496",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          },
-          {
-            "username": "@dogleadercult",
-            "displayName": "Bibi",
-            "role": "Admin (Mod)",
-            "userId": "8616597076",
-            "group": "Dà Pàng | $dapang",
-            "groupLink": "https://t.me/theleaderdapang"
-          }
-        ]
-      },
-      {
-        "groupLink": null,
-        "groupName": "GUI Reach Out Team",
-        "members": [
-          {
-            "username": "@AbbassOP",
-            "displayName": "AbbasOP",
-            "role": "Owner",
-            "userId": "471245098",
-            "group": "GUI Reach Out Team",
+            "username": "@onlygem1",
+            "displayName": "Gem",
+            "role": "Owner (Gem)",
+            "userId": "837230727",
+            "group": "The Bull Mascot | $BULL",
             "groupLink": null
           }
         ]

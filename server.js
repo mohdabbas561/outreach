@@ -233,6 +233,35 @@ app.post("/api/blacklist-group", (req, res) => {
   res.json({ ok: true });
 });
 
+// ─── Blocked Admins (TG Admin scraper — never show/scrape again) ──────────────
+app.get("/api/blocked-admins", (req, res) => {
+  const f = path.join(__dirname, "blocked_admins.json");
+  const admins = fs.existsSync(f) ? JSON.parse(fs.readFileSync(f)) : [];
+  res.json({ admins });
+});
+
+app.post("/api/block-admin", (req, res) => {
+  const { username } = req.body;
+  if (!username) return res.status(400).json({ ok: false });
+  const f = path.join(__dirname, "blocked_admins.json");
+  const admins = fs.existsSync(f) ? JSON.parse(fs.readFileSync(f)) : [];
+  const key = String(username).toLowerCase().trim();
+  if (!admins.includes(key)) admins.push(key);
+  fs.writeFileSync(f, JSON.stringify(admins, null, 2));
+  res.json({ ok: true });
+});
+
+app.delete("/api/block-admin", (req, res) => {
+  const { username } = req.body;
+  if (!username) return res.status(400).json({ ok: false });
+  const f = path.join(__dirname, "blocked_admins.json");
+  const admins = fs.existsSync(f) ? JSON.parse(fs.readFileSync(f)) : [];
+  const key = String(username).toLowerCase().trim();
+  const updated = admins.filter(a => a !== key);
+  fs.writeFileSync(f, JSON.stringify(updated, null, 2));
+  res.json({ ok: true });
+});
+
 // ─── Delete single history entry ─────────────────────────────────────────────
 app.post("/api/dex/history/delete", (req, res) => {
   const { id } = req.body;
